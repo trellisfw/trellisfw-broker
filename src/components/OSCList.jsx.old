@@ -1,0 +1,107 @@
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+//import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+//import Typography from '@material-ui/core/Typography';
+import { green } from '@material-ui/core/colors';
+//import FavoriteIcon from '@material-ui/icons/Favorite';
+//import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import MoreVertIcon from '@material-ui/icons/MoreVert';
+//import CheckIcon from '@material-ui/icons/CheckBox';
+import CloudCheckIcon from '@material-ui/icons/CloudDone';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import VerifiedCodeIcon from '@material-ui/icons/AccountBalance';
+//import PACStepper from "./PACStepper";
+import OSCMenuList from "./OSCMenuList";
+
+const useStyles = makeStyles(theme => ({
+	container: {
+	  paddingTop: '5px'
+	},
+  card: {
+		flexGrow: 1,
+		background: '#E9E8E8',
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: green[500],
+  },
+}));
+
+//
+//					  <OSCMenuList />>
+
+export default function OSCListCard() {
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  function handleExpandClick() {
+    setExpanded(!expanded);
+  }
+
+  return (
+		<div className={classes.container}>
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            SF
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="Settings">
+					</IconButton>
+        }
+        title="Sustainable Fishing"
+        subheader="Running since 11.06.2019"
+      />
+      <CardActions disableSpacing>
+        <IconButton aria-label="Verified Code">
+          <VerifiedCodeIcon />
+        </IconButton>
+        <IconButton aria-label="Verified User">
+          <VerifiedUserIcon />
+        </IconButton>
+        <IconButton aria-label="Blockchain connected">
+          <CloudCheckIcon />
+        </IconButton>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="Show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+		    </CardContent>
+      </Collapse>
+    </Card>
+		</div>
+  );
+}

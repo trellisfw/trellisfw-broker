@@ -1,0 +1,25 @@
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { useDarkMode } from './useDarkMode';
+import { lightTheme, darkTheme } from './theme';
+import { GlobalStyles } from './global';
+import Toggle from './Toggle';
+import MenuBar from './MenuBar';
+import './App.css';
+
+function App() {
+  const [theme, toggleTheme] = useDarkMode();
+	const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+  return (
+		  <ThemeProvider theme={themeMode}>
+        <>
+          <GlobalStyles />
+		      <MenuBar />
+          <h1>Trellis++ Broker App</h1>
+        </>
+      </ThemeProvider>
+  );
+}
+
+export default App;
