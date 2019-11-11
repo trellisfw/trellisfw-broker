@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "@cerebral/react";
 import { state } from "cerebral/tags";
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 //import CardMedia from '@material-ui/core/CardMedia';
@@ -20,7 +19,7 @@ import CloudCheckIcon from '@material-ui/icons/CloudDone';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import VerifiedCodeIcon from '@material-ui/icons/AccountBalance';
 //import PACStepper from "./PACStepper";
-//import OSCMenuList from "./OSCMenuList";
+import OSCMenuList from "./OSCMenuList";
 import { withStyles } from "@material-ui/core/styles";
 import { useStyles, backColor, CardEnum } from "./OSCConfig.js";
 
@@ -40,10 +39,11 @@ class OSCList extends React.Component {
 	renderOSC( params ) {
 		const {osc, classes} = params;
 		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
-    if( osc ) {
+    
+		if( osc ) {
 			return (
-				<div className={classes.container}>
-				<Card className={classes.card}>
+				<div id={osc.id} className={classes.container}>
+				  <Card className={classes.card}>
 						<CardHeader
 							avatar={
 								<Avatar aria-label={CardEnum.OSC} 
@@ -53,6 +53,7 @@ class OSCList extends React.Component {
 							}
 							action={
 								<IconButton aria-label={CardEnum.Set}>
+								  <OSCMenuList id={osc.id} />
 								</IconButton>
 							}
 							title={osc.title}
@@ -83,7 +84,7 @@ class OSCList extends React.Component {
 	 * Invidual OSC records are populated by the Compute Engine
 	 */
 	render() {
-		const { classes, backgroundColor } = this.props;
+		const { classes } = this.props;
 		
 		return (
 			<div>

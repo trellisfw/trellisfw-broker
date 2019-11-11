@@ -4,24 +4,28 @@ let stateTree = {
 	label: "SF",
   records: {
     "item 1": {
+			id: "item1",
       label: "SR",
 			title: "Sustainability Reporting",
 			dateInit: "10.06.2019",
 			trustLevel: "tl1"
     },
     "item 2": {
+			id: "item2",
       label: "PD",
 			title: "Planting Date Reporting",
 			dateInit: "10.06.2019",
 			trustLevel: "tl1"
     },
     "item 3": {
+			id: "item3",
       label: "SF",
 			title: "Sustainable Fishing",
 			dateInit: "02.10.2019",
 			trustLevel: "tl2"
     },
     "item 4": {
+			id: "item4",
       label: "MB",
 			title: "Organic Mass Balance",
 			dateInit: "09.17.2019",

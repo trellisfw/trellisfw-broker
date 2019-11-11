@@ -8,7 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 
-var anchorEl;
+//The DOM element used to set the position of the menu.
+let anchorEl;
 
 const styles = theme => ({
   menuButton: {
@@ -35,17 +36,19 @@ class OSCMenuList extends React.Component {
     return (
       <div>
         <IconButton
-          key={7}
+          key={1}
           color="inherit"
           aria-label="simple-menu-button"
           id="simple-menu-button"
           aria-owns={"simple-menu"}
           aria-haspopup="true"
-          onClick={(evt) => {this.handleMenuList(evt); this.props.handleMenuListOpen({})}}
+          onClick={ (evt) => {
+						                  this.handleMenuList(evt); 
+						      						this.props.handleMenuListOpen({})
+					                   }
+					        }
           className={classes.menuButton}
-          disabled={
-            this.props.connection_id === "none" || this.props.fieldsEditing || this.props.emptyDataSet
-          }
+          disabled={ false }
         >
           <MoreVertIcon />
         </IconButton>
@@ -56,24 +59,32 @@ class OSCMenuList extends React.Component {
             onClose={this.props.handleMenuListOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Provision Token</MenuItem>
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Generate PAC</MenuItem>
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Initiate RA</MenuItem>
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Verify OSC Hash</MenuItem>
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Restart OSC</MenuItem>
-            <MenuItem onClick={()=>{ this.props.handleMenuListOpen({}); 
-							this.props.handleMenuListOpen({}) }}>Turn OSC Off</MenuItem>
+            <MenuItem onClick={this.props.provisionToken}>
+					    Provision Token
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.provisionData({}); }}>
+					    Provision Data
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.generatePAC({}); }}>
+					    Generate PAC
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.initRA({}); }}>
+					    Initiate RA
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.checkOSCHash({}); }}>
+					    Verify OSC Hash
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.restartOSC({}); }}>
+					    Restart OSC
+					  </MenuItem>
+            <MenuItem onClick={() => { this.props.killOSC({}); }}>
+					    Turn OSC Off
+					  </MenuItem>
           </Menu>
           : null}
       </div>
     )}
 }
-
 
 OSCMenuList.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -89,6 +100,13 @@ export default connect(
     setCurrentItem:     signal`OSCMenuList.setCurrentItem`,
     clearConnection:    signal`Connections.clearConnection`,
     handleMenuListOpen: signal`OSCMenuList.handleMenuListOpen`,
+    provisionToken:     signal`OSCMenuList.provisionToken`,
+    provisionData:      signal`OSCMenuList.provisionData`,
+    generatePAC:        signal`OSCMenuList.generatePAC`,
+    initRA:             signal`OSCMenuList.initRA`,
+    checkOSCHash:       signal`OSCMenuList.checkOSCHash`,
+    restartOSC:         signal`OSCMenuList.restartOSC`,
+    killOSC:            signal`OSCMenuList.killOSC`,
   },
   withStyles(styles, {withTheme: true})(OSCMenuList)
 );
