@@ -1,6 +1,6 @@
 //import MobileDetect from "mobile-detect";
 import * as oada from "@oada/cerebral-module/sequences";
-//import { sequence } from "cerebral";
+import { sequence } from "cerebral";
 //import { state } from "cerebral/tags";
 //import { when, set } from "cerebral/operators";
 
@@ -27,6 +27,10 @@ import * as oada from "@oada/cerebral-module/sequences";
   scope:    _SCOPE
 };
 */
+
+export const init = sequence("App.init", [
+  () => { console.log("--> App.init"); }
+]);
 
 /*export const init = sequence("App.init", [
   () => {
