@@ -8,6 +8,7 @@ import { GlobalStyles } from './global';
 import MenuBar from './MenuBar';
 import './App.css';
 import OSCList from "./OSCList";
+import Connections from "./Connections";
 
 class App extends Component {
   //const [theme, toggleTheme] = useDarkMode();
@@ -28,6 +29,7 @@ class App extends Component {
 					<div>
 						<OSCList />
 					</div>
+			    <Connections />
 					<footer>
 						Credits:
 						<small>The Open AG Technology and Systems Center (OATS)</small>

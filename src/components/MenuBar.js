@@ -1,5 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "@cerebral/react";
+import { signal } from "cerebral/tags";
+//import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -12,7 +15,7 @@ import packageJson from "../package.alias.json";
 //import { lightTheme, darkTheme } from './theme';
 //FF8E53
 //    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -31,28 +34,39 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
-}));
+});
 
-export default function ButtonAppBar() {
-	console.log(packageJson);
-  const classes = useStyles();
+class MenuBar extends React.Component {
+	//console.log(packageJson);
+  //const classes = useStyles();
 	//const [theme, toggleTheme] = useDarkMode();
 	//const themeMode = theme === 'light' ? lightTheme : darkTheme;
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar className={classes.menuBar}>
-          <IconButton edge="start" className={classes.menuButton} 
-		                  color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Trellis++ Broker v{packageJson.version}
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  render(){
+		const { classes } = this.props;
+		return (
+			<div className={classes.root}>
+				<AppBar position="static">
+					<Toolbar className={classes.menuBar}>
+						<IconButton edge="start" className={classes.menuButton} 
+												color="inherit" aria-label="menu">
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" className={classes.title}>
+							Trellis++ Broker v{packageJson.version}
+						</Typography>
+						<Button onClick={this.props.openConnections} color="inherit">
+							Login
+						</Button>
+					</Toolbar>
+				</AppBar>
+			</div>
+		);
+	}
 }
+
+export default connect(
+	{
+    openConnections: signal`Connections.openConnections`
+	},
+	withStyles(useStyles, {withTheme: true})(MenuBar)
+);
