@@ -1,11 +1,11 @@
 //import MobileDetect from "mobile-detect";
-import * as oada from "@oada/cerebral-module/sequences";
-import { sequence } from "cerebral";
-//import { state } from "cerebral/tags";
-//import { when, set } from "cerebral/operators";
+import * as oada     from "@oada/cerebral-module/sequences";
+import { sequence }  from "cerebral";
+import { state }     from "cerebral/tags";
+import { when, set } from "cerebral/operators";
 
 const _SCOPE = "oada.oscs:all";
-//const _TOKEN = "servio";
+const _TOKEN = "servio";
 
 // previous http
 const _OPENATK_METADATA =
@@ -29,15 +29,14 @@ const _OPTIONS =  {
 };
 
 
-export const init = sequence("App.init", [
+/*export const init = sequence("App.init", [
   () => { console.log("--> App.init"); }
 ]);
+*/
 
-/*export const init = sequence("App.init", [
-  () => {
-    console.log("--> app.init");
-  },
-	setMobile,
+export const init = sequence("App.init", [
+  () => { console.log("--> app.init");},
+	//setMobile,
   //getConnectionsFromStorage,
   when(state`Connections.connection_id`),
   {
@@ -52,7 +51,7 @@ export const init = sequence("App.init", [
     false: [set(state`Connections.open`, true)]
   }
 ]);
-*/
+
 
 export const clearCacheButtonClicked = [
   ({ state, props }) => ({

@@ -1,11 +1,11 @@
 import { Module } from "cerebral";
 import * as signals from "./sequences";
 
-export default module({
+export default Module({
 	state: {
 		records: {},
 		loading: true,
-		connection_id: "none"
+		connection_id: "localhost"
 	},
 
 	signals: signals

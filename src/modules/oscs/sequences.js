@@ -1,36 +1,67 @@
+/* oscs/sequences.js */
 import { sequence } from "cerebral";
 import { set, when, equals } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
-let _localPath = "/bookmarks/oscs";
+let _localPath = "/bookmarks/operators";
 let _TYPE = "applications/vnd.oada.osc.1+json";
 let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    oscs: {
-      _type: "application/vnd.oada.osc.1+json",
+    operators: {
+      _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
-        _type: "application/vnd.oada.osc.1+json",
+        _type: "application/vnd.oada.yield.1+json",
         _rev: "0-0"
       }
     }
   }
 };
 
-function buildFetchRequest({ state }) {
+export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
+
+
+]);
+
+export const refresh = sequence("oscs.refresh", [
+  set(state`oscs.connection_id`, props`connection_id`),
+	set(state`oscs.loading`, true),
+	fetchNoWatch,
+	set(state`oscs.loading`, false),
+]);
+
+export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
+  () => {console.log("--> oscs.handleWatchUpdate");},
+	refresh
+]);
+/*
+ *
+			 watch:         { signals: ["oscs.handleWatchUpdate"] }
+ */
+/*function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get("oscs.connection_id"),
 			 path:          _localPath,
-			 tree,
-			 watch: { signals: ["oscs.handleWatchUpdate"] }
+			 tree
 		};
 	let requests = [];
 	requests.push(request);
 
+  return { requests };
+}*/
+
+function buildFetchRequest({ state }) {
+  let requests = [
+    {
+      connection_id: state.get("oscs.connection_id"),
+      path:          _localPath,
+      tree
+    }
+  ];
   return { requests };
 }
 
@@ -38,16 +69,13 @@ function loadOSCList({ state, props }){
   console.log("--> loadOSCList");
 }
 
-/*
+export const fetch = sequence("oscs.fetch", [
   ({ state, props }) => ({
 		connection_id: state.get("oscs.connection_id"),
 		path:         _localPath,
-		tree,
-		watch:        {signals: ["oscs.handleWatchUpdate"]}
+		tree
 	}),
-	*/
-export const fetch = sequence("oscs.fetch", [
-	buildFetchRequest,
+  buildFetchRequest,
 	oada.get,
 	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
 	{
@@ -56,15 +84,19 @@ export const fetch = sequence("oscs.fetch", [
 			      loadOSCList,
 			      set(state`App.emptyDataSet`, false),
 		      ]),
-    false: sequence("fetchOSCsEMptySet", [
+    false: sequence("fetchOSCsEmptySet", [
 		        () => ( console.log("--> OSCs empty set") ),
 			      set(state`App.emptyDataSet`, true)
 		]),
 	}
 ]);
+		//watch:        {signals: ["oscs.handleWatchUpdate"]}
 
+			      //() => ( console.log("--> oscs->init - when - false") ),
+			      //() => ( console.log("--> oscs->init - after connect") ),
 export const init = sequence("oscs.init", [
-  when(state`Connections.connection_id`),
+  getConnectionsFromStorage,
+	when(state`Connections.connection_id`),
 	{
     true: [oada.connect],
 		false: [
@@ -83,22 +115,36 @@ export const init = sequence("oscs.init", [
 	set(state`oscs.loading`, false)
 ]);
 
-export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
-
-
-]);
-
-export const refresh = sequence("oscs.refresh", [
-  set(state`oscs.connection_id`, props`connection_id`),
-	set(state`oscs.loading`, true),
-	fetchNoWatch,
-	set(state`oscs.loading`, false),
-]);
-
-export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
-  () => {console.log("--> oscs.handleWatchUpdate");},
-	refresh
-]);
+	//() => ( console.log("--> oscs->init - before fetch") ),
+/**
+ * gets the Connections from localCache, 
+ * it updates all necessary state to auto-init the app
+ * @param state
+ */
+function getConnectionsFromStorage({ state }) {
+  /*let connections = JSON.parse(
+    localStorage.getItem("_Broker.Connections")
+  );
+	*/
+  console.log("--> oscs.init storage connections --> ");
+  /*if (connections && connections["connection_id"]) {
+    state.set("Connections.show", false);
+    let connectionId = connections["connection_id"];
+    let oadaDomain = connections["oada_domain"];
+    console.log(
+      "--> operations init connectionId and OadaDomain",
+      connectionId,
+      oadaDomain
+    );
+    state.set(`operations.connection_id`, connectionId);
+    state.set("Connections.oada_domain", oadaDomain);
+    state.set("Connections.oada_domain_text", oadaDomain);
+  */
+    state.set(`oscs.connection_id`, "localhost");
+    state.set("Connections.oada_domain", "https://localhost");
+    state.set("Connections.oada_domain_text", "https://localhost");
+//	}
+}
 
 export function mapOadaToOscs({ props, state }){
   let connection_id = state.get("oscs.connection_id");
