@@ -38,18 +38,16 @@ class OSCList extends React.Component {
 	**/
 	renderOSC( params ) {
 		const {osc, classes} = params;
-		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
     
-		if( osc ) {
+		if (osc) {
+		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
 			return (
 				<div id={osc.id} className={classes.container}>
 				  <Card className={classes.card}>
 						<CardHeader
 							avatar={
 								<Avatar aria-label={CardEnum.OSC} 
-								style={avaColor}>
-								{osc.label}
-								</Avatar>
+								style={avaColor}>{osc.label}</Avatar>
 							}
 							action={
 								<IconButton aria-label={CardEnum.Set}>
@@ -70,7 +68,6 @@ class OSCList extends React.Component {
 								<CloudCheckIcon />
 							</IconButton>
 						</CardActions>
-						
 					</Card>
 				</div>
 			)
@@ -98,17 +95,14 @@ class OSCList extends React.Component {
 				})
 			}
 			</div>
-  )}// render
+  )}//render
 }
 
 /**
  * Connects to Cerebral
- * Defines state and signals here
+ * Defines state and signals
  */
 export default connect(
-	{
-    label:		state`OSCList.label`,
-		oscs:     state`OSCList.records`
-	},
+	{oscs:     state`oscs.records`},
   withStyles(useStyles, {withTheme: true})(OSCList)
 );

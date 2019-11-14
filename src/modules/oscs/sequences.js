@@ -1,12 +1,13 @@
 /* oscs/sequences.js */
 import { sequence } from "cerebral";
-import { set, when, equals } from "cerebral/operators";
+import { set, when } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
 let _localPath = "/bookmarks/oscs";
-let _TYPE = "applications/vnd.oada.osc.1+json";
+//let _TYPE = "applications/vnd.oada.osc.1+json";
+/*
 let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
@@ -16,6 +17,22 @@ let tree = {
       _rev: "0-0",
       "*": {
         _type: "application/vnd.oada.osc.1+json",
+        _rev: "0-0"
+      }
+    }
+  }
+};
+*/
+
+let tree = {
+  bookmarks: {
+    _type: "application/vnd.oada.bookmarks.1+json",
+    _rev: "0-0",
+    oscs: {
+      _type: "application/vnd.oada.yield.1+json",
+      _rev: "0-0",
+      "*": {
+        _type: "application/vnd.oada.yield.1+json",
         _rev: "0-0"
       }
     }
@@ -36,10 +53,9 @@ export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
   () => {console.log("--> oscs.handleWatchUpdate");},
 	refresh
 ]);
-/*
- *
-			 watch:         { signals: ["oscs.handleWatchUpdate"] }
- */
+
+/*  watch:         { signals: ["oscs.handleWatchUpdate"] }*/
+
 function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get("oscs.connection_id"),
@@ -50,10 +66,6 @@ function buildFetchRequest({ state }) {
 	requests.push(request);
 
   return { requests };
-}
-
-function loadOSCList({ state, props }){
-  console.log("--> loadOSCList");
 }
 
 export const fetch = sequence("oscs.fetch", [
@@ -68,7 +80,6 @@ export const fetch = sequence("oscs.fetch", [
 	{
 		true: sequence("fetchOSCsSuccess", [
             mapOadaToOscs,
-			      loadOSCList,
 			      set(state`App.emptyDataSet`, false),
 		      ]),
     false: sequence("fetchOSCsEmptySet", [
@@ -91,11 +102,6 @@ export const init = sequence("oscs.init", [
 	},
 	set(state`oscs.loading`, true),
 	fetch,
-	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
-	{
-		true: [],
-		false: []
-	},
 	set(state`oscs.loading`, false)
 ]);
 
@@ -105,7 +111,8 @@ export function mapOadaToOscs({ props, state }){
   if (oscs) {
     return Promise.map(Object.keys(oscs || {}), osc => {
 			if (osc[0] !== "_" && osc !== "oscs") {
-				let currentOSC = state.get(`oada.${connection_id}.bookmarks.oscs.${osc}`);
+				let currentOSC = 
+					     state.get(`oada.${connection_id}.bookmarks.oscs.${osc}`);
 				if ( currentOSC && currentOSC.id ) {
 					state.set(`oscs.records.${osc}`, oscs[osc]);
 				}

@@ -3,7 +3,6 @@ import PropTypes          from "prop-types";
 import { connect }        from "@cerebral/react";
 import { state, signal }  from "cerebral/tags";
 import { Menu, MenuItem } from "@material-ui/core";
-//import MenuIcon           from '@material-ui/icons/Menu';
 import IconButton         from '@material-ui/core/IconButton';
 import MoreVertIcon       from '@material-ui/icons/MoreVert';
 import { withStyles }     from '@material-ui/core/styles';

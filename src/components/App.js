@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from "@cerebral/react";
-import { signal } from "cerebral/tags";
-import { ThemeProvider } from 'styled-components';
-//import { useDarkMode } from './useDarkMode';
-import { darkTheme } from './theme';
-import { GlobalStyles } from './global';
-import MenuBar from './MenuBar';
+import { connect }          from "@cerebral/react";
+import { signal }           from "cerebral/tags";
+import { ThemeProvider }    from 'styled-components';
+import { darkTheme }        from './theme';
+import { GlobalStyles }     from './global';
+import MenuBar              from './MenuBar';
 import './App.css';
-import OSCList from "./OSCList";
-import Connections from "./Connections";
+import OSCList              from "./OSCList";
+import Connections          from "./Connections";
 
 class App extends Component {
-  //const [theme, toggleTheme] = useDarkMode();
-	//const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
 	UNSAFE_componentWillMount(){
     this.props.init({});
