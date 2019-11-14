@@ -5,17 +5,17 @@ import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
-let _localPath = "/bookmarks/operators";
+let _localPath = "/bookmarks/oscs";
 let _TYPE = "applications/vnd.oada.osc.1+json";
 let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    operators: {
-      _type: "application/vnd.oada.yield.1+json",
+    oscs: {
+      _type: "application/vnd.oada.oscs.1+json",
       _rev: "0-0",
       "*": {
-        _type: "application/vnd.oada.yield.1+json",
+        _type: "application/vnd.oada.osc.1+json",
         _rev: "0-0"
       }
     }
@@ -23,8 +23,6 @@ let tree = {
 };
 
 export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
-
-
 ]);
 
 export const refresh = sequence("oscs.refresh", [
@@ -66,7 +64,7 @@ export const fetch = sequence("oscs.fetch", [
 	}),
   buildFetchRequest,
 	oada.get,
-	when(state`oada.${props`connection_id`}.bookmarks.operators`),
+	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
 	{
 		true: sequence("fetchOSCsSuccess", [
             mapOadaToOscs,
@@ -93,7 +91,7 @@ export const init = sequence("oscs.init", [
 	},
 	set(state`oscs.loading`, true),
 	fetch,
-	when(state`oada.${props`connection_id`}.bookmarks.operators`),
+	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
 	{
 		true: [],
 		false: []
