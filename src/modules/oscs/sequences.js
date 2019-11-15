@@ -68,6 +68,7 @@ function buildFetchRequest({ state }) {
   return { requests };
 }
 
+
 export const fetch = sequence("oscs.fetch", [
   ({ state, props }) => ({
 		connection_id: state.get("oscs.connection_id"),
