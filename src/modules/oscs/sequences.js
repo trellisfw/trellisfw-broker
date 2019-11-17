@@ -6,7 +6,6 @@ import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
 let _localPath = "/bookmarks/oscs";
-//let _TYPE = "applications/vnd.oada.osc.1+json";
 /*
 let tree = {
   bookmarks: {
