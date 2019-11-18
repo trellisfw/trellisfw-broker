@@ -1,6 +1,6 @@
 {
   "name": "TrellisBroker",
-  "version": "0.1.8",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@cerebral/react": "^4.2.0",

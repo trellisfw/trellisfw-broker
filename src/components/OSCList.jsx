@@ -4,9 +4,9 @@ import { state } from "cerebral/tags";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 //import CardMedia from "@material-ui/core/CardMedia";
-//import CardContent from "@material-ui/core/CardContent";
+import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-//import Collapse from "@material-ui/core/Collapse";
+import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 //import Typography from "@material-ui/core/Typography";
@@ -18,7 +18,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloudCheckIcon from "@material-ui/icons/CloudDone";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import VerifiedCodeIcon from "@material-ui/icons/AccountBalance";
-//import PACStepper from "./PACStepper";
+import PACStepper from "./PACStepper";
 import OSCMenuList from "./OSCMenuList";
 import { withStyles } from "@material-ui/core/styles";
 import { useStyles, backColor, CardEnum } from "./OSCConfig.js";
@@ -68,6 +68,12 @@ class OSCList extends React.Component {
 								<CloudCheckIcon />
 							</IconButton>
 						</CardActions>
+				    <Collapse in={this.props.stepperOpen} 
+				              timeout="auto" unmountOnExit>
+              <CardContent>
+                <PACStepper />
+              </CardContent>
+            </Collapse>
 					</Card>
 				</div>
 			)
@@ -103,6 +109,9 @@ class OSCList extends React.Component {
  * Defines state and signals
  */
 export default connect(
-	{oscs:     state`oscs.records`},
+	{
+		oscs:        state`oscs.records`,
+    stepperOpen: state`OSCList.stepperOpen`
+	},
   withStyles(useStyles, {withTheme: true})(OSCList)
 );
