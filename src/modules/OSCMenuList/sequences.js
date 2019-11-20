@@ -8,6 +8,11 @@ export function setCurrentItem({props, state}){
     state.set(`OSCMenuList.current`, props.item);
 }
 
+export function pacList(evt) {
+	console.log("PAC List ->" + evt);
+	console.log(evt);
+}
+
 export function provisionToken(evt){
 	console.log("Provision Token Event ->" + evt);
 	console.log(evt);

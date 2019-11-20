@@ -58,6 +58,9 @@ class OSCMenuList extends React.Component {
             onClose={this.props.handleMenuListOpen}
             anchorEl={anchorEl}
           >
+            <MenuItem onClick={() => { this.props.pacList({}); }}>
+					    PAC List
+					  </MenuItem>
             <MenuItem onClick={this.props.provisionToken}>
 					    Provision Token
 					  </MenuItem>
@@ -99,6 +102,7 @@ export default connect(
     setCurrentItem:     signal`OSCMenuList.setCurrentItem`,
     clearConnection:    signal`Connections.clearConnection`,
     handleMenuListOpen: signal`OSCMenuList.handleMenuListOpen`,
+    pacList:            signal`OSCMenuList.pacList`,
     provisionToken:     signal`OSCMenuList.provisionToken`,
     provisionData:      signal`OSCMenuList.provisionData`,
     generatePAC:        signal`OSCMenuList.generatePAC`,
