@@ -8,6 +8,7 @@ import MenuBar              from './MenuBar';
 import './App.css';
 import OSCList              from "./OSCList";
 import Connections          from "./Connections";
+import PACList              from "./PACList";
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
 						<OSCList />
 					</div>
 			    <Connections />
+			    <PACList />
 					<footer>
 						Credits:
 						<small>The Open AG Technology and Systems Center (OATS)</small>

@@ -13,7 +13,8 @@ export function pacList() {
 }
 
 export function oscList(evt) {
-	console.log("OSC List ->");
+	console.log("OSC List ->" + evt);
+	console.log(evt);
 }
 
 export function blockchain(){
