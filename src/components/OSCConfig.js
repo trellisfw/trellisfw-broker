@@ -25,6 +25,12 @@ export const useStyles = theme => ({
   avatar: {
     backgroundColor: green[500],
   },
+	pacList: {
+	  width: '100%',
+		paddingTop: '5px',
+		maxWidth: 375,
+		backgroundColor: "#788696"
+	}
 });
 
 export const backColor = {
@@ -32,6 +38,20 @@ export const backColor = {
   "tl2": "#FF9933",
   "tl3": "#00CC66"
 };
+
+// pastel colors, red, orange, green
+export const backColorList = {
+  "tl1": "#F9B7B2",
+  "tl2": "#FCDAC1",
+  "tl3": "#E2EFCB"
+};
+
+export const backColorGrayList = {
+  "tl1": "#788696",
+  "tl2": "#475D6F",
+  "tl3": "#1A324B"
+};
+
 
 export const CardEnum = Object.freeze({
              "OSC": "Oblivious Smart Contract",
@@ -41,3 +61,4 @@ export const CardEnum = Object.freeze({
              "VerUser": "Verified User",
              "Blockchain": "Blockchain Connected"});
 
+		//backgroundColor: theme.palette.background.paper

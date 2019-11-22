@@ -13,14 +13,6 @@ import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import { useStyles, backColor } from "./OSCConfig.js";
 
-/*const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-*/
 class PACList extends React.Component {
 
   renderPAC( params ) {
@@ -33,8 +25,8 @@ class PACList extends React.Component {
 								<ImageIcon />
 							</Avatar>
 						</ListItemAvatar>
-						<ListItemText primary={pac.label} 
-				                  secondary="Jan 9, 2020" />
+						<ListItemText primary={pac.label || null} 
+				                  secondary={pac.timestamp || null} />
 					</ListItem>
 			);
 		} else {
@@ -47,7 +39,7 @@ class PACList extends React.Component {
 
 		return (
 			<div>
-				<List className={classes.root}>
+				<List className={classes.pacList}>
         {
 					Object.keys(this.props.pacs || {}).map(pacid => {
 						return this.renderPAC(
