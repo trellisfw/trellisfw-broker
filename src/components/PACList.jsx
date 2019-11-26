@@ -11,21 +11,23 @@ import Avatar from "@material-ui/core/Avatar";
 import ImageIcon from "@material-ui/icons/Image";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
-import { useStyles, backColor } from "./OSCConfig.js";
+import { useStyles, backColor, backColorList } from "./config.js";
 
 class PACList extends React.Component {
 
   renderPAC( params ) {
     const { pac, classes } = params;
 		if (pac) {
+			const avaColor = {backgroundColor: backColor[pac.trust_level]};
+			const listColor= {backgroundColor: backColorList[pac.trust_level]};
 			return (
-					<ListItem>
+					<ListItem className={`${classes.pill}`} style={listColor}>
 						<ListItemAvatar>
-							<Avatar>
-								<ImageIcon />
+							<Avatar style={avaColor}>
+				      {pac.label}
 							</Avatar>
 						</ListItemAvatar>
-						<ListItemText primary={pac.label || null} 
+						<ListItemText primary={pac.title || null} 
 				                  secondary={pac.timestamp || null} />
 					</ListItem>
 			);
@@ -38,7 +40,7 @@ class PACList extends React.Component {
 		const { classes } = this.props;
 
 		return (
-			<div>
+			<div className={!this.props.open ? classes.hidden : classes.pill}>
 				<List className={classes.pacList}>
         {
 					Object.keys(this.props.pacs || {}).map(pacid => {

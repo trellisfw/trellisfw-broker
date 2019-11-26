@@ -75,6 +75,12 @@ class MenuList extends React.Component {
             <MenuItem onClick={this.props.trellisRepo}>
 					    Trellis Repo 
 					  </MenuItem>
+            <MenuItem onClick={ () => {
+							                this.props.handlePACListOpen({});   
+							                this.props.offline({});
+						}}>
+					    Offline
+					  </MenuItem>
           </Menu>
           : null
 				}
@@ -99,7 +105,9 @@ export default connect(
     oscList:            signal`MenuList.oscList`,
     blockchain:         signal`MenuList.blockchain`,
     regulatorRepo:      signal`MenuList.regulatorRepo`,
-    trellisRepo:        signal`MenuList.trellisRepo`
+    trellisRepo:        signal`MenuList.trellisRepo`,
+		offline:            signal`MenuList.offline`,
+		handlePACListOpen:  signal`PACList.handlePACListOpen`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );

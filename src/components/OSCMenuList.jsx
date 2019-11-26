@@ -58,28 +58,28 @@ class OSCMenuList extends React.Component {
             onClose={this.props.handleMenuListOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={() => { this.props.pacList({}); }}>
+            <MenuItem onClick={this.props.pacList}>
 					    PAC List
 					  </MenuItem>
             <MenuItem onClick={this.props.provisionToken}>
 					    Provision Token
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.provisionData({}); }}>
+            <MenuItem onClick={this.props.provisionData}>
 					    Provision Data
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.generatePAC({}); }}>
+            <MenuItem onClick={this.props.generatePAC}>
 					    Generate PAC
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.initRA({}); }}>
+            <MenuItem onClick={this.props.initRA}>
 					    Initiate RA
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.checkOSCHash({}); }}>
+            <MenuItem onClick={this.props.checkOSCHash}>
 					    Verify OSC Hash
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.restartOSC({}); }}>
+            <MenuItem onClick={this.props.restartOSC}>
 					    Restart OSC
 					  </MenuItem>
-            <MenuItem onClick={() => { this.props.killOSC({}); }}>
+            <MenuItem onClick={this.props.killOSC}>
 					    Turn OSC Off
 					  </MenuItem>
           </Menu>

@@ -16,7 +16,7 @@ import VerifiedCodeIcon from "@material-ui/icons/AccountBalance";
 import PACStepper from "./PACStepper";
 import OSCMenuList from "./OSCMenuList";
 import { withStyles } from "@material-ui/core/styles";
-import { useStyles, backColor, CardEnum } from "./OSCConfig.js";
+import { useStyles, backColor, CardEnum } from "./config.js";
 
 /**
  * List of OSCs
