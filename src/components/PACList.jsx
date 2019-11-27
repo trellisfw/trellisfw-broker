@@ -21,7 +21,9 @@ class PACList extends React.Component {
 			const avaColor = {backgroundColor: backColor[pac.trust_level]};
 			const listColor= {backgroundColor: backColorList[pac.trust_level]};
 			return (
-					<ListItem className={`${classes.pill}`} style={listColor}>
+					<ListItem className={`${classes.pill}`} style={listColor}
+                    key={pac.id}
+				  >
 						<ListItemAvatar>
 							<Avatar style={avaColor}>
 				      {pac.label}
