@@ -4,6 +4,7 @@ import { set, when } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
+import { pac_dataset } from "../../components/offline_datasets.js";
 
 let _localPath = "/bookmarks/pacs";
 /*
@@ -89,6 +90,9 @@ export const fetch = sequence("pacs.fetch", [
 ]);
 		//watch:        {signals: ["pacs.handleWatchUpdate"]}
 
+export const uploadDemo = [
+];
+
 export const init = sequence("pacs.init", [
 	when(state`Connections.connection_id`),
 	{
@@ -101,6 +105,7 @@ export const init = sequence("pacs.init", [
 	},
 	set(state`pacs.loading`, true),
 	fetch,
+	uploadDemo,
 	set(state`pacs.loading`, false),
 	set(state`PACList.open`, true)
 ]);
@@ -121,3 +126,10 @@ export function mapOadaToPacs({ props, state }){
     }).then( () => { return; });
 	}//if
 }//mapOadaToPacs
+
+
+
+//iterate through the pac_dataset and build the request accordingly
+// set PUT requests
+// fetch recently submitted changes and populate React components
+

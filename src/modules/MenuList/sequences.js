@@ -24,6 +24,8 @@ export function pacList_action({props, state}) {
 
 export let oscList = [
 	handleMenuListOpen,
+	handlePACListOpen,
+	handleOSCListOpen,
   oscList_action
 ];
 
