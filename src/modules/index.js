@@ -10,6 +10,7 @@ import MenuList     from "./MenuList";
 import PACList      from "./PACList";
 import Connections  from "./Connections";
 import oscs         from "./oscs";
+import pacs         from "./pacs";
 
 export default Module({
   modules: {
@@ -20,6 +21,7 @@ export default Module({
 		PACList,
 		Connections,
 		oscs,
+		pacs,
 		oada: oadaModule,
 	},
 

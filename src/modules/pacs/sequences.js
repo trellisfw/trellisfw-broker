@@ -15,7 +15,7 @@ let tree = {
       _type: "application/vnd.oada.pacs.1+json",
       _rev: "0-0",
       "*": {
-        _type: "application/vnd.oada.osc.1+json",
+        _type: "application/vnd.oada.pac.1+json",
         _rev: "0-0"
       }
     }
@@ -109,12 +109,12 @@ export function mapOadaToPacs({ props, state }){
   let connection_id = state.get("pacs.connection_id");
 	let pacs = state.get(`oada.${connection_id}.bookmarks.pacs`);
   if (pacs) {
-    return Promise.map(Object.keys(pacs || {}), osc => {
-			if (osc[0] !== "_" && osc !== "pacs") {
+    return Promise.map(Object.keys(pacs || {}), pac => {
+			if (pac[0] !== "_" && pac !== "pacs") {
 				let currentPAC = 
-					     state.get(`oada.${connection_id}.bookmarks.pacs.${osc}`);
+					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
 				if ( currentPAC && currentPAC.id ) {
-					state.set(`pacs.records.${osc}`, pacs[osc]);
+					state.set(`pacs.records.${pac}`, pacs[pac]);
 				}
 				return;
 			}
