@@ -101,7 +101,8 @@ export const init = sequence("oscs.init", [
 	},
 	set(state`oscs.loading`, true),
 	fetch,
-	set(state`oscs.loading`, false)
+	set(state`oscs.loading`, false),
+	set(state`OSCList.open`, true)
 ]);
 
 export function mapOadaToOscs({ props, state }){

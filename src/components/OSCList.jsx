@@ -85,7 +85,7 @@ class OSCList extends React.Component {
 		const { classes } = this.props;
 		
 		return (
-			<div>
+			<div className={!this.props.open ? classes.hidden : classes.container}>
 			{
 				Object.keys(this.props.oscs || {}).map(oscid => {
 					return this.renderOSC( 
@@ -105,6 +105,7 @@ class OSCList extends React.Component {
  */
 export default connect(
 	{
+		open:        state`OSCList.open`,
 		oscs:        state`oscs.records`,
     stepperOpen: state`OSCList.stepperOpen`
 	},

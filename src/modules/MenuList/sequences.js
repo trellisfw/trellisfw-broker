@@ -1,6 +1,8 @@
 import { state } from "cerebral/tags";
 import { toggle } from "cerebral/operators";
 import { pac_dataset } from "../../components/offline_datasets.js";
+import { handlePACListOpen } from "../PACList/sequences"; 
+import { handleOSCListOpen } from "../OSCList/sequences"; 
 
 export let handleMenuListOpen = [toggle(state`MenuList.open`)];
 
@@ -11,10 +13,12 @@ export function setCurrentItem({props, state}){
 
 export let pacList = [
 	handleMenuListOpen,
+	handlePACListOpen,
+	handleOSCListOpen,
   pacList_action
 ];
 
-export function pacList_action() {
+export function pacList_action({props, state}) {
 	console.log("PAC List ->");
 }
 
@@ -64,5 +68,7 @@ export let offline = [
 export function offline_action({props, state}){
 	console.log("Offline Demo");
 	state.set(`PACList.records`, pac_dataset.records);
+	state.set(`PACList.open`, true);
+	state.set(`OSCList.open`, false);
 }
 
