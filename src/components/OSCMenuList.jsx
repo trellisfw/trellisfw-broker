@@ -30,6 +30,8 @@ class OSCMenuList extends React.Component {
   render() {
 
     const { classes } = this.props;
+		console.log("==== OSCMenuList component ====");
+		console.log(this.props);
 
     anchorEl = this.props.open ? anchorEl : null;
     return (
@@ -38,16 +40,16 @@ class OSCMenuList extends React.Component {
           key={1}
           color="inherit"
           aria-label="simple-menu-button"
-          id="simple-menu-button"
+          id={this.props.id}
           aria-owns={"simple-menu"}
           aria-haspopup="true"
           onClick={ (evt) => {
 						                  this.handleMenuList(evt); 
-						      						this.props.handleMenuListOpen({})
+						      						this.props.handleOpen({})
 					                   }
 					        }
           className={classes.menuButton}
-          disabled={ false }
+          disabled={false}
         >
           <MoreVertIcon />
         </IconButton>
@@ -55,10 +57,10 @@ class OSCMenuList extends React.Component {
           <Menu
             id="OSC-menu"
             open={this.props.open}
-            onClose={this.props.handleMenuListOpen}
+            onClose={this.props.handleOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={this.props.pacList}>
+            <MenuItem onClick={ (evt) => {this.props.pacList({evt: evt, oscid: this.props.id})}}>
 					    PAC List
 					  </MenuItem>
             <MenuItem onClick={this.props.provisionToken}>
@@ -101,7 +103,7 @@ export default connect(
 
     setCurrentItem:     signal`OSCMenuList.setCurrentItem`,
     clearConnection:    signal`Connections.clearConnection`,
-    handleMenuListOpen: signal`OSCMenuList.handleMenuListOpen`,
+    handleOpen:         signal`OSCMenuList.handleOpen`,
     pacList:            signal`OSCMenuList.pacList`,
     provisionToken:     signal`OSCMenuList.provisionToken`,
     provisionData:      signal`OSCMenuList.provisionData`,

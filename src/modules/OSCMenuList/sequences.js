@@ -1,7 +1,7 @@
 import { state } from "cerebral/tags";
 import { toggle } from "cerebral/operators";
 
-export var handleMenuListOpen = [toggle(state`OSCMenuList.open`)];
+export let handleOpen = [toggle(state`OSCMenuList.open`)];
 
 export function setCurrentItem({props, state}){
   if(props.item)
@@ -9,17 +9,17 @@ export function setCurrentItem({props, state}){
 }
 
 export let pacList = [
-  handleMenuListOpen,
+  handleOpen,
 	pacList_action
 ];
 
-export function pacList_action(evt) {
-	console.log("PAC List ->" + evt);
+export function pacList_action({evt, oscid}) {
+	console.log("PAC List ->" + oscid);
 	console.log(evt);
 }
 
 export let provisionToken = [
-  handleMenuListOpen,
+  handleOpen,
   provisionToken_action
 ];
 
@@ -29,7 +29,7 @@ export function provisionToken_action(evt){
 }
 
 export let provisionData = [
-  handleMenuListOpen,
+  handleOpen,
   provisionData_action
 ];
 
@@ -38,7 +38,7 @@ export function provisionData_action({props, state}){
 }
 
 export let generatePAC = [
-  handleMenuListOpen,
+  handleOpen,
   generatePAC_action
 ];
 
@@ -47,7 +47,7 @@ export function generatePAC_action({props, state}){
 }
 
 export let initRA = [
-  handleMenuListOpen,
+  handleOpen,
   initRA_action
 ]
 
@@ -56,7 +56,7 @@ export function initRA_action({props, state}){
 }
 
 export let checkOSCHash =[
-  handleMenuListOpen,
+  handleOpen,
   checkOSCHash_action
 ];
 export function checkOSCHash_action({props, state}){
@@ -64,7 +64,7 @@ export function checkOSCHash_action({props, state}){
 }
 
 export let restartOSC = [
-  handleMenuListOpen,
+  handleOpen,
   restartOSC_action
 ];
 
@@ -73,7 +73,7 @@ export function restartOSC_action({props, state}){
 }
 
 export let killOSC = [
-  handleMenuListOpen,
+  handleOpen,
   killOSC_action
 ];
 
