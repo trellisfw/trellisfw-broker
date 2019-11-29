@@ -2,9 +2,9 @@
 import { Module } from "cerebral";
 import stateTree from "./stateTree";
 
-import * as signals from "./sequences";
+import * as sequences from "./sequences";
 
 export default Module({
   state : stateTree,
-  signals: signals
+  sequences 
 });

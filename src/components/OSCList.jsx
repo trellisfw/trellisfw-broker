@@ -37,8 +37,8 @@ class OSCList extends React.Component {
 		if (osc) {
 		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
 			return (
-				<div id={osc.id} className={classes.container}>
-				  <Card className={classes.card}>
+				<div id={osc.id} className={classes.container} key={osc.id}>
+				  <Card className={classes.card} key={osc.id}>
 						<CardHeader
 							avatar={
 								<Avatar aria-label={CardEnum.OSC} 

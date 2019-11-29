@@ -1,7 +1,7 @@
 import React              from 'react';
 import PropTypes          from "prop-types";
 import { connect }        from "@cerebral/react";
-import { state, signal }  from "cerebral/tags";
+import { state, sequences }  from "cerebral/tags";
 import { Menu, MenuItem } from "@material-ui/core";
 import IconButton         from '@material-ui/core/IconButton';
 import MoreVertIcon       from '@material-ui/icons/MoreVert';
@@ -29,9 +29,7 @@ class OSCMenuList extends React.Component {
 
   render() {
 
-    const { classes } = this.props;
-		console.log("==== OSCMenuList component ====");
-		console.log(this.props);
+    const { id, classes } = this.props;
 
     anchorEl = this.props.open ? anchorEl : null;
     return (
@@ -44,9 +42,10 @@ class OSCMenuList extends React.Component {
           aria-owns={"simple-menu"}
           aria-haspopup="true"
           onClick={ (evt) => {
-						                  this.handleMenuList(evt); 
-						      						this.props.handleOpen({})
-					                   }
+						          this.props.setCurrentItem({id: id});
+						          this.handleMenuList(evt); 
+						      	  this.props.handleOpen({})
+					          }
 					        }
           className={classes.menuButton}
           disabled={false}
@@ -55,7 +54,7 @@ class OSCMenuList extends React.Component {
         </IconButton>
         {(this.props.open) ?
           <Menu
-            id="OSC-menu"
+            id={"OSC-menu-"+this.props.id}
             open={this.props.open}
             onClose={this.props.handleOpen}
             anchorEl={anchorEl}
@@ -101,17 +100,17 @@ export default connect(
     current:            state`OSCMenuList.current`,
     open:               state`OSCMenuList.open`,
 
-    setCurrentItem:     signal`OSCMenuList.setCurrentItem`,
-    clearConnection:    signal`Connections.clearConnection`,
-    handleOpen:         signal`OSCMenuList.handleOpen`,
-    pacList:            signal`OSCMenuList.pacList`,
-    provisionToken:     signal`OSCMenuList.provisionToken`,
-    provisionData:      signal`OSCMenuList.provisionData`,
-    generatePAC:        signal`OSCMenuList.generatePAC`,
-    initRA:             signal`OSCMenuList.initRA`,
-    checkOSCHash:       signal`OSCMenuList.checkOSCHash`,
-    restartOSC:         signal`OSCMenuList.restartOSC`,
-    killOSC:            signal`OSCMenuList.killOSC`,
+    setCurrentItem:     sequences`OSCMenuList.setCurrentItem`,
+    clearConnection:    sequences`Connections.clearConnection`,
+    handleOpen:         sequences`OSCMenuList.handleOpen`,
+    pacList:            sequences`OSCMenuList.pacList`,
+    provisionToken:     sequences`OSCMenuList.provisionToken`,
+    provisionData:      sequences`OSCMenuList.provisionData`,
+    generatePAC:        sequences`OSCMenuList.generatePAC`,
+    initRA:             sequences`OSCMenuList.initRA`,
+    checkOSCHash:       sequences`OSCMenuList.checkOSCHash`,
+    restartOSC:         sequences`OSCMenuList.restartOSC`,
+    killOSC:            sequences`OSCMenuList.killOSC`,
   },
   withStyles(styles, {withTheme: true})(OSCMenuList)
 );

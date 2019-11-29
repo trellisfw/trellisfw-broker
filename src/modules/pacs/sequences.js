@@ -4,7 +4,7 @@ import { set, when } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
-import { pac_dataset } from "../../components/offline_datasets.js";
+//import { pac_dataset } from "../../components/offline_datasets.js";
 
 let _localPath = "/bookmarks/pacs";
 /*
@@ -56,9 +56,9 @@ export const handleWatchUpdate = sequence("pacs.handleWatchUpdate", [
 
 /*  watch:         { signals: ["pacs.handleWatchUpdate"] }*/
 
-function buildFetchRequest({ state }) {
+function buildFetchRequest({ store }) {
   let request =  {
-       connection_id: state.get("pacs.connection_id"),
+       connection_id: store.get("pacs.connection_id"),
 			 path:          _localPath,
 			 tree
 		};
@@ -69,8 +69,8 @@ function buildFetchRequest({ state }) {
 }
 
 export const fetch = sequence("pacs.fetch", [
-  ({ state, props }) => ({
-		connection_id: state.get("pacs.connection_id"),
+  ({ store, props }) => ({
+		connection_id: store.get("pacs.connection_id"),
 		path:         _localPath,
 		tree
 	}),
@@ -110,16 +110,16 @@ export const init = sequence("pacs.init", [
 	set(state`PACList.open`, true)
 ]);
 
-export function mapOadaToPacs({ props, state }){
-  let connection_id = state.get("pacs.connection_id");
-	let pacs = state.get(`oada.${connection_id}.bookmarks.pacs`);
+export function mapOadaToPacs({ props, store }){
+  let connection_id = store.get("pacs.connection_id");
+	let pacs = store.get(`oada.${connection_id}.bookmarks.pacs`);
   if (pacs) {
     return Promise.map(Object.keys(pacs || {}), pac => {
 			if (pac[0] !== "_" && pac !== "pacs") {
 				let currentPAC = 
-					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
+					     store.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
 				if ( currentPAC && currentPAC.id ) {
-					state.set(`pacs.records.${pac}`, pacs[pac]);
+					store.set(`pacs.records.${pac}`, pacs[pac]);
 				}
 				return;
 			}

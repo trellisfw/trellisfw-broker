@@ -2,7 +2,7 @@
 import React              from "react";
 import PropTypes          from "prop-types";
 import { connect }        from "@cerebral/react";
-import { state, signal }  from "cerebral/tags";
+import { state, sequences }  from "cerebral/tags";
 import { Menu, MenuItem } from "@material-ui/core";
 import IconButton         from "@material-ui/core/IconButton";
 import MoreVertIcon       from "@material-ui/icons/MoreVert";
@@ -99,15 +99,15 @@ export default connect(
     current:            state`MenuList.current`,
     open:               state`MenuList.open`,
 
-    setCurrentItem:     signal`MenuList.setCurrentItem`,
-    handleMenuListOpen: signal`MenuList.handleMenuListOpen`,
-    pacList:            signal`MenuList.pacList`,
-    oscList:            signal`MenuList.oscList`,
-    blockchain:         signal`MenuList.blockchain`,
-    regulatorRepo:      signal`MenuList.regulatorRepo`,
-    trellisRepo:        signal`MenuList.trellisRepo`,
-		offline:            signal`MenuList.offline`,
-		handlePACListOpen:  signal`PACList.handlePACListOpen`
+    setCurrentItem:     sequences`MenuList.setCurrentItem`,
+    handleMenuListOpen: sequences`MenuList.handleMenuListOpen`,
+    pacList:            sequences`MenuList.pacList`,
+    oscList:            sequences`MenuList.oscList`,
+    blockchain:         sequences`MenuList.blockchain`,
+    regulatorRepo:      sequences`MenuList.regulatorRepo`,
+    trellisRepo:        sequences`MenuList.trellisRepo`,
+		offline:            sequences`MenuList.offline`,
+		handlePACListOpen:  sequences`PACList.handlePACListOpen`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );

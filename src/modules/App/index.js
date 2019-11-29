@@ -1,6 +1,6 @@
 import { Module } from "cerebral";
 import stateTree from "./stateTree.js";
-import * as signals from "./sequences";
+import * as sequences from "./sequences";
 //import StorageModule from "@cerebral/storage";
 
 /*const LocalCache = StorageModule({
@@ -15,6 +15,6 @@ import * as signals from "./sequences";
 
 export default Module({
   state: stateTree,
-  signals
+  sequences
 	//modules: { LocalCache }
 });

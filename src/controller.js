@@ -1,5 +1,5 @@
-import { Controller } from 'cerebral';
-import root_module from './modules';
+import { Controller } from "cerebral";
+import root_module from "./modules";
 
 const Devtools = (process.env.NODE_ENV === 'production' ?
 					null :

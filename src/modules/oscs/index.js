@@ -1,5 +1,5 @@
 import { Module } from "cerebral";
-import * as signals from "./sequences";
+import * as sequences from "./sequences";
 
 export default Module({
 	state: {
@@ -7,6 +7,5 @@ export default Module({
 		loading: true,
 		connection_id: "localhost"
 	},
-
-	signals: signals
+ sequences 	
 });

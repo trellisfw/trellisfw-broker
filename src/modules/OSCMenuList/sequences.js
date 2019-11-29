@@ -3,9 +3,12 @@ import { toggle } from "cerebral/operators";
 
 export let handleOpen = [toggle(state`OSCMenuList.open`)];
 
-export function setCurrentItem({props, state}){
-  if(props.item)
-    state.set(`OSCMenuList.current`, props.item);
+export function setCurrentItem({props, store}) {
+	console.log("--> setCurrentItem");
+	console.log(props);
+  if(props && props.id){
+    store.set(`OSCList.current`, props.id);
+	}
 }
 
 export let pacList = [
@@ -13,9 +16,9 @@ export let pacList = [
 	pacList_action
 ];
 
-export function pacList_action({evt, oscid}) {
-	console.log("PAC List ->" + oscid);
-	console.log(evt);
+export function pacList_action({props, store}) {
+	console.log("PAC List ->");
+	console.log(props);
 }
 
 export let provisionToken = [

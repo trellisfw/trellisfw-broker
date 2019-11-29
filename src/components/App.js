@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect }          from "@cerebral/react";
-import { signal }           from "cerebral/tags";
+import { sequences }        from "cerebral/tags";
 import { ThemeProvider }    from 'styled-components';
 import { darkTheme }        from './theme';
 import { GlobalStyles }     from './global';
@@ -41,7 +41,7 @@ class App extends Component {
 }
 
 export default connect({
-	  init: signal`App.init`
+	  init: sequences`App.init`
   },
 	(App)
 );
