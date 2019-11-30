@@ -11,6 +11,7 @@ import PACList      from "./PACList";
 import Connections  from "./Connections";
 import oscs         from "./oscs";
 import pacs         from "./pacs";
+import demo         from "./demo";
 
 export default Module({
   modules: {
@@ -22,6 +23,7 @@ export default Module({
 		Connections,
 		oscs,
 		pacs,
+		demo,
 		oada: oadaModule,
 	},
 

@@ -7,6 +7,7 @@ import { _CURRENT_REDIRECT } from "./config.js";
 import { _OSCS_CONN_ID } from "./config.js";
 /* oscs module */
 import * as oscs from "../oscs/sequences";
+//import * as pacs from "../demo/sequences";
 
 export let signOut = [
   set(state`${ConnE.token}`,       ''),
@@ -34,6 +35,7 @@ export let init = [
     connection_id: state.get(`${_OSCS_CONN_ID}`),
   }),
 	oscs.init,
+	//pacs.init,
   set(state`${ConnE.open}`, false)
 ];
 //signals:       ['oscs.handleWatchUpdate']

@@ -1,7 +1,7 @@
 export const pac_dataset = {
 	records: {
-    "item0": {
-			  "id":    "random id 0",
+    "69e404ac-10c8-45b3-bf08-a37ee848a729": {
+			  "id":    "69e404ac-10c8-45b3-bf08-a37ee848a729",
 			  "label": "SR",
 			  "title": "Sustainable Reporting",
 			  "trust_level" : "tl1",
@@ -37,8 +37,8 @@ export const pac_dataset = {
 					"alg": "SHA-256"
 				}
 			},
-    "item1": {
-			  "id":    "random id 1",
+    "5d845dc6-c4bc-427f-83b5-c9a84f206f8a": {
+			  "id":    "5d845dc6-c4bc-427f-83b5-c9a84f206f8a",
 			  "label": "SF",
 			  "title": "Sustainable Fishing",
 			  "trust_level" : "tl1",
@@ -74,8 +74,8 @@ export const pac_dataset = {
 					"alg": "SHA-256"
 				}
 			},
-    "item2": {
-			  "id":    "random id 2",
+    "4f2e739b-de9a-4d04-953d-4691227ae9b9": {
+			  "id":    "4f2e739b-de9a-4d04-953d-4691227ae9b9",
 			  "label": "PD",
 			  "title": "Planting Date Reporting", 
 			  "trust_level" : "tl2",
@@ -112,8 +112,8 @@ export const pac_dataset = {
 				}
 			},
 
-    "item3": {
-			  "id":    "random id 3",
+    "07fde5ad-87a6-4e81-b04a-2c83cefec408": {
+			  "id":    "07fde5ad-87a6-4e81-b04a-2c83cefec408",
 			  "label": "MB",
         "title": "Mass Balance",
 			  "trust_level" : "tl3",

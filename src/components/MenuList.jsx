@@ -81,6 +81,9 @@ class MenuList extends React.Component {
 						}}>
 					    Offline
 					  </MenuItem>
+            <MenuItem onClick={this.props.demoInit}>
+					    Demo Dataset 
+					  </MenuItem>
           </Menu>
           : null
 				}
@@ -107,7 +110,8 @@ export default connect(
     regulatorRepo:      sequences`MenuList.regulatorRepo`,
     trellisRepo:        sequences`MenuList.trellisRepo`,
 		offline:            sequences`MenuList.offline`,
-		handlePACListOpen:  sequences`PACList.handlePACListOpen`
+		handlePACListOpen:  sequences`PACList.handlePACListOpen`,
+		demoInit:           sequences`demo.init`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );
