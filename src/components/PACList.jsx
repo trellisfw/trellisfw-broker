@@ -60,7 +60,7 @@ class PACList extends React.Component {
 export default connect(
 	{
 		open: state`PACList.open`,
-		pacs: state`PACList.records`
+		pacs: state`pacs.records`
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)
 );
