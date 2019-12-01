@@ -73,9 +73,6 @@ export const fetch = sequence("pacs.fetch", [
 ]);
 		//watch:        {signals: ["pacs.handleWatchUpdate"]}
 
-export const uploadDemo = [
-];
-
 export const init = sequence("pacs.init", [
 	when(state`Connections.connection_id`),
 	{
@@ -110,3 +107,39 @@ export function mapOadaToPacs({ props, state }){
 }//mapOadaToPacs
 
 
+export const updatePAC = sequence("pacs.updatePAC", [
+  createPAC,
+  buildPACRequest,
+  oada.put
+]);
+
+function createPAC({props, state}){
+  let id = state.get('PACList.current');
+	let pacs = [];
+	if (id !== "none") {
+    let pac = state.get(`pacs.records.${id}`);
+		pacs.push(pac);
+	}
+	return {pacs: pacs};
+}
+
+function buildPACRequest({ props, state }){
+	let connection_id = state.get("oscs.connection_id");
+	let requests = [];
+  if (props.pacs[0]){
+		let pac = props.pacs[0];
+    let request = {
+			connection_id: connection_id,
+			data:          props.pacs[0],
+			path:          `${_localPath}/${pac.id}`,
+			tree:          tree
+		};
+		requests.add(request);
+		return {
+		  connection_id: connection_id,
+			requests:      requests,
+			domain:        state.get("oada_domain")
+		}
+	}
+
+}

@@ -121,3 +121,85 @@ export function mapOadaToOscs({ props, state }){
     }).then( () => { return; });
 	}//if
 }//mapOadaToOscs
+
+
+export const updateOSC = sequence("oscs.updateOSC", [
+  createOSC,
+  buildOSCRequest,
+  oada.put
+]);
+
+function createOSC({props, state}){
+  let id = state.get('OSCList.current');
+  let oscs = [];
+	state.set(`oscs.records.${id}.token`, "maverick");
+  if (id !== "none") {
+    let osc = state.get(`oscs.records.${id}`);
+    oscs.push(osc);
+  }
+  return {oscs: oscs};
+}
+
+function buildOSCRequest({ props, state }){
+  let connection_id = state.get("oscs.connection_id");
+  let requests = [];
+  if (props.oscs[0]){
+    let osc = props.oscs[0];
+    let request = {
+      connection_id: connection_id,
+      data:          props.oscs[0],
+      path:          `${_localPath}/${osc.id}`,
+      tree:          tree
+    };
+    requests.push(request);
+    return {
+      connection_id: connection_id,
+      requests:      requests,
+      domain:        state.get("oada_domain")
+    }
+  }
+}
+
+// OSC Control Sequences (Token Provisioning, Restart ...)
+//
+export function updateToken({ props, state }) {
+  let id = state.get('OSCList.current');
+	if (id!=="none") {
+	  state.set(`oscs.records.${id}.token`, "servio");
+	}
+}
+
+export function updateData({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.privateData`, "december,2019");
+	}
+}
+
+export function updateGeneratePAC({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.generatePAC`, true);
+	}
+}
+
+export function updateInitRA({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.initRA`, true);
+	}
+}
+
+export function updateRestartOSC({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.restart`, true);
+	}
+}
+
+export function updateKillOSC({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.turnoff`, true);
+	}
+}
