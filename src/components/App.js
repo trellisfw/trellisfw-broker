@@ -9,6 +9,7 @@ import './App.css';
 import OSCList              from "./OSCList";
 import Connections          from "./Connections";
 import PACList              from "./PACList";
+//import PACList              from "trellisfw-pac-module/component/PACList";
 
 class App extends Component {
 
