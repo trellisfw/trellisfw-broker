@@ -1,11 +1,12 @@
-import React              from 'react';
-import PropTypes          from "prop-types";
-import { connect }        from "@cerebral/react";
+// components/OSCMenuList.jsx
+import React                 from "react";
+import PropTypes             from "prop-types";
+import { connect }           from "@cerebral/react";
 import { state, sequences }  from "cerebral/tags";
-import { Menu, MenuItem } from "@material-ui/core";
-import IconButton         from '@material-ui/core/IconButton';
-import MoreVertIcon       from '@material-ui/icons/MoreVert';
-import { withStyles }     from '@material-ui/core/styles';
+import { Menu, MenuItem }    from "@material-ui/core";
+import IconButton            from "@material-ui/core/IconButton";
+import MoreVertIcon          from "@material-ui/icons/MoreVert";
+import { withStyles }        from "@material-ui/core/styles";
 
 //The DOM element used to set the position of the menu.
 let anchorEl;
@@ -35,10 +36,10 @@ class OSCMenuList extends React.Component {
     return (
       <div>
         <IconButton
-          key={1}
+          key={`OSCMenuListIcon-${this.props.id}`}
           color="inherit"
           aria-label="simple-menu-button"
-          id={this.props.id}
+          id={`OSCMenuListIcon-${this.props.id}`}
           aria-owns={"simple-menu"}
           aria-haspopup="true"
           onClick={ (evt) => {
@@ -54,12 +55,14 @@ class OSCMenuList extends React.Component {
         </IconButton>
         {(this.props.open) ?
           <Menu
-            id={"OSC-menu-"+this.props.id}
+            id={`OSC-menu-${this.props.id}`}
             open={this.props.open}
             onClose={this.props.handleOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={ (evt) => {this.props.pacList({evt: evt, oscid: this.props.id})}}>
+            <MenuItem onClick={ () => {
+							this.props.pacList({oscid: this.props.current
+						})}}>
 					    PAC List
 					  </MenuItem>
             <MenuItem onClick={this.props.provisionToken}>
@@ -96,8 +99,7 @@ OSCMenuList.propTypes = {
 
 export default connect(
   {
-    menuItems:          state`OSCMenuList.records`,
-    current:            state`OSCMenuList.current`,
+    current:            state`OSCList.current`,
     open:               state`OSCMenuList.open`,
 
     setCurrentItem:     sequences`OSCMenuList.setCurrentItem`,

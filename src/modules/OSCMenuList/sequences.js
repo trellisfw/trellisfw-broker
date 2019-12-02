@@ -7,7 +7,7 @@ export let handleOpen = [toggle(state`OSCMenuList.open`)];
 export function setCurrentItem({props, store}) {
 	console.log("--> setCurrentItem");
 	console.log(props);
-  if(props && props.id){
+  if (props && props.id) {
     store.set(`OSCList.current`, props.id);
 	}
 }
