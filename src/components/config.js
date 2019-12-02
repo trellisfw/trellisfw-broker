@@ -42,6 +42,9 @@ export const useStyles = theme => ({
 	  width: '100%',
 		paddingTop: '5px',
 		maxWidth: 375
+	},
+	button: {
+		margin: theme.spacing(1)
 	}
 });
 

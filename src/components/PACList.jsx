@@ -1,7 +1,9 @@
 // "components/PACList.jsx"
 import React from "react";
+import Button from "@material-ui/core/Button";
+import CheckedIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { connect } from "@cerebral/react";
-import { state } from "cerebral/tags";
+import { state, signal } from "cerebral/tags";
 import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -18,6 +20,7 @@ class PACList extends React.Component {
 			const avaColor = {backgroundColor: backColor[pac.trust_level]};
 			const listColor= {backgroundColor: backColorList[pac.trust_level]};
 			return (
+				<div key={pac.id}>
 					<ListItem className={`${classes.pill}`} style={listColor}
                     key={pac.id}
 				  >
@@ -28,7 +31,18 @@ class PACList extends React.Component {
 						</ListItemAvatar>
 						<ListItemText primary={pac.title || null} 
 				                  secondary={pac.timestamp || null} />
+						<Button
+							variant="outlined"
+							color="default"
+				      size="small"
+							className={classes.button}
+							startIcon={<CheckedIcon />}
+				      onClick={this.props.verifySignature}
+						 >
+						  Verify	
+						</Button>
 					</ListItem>
+				</div>
 			);
 		} else {
 			return null;
@@ -60,7 +74,9 @@ class PACList extends React.Component {
 export default connect(
 	{
 		open: state`PACList.open`,
-		pacs: state`pacs.records`
+		pacs: state`pacs.records`,
+
+		verifySignature:  signal`PACList.verifySignature`
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)
 );
