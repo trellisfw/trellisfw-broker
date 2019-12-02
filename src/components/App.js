@@ -22,18 +22,16 @@ class App extends Component {
 		<div className="App">	
 			<MenuBar />
 			<ThemeProvider theme={darkTheme}>
-				<>
 					<GlobalStyles />
 					<div>
-						<OSCList />
-					</div>
+			    <OSCList />
+			    </div>
 			    <Connections />
 			    <PACList />
 					<footer>
 						Credits:
 						<small>The Open AG Technology and Systems Center (OATS)</small>
 					</footer>
-				</>
 			</ThemeProvider>
 		</div>
 		);

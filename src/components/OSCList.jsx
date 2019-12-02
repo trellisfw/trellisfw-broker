@@ -33,7 +33,8 @@ class OSCList extends React.Component {
 	**/
 	renderOSC( params ) {
 		const {osc, classes} = params;
-    
+    console.log("-->osc");
+		console.log(osc);
 		if (osc) {
 		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
 			return (
