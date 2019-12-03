@@ -169,16 +169,16 @@ export const osc_dataset = {
       "title": "Organic Mass Balance",
       "date_init": "09.17.2019",
       "timestamp": "2019-08-14T02:38:32.921Z",
-      "trustLevel": "tl3",
+      "trust_level": "tl3",
        "organization": {
         "name": "Bob's Mass Balance"
       },
-      "broker_signals":{
+      "control_signals":{
         "restart": false,
         "init_ra": false,
         "turnoff": false,
         "generate_pac": true,
-        "privateData": "all",
+        "private_data": "all",
         "token": "servio"
       },
       "generated_pacs": {
@@ -204,16 +204,16 @@ export const osc_dataset = {
       "title": "Sustainability Reporting",
       "date_init": "09.17.2019",
       "timestamp": "2019-08-14T02:38:32.921Z",
-      "trustLevel": "tl1",
+      "trust_level": "tl1",
        "organization": {
         "name": "Bob's Sustainability Reporting"
       },
-      "broker_signals":{
+      "control_signals":{
         "restart": false,
         "init_ra": false,
         "turnoff": false,
         "generate_pac": true,
-        "privateData": "all",
+        "private_data": "all",
         "token": "servio"
       },
       "generated_pacs": {
@@ -237,16 +237,16 @@ export const osc_dataset = {
       "title": "Sustainable Fishing",
       "date_init": "09.17.2019",
       "timestamp": "2019-08-14T02:38:32.921Z",
-      "trustLevel": "tl2",
+      "trust_level": "tl2",
        "organization": {
         "name": "Bob's Sustainable Fishing"
       },
-      "broker_signals":{
+      "control_signals":{
         "restart": false,
         "init_ra": false,
         "turnoff": false,
         "generate_pac": true,
-        "privateData": "all",
+        "private_data": "all",
         "token": "servio"
       },
       "generated_pacs": {
@@ -270,16 +270,16 @@ export const osc_dataset = {
       "title": "Planting Date Reporting",
       "date_init": "09.17.2019",
       "timestamp": "2019-08-14T02:38:32.921Z",
-      "trustLevel": "tl1",
+      "trust_level": "tl1",
        "organization": {
         "name": "Bob's Planting Date Reporting"
       },
-      "broker_signals":{
+      "control_signals":{
         "restart": false,
         "init_ra": false,
         "turnoff": false,
         "generate_pac": true,
-        "privateData": "all",
+        "private_data": "all",
         "token": "servio"
       },
       "generated_pacs": {

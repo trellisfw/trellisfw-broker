@@ -25,9 +25,7 @@ class App extends Component {
 			<ThemeProvider theme={darkTheme}>
 			  <>
 					<GlobalStyles />
-					<div>
 			    <OSCList />
-			    </div>
 			    <Connections />
 			    <PACList />
 					<footer>

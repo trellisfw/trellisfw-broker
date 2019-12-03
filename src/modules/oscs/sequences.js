@@ -143,7 +143,7 @@ function createOSC({props, state}){
 function buildOSCRequest({ props, state }){
   let connection_id = state.get("oscs.connection_id");
   let requests = [];
-  if (props.oscs[0]){
+  if (props.oscs[0]) {
     let osc = props.oscs[0];
     let request = {
       connection_id: connection_id,
@@ -160,46 +160,47 @@ function buildOSCRequest({ props, state }){
   }
 }
 
+// ========================================================
 // OSC Control Sequences (Token Provisioning, Restart ...)
-//
+// ========================================================
 export function updateToken({ props, state }) {
   let id = state.get('OSCList.current');
 	if (id!=="none") {
-	  state.set(`oscs.records.${id}.token`, "servio");
+	  state.set(`oscs.records.${id}.control_signals.token`, "servio");
 	}
 }
 
 export function updateData({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {
-	  state.set(`oscs.records.${id}.privateData`, "december,2019");
+	  state.set(`oscs.records.${id}.control_signals.private_data`, "all");
 	}
 }
 
 export function updateGeneratePAC({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {
-	  state.set(`oscs.records.${id}.generatePAC`, true);
+	  state.set(`oscs.records.${id}.control_signals.generate_pac`, true);
 	}
 }
 
 export function updateInitRA({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {
-	  state.set(`oscs.records.${id}.initRA`, true);
+	  state.set(`oscs.records.${id}.control_signals.init_ra`, true);
 	}
 }
 
 export function updateRestartOSC({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {
-	  state.set(`oscs.records.${id}.restart`, true);
+	  state.set(`oscs.records.${id}.control_signals.restart`, true);
 	}
 }
 
 export function updateKillOSC({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {
-	  state.set(`oscs.records.${id}.turnoff`, true);
+	  state.set(`oscs.records.${id}.control_signals.turnoff`, true);
 	}
 }
