@@ -50,16 +50,14 @@ export const refresh = sequence("oscs.refresh", [
 
 export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
   () => {console.log("--> oscs.handleWatchUpdate");},
-	refresh
 ]);
-
-/*  watch:         { signals: ["oscs.handleWatchUpdate"] }*/
 
 function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get("oscs.connection_id"),
 			 path:          _localPath,
-			 tree
+			 tree,
+       watch:         { signals: ["oscs.handleWatchUpdate"] }
 		};
 	let requests = [];
 	requests.push(request);
@@ -67,12 +65,14 @@ function buildFetchRequest({ state }) {
   return { requests };
 }
 
-export const fetch = sequence("oscs.fetch", [
-  ({ state, props }) => ({
+/*  ({ state, props }) => ({
 		connection_id: state.get("oscs.connection_id"),
 		path:         _localPath,
-		tree
+		tree,
+    watch:         { signals: ["oscs.handleWatchUpdate"] }
 	}),
+	*/
+export const fetch = sequence("oscs.fetch", [
   buildFetchRequest,
 	oada.get,
 	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
