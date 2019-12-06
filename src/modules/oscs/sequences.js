@@ -6,22 +6,9 @@ import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
 let _localPath = "/bookmarks/oscs";
-/*
-let tree = {
-  bookmarks: {
-    _type: "application/vnd.oada.bookmarks.1+json",
-    _rev: "0-0",
-    oscs: {
-      _type: "application/vnd.oada.oscs.1+json",
-      _rev: "0-0",
-      "*": {
-        _type: "application/vnd.oada.osc.1+json",
-        _rev: "0-0"
-      }
-    }
-  }
-};
-*/
+
+//let _TYPE = "application/vnd.oada.oscs.1+json";
+//let _TYPE_OSC = "application/vnd.oada.osc.1+json";
 
 let tree = {
   bookmarks: {
@@ -38,20 +25,6 @@ let tree = {
   }
 };
 
-export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
-]);
-
-export const refresh = sequence("oscs.refresh", [
-  set(state`oscs.connection_id`, props`connection_id`),
-	set(state`oscs.loading`, true),
-	fetchNoWatch,
-	set(state`oscs.loading`, false),
-]);
-
-export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
-  () => {console.log("--> oscs.handleWatchUpdate");},
-]);
-
 function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get("oscs.connection_id"),
@@ -65,13 +38,6 @@ function buildFetchRequest({ state }) {
   return { requests };
 }
 
-/*  ({ state, props }) => ({
-		connection_id: state.get("oscs.connection_id"),
-		path:         _localPath,
-		tree,
-    watch:         { signals: ["oscs.handleWatchUpdate"] }
-	}),
-	*/
 export const fetch = sequence("oscs.fetch", [
   buildFetchRequest,
 	oada.get,
@@ -87,7 +53,6 @@ export const fetch = sequence("oscs.fetch", [
 		]),
 	}
 ]);
-		//watch:        {signals: ["oscs.handleWatchUpdate"]}
 
 export const init = sequence("oscs.init", [
 	when(state`Connections.connection_id`),
@@ -159,6 +124,42 @@ function buildOSCRequest({ props, state }){
     }
   }
 }
+
+export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
+  ({ state, props }) => ({
+    connection_id: state.get("oscs.connection_id"),
+    path: _localPath,
+    tree
+  }),
+  oada.get,
+  when(state`oada.${props`connection_id`}.bookmarks.oscs`),
+  {
+    true: sequence("fetchOscsSuccess", [
+      mapOadaToOscs,
+      set(state`App.emptyDataSet`, false),
+    ]),
+    false: sequence("fetchOscsEmptySetNoWatch", [
+      () => (
+        console.log("--> Oscs empty set no watch")
+      ),
+      set(state`App.emptyDataSet`, true),
+    ])
+  }
+]);
+
+
+/**********************************************************
+ * refresh the oscs module
+ * when handling updates/watches
+ * @type {Primitive}
+ *********************************************************/
+export const refresh = sequence("oscs.refresh", [
+  set(state`oscs.connection_id`, props`connection_id`),
+  set(state`oscs.loading`, true),
+  fetchNoWatch,
+  set(state`oscs.loading`, false),
+  set(props`type`, "oscs")
+]);
 
 // ========================================================
 // OSC Control Sequences (Token Provisioning, Restart ...)

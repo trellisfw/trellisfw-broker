@@ -7,5 +7,5 @@ export default Module({
 		loading: true,
 		connection_id: "localhost"
 	},
- sequences 	
+  sequences 	
 });

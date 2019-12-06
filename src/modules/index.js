@@ -25,7 +25,7 @@ export default Module({
 		oscs,
 		pacs,
 		demo,
-		oada: oadaModule,
+		oada: oadaModule
 	},
 
 	providers: {
