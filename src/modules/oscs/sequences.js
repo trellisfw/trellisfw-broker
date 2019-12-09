@@ -25,31 +25,38 @@ let tree = {
   }
 };
 
+const connection_id = "oscs.connection_id";
+
 function buildFetchRequest({ state }) {
   let request =  {
-       connection_id: state.get("oscs.connection_id"),
+       connection_id: state.get(connection_id),
 			 path:          _localPath,
-			 tree,
-       watch:         { signals: ["oscs.handleWatchUpdate"] }
+			 tree
 		};
 	let requests = [];
 	requests.push(request);
 
   return { requests };
 }
+       //watch:         { signals: ["oscs.handleWatchUpdate"] }
 
 export const fetch = sequence("oscs.fetch", [
+	({state, props}) => ({
+		connection_id: state.get(connection_id),
+		path:          _localPath,
+		tree
+	}),
   buildFetchRequest,
 	oada.get,
 	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
 	{
 		true: sequence("fetchOSCsSuccess", [
             mapOadaToOscs,
-			      set(state`App.emptyDataSet`, false),
+			      set(state`oscs.emptyDataSet`, false),
 		      ]),
     false: sequence("fetchOSCsEmptySet", [
 		        () => ( console.log("--> OSCs empty set") ),
-			      set(state`App.emptyDataSet`, true)
+			      set(state`oscs.emptyDataSet`, true)
 		]),
 	}
 ]);
@@ -71,7 +78,7 @@ export const init = sequence("oscs.init", [
 ]);
 
 export function mapOadaToOscs({ props, state }){
-  let connection_id = state.get("oscs.connection_id");
+  let connection_id = state.get(connection_id);
 	let oscs = state.get(`oada.${connection_id}.bookmarks.oscs`);
   if (oscs) {
     return Promise.map(Object.keys(oscs || {}), osc => {
@@ -97,7 +104,7 @@ export const updateOSC = sequence("oscs.updateOSC", [
 function createOSC({props, state}){
   let id = state.get('OSCList.current');
   let oscs = [];
-	state.set(`oscs.records.${id}.token`, "maverick");
+	state.set(`oscs.records.${id}.token`, "servio");
   if (id !== "none") {
     let osc = state.get(`oscs.records.${id}`);
     oscs.push(osc);
@@ -106,7 +113,7 @@ function createOSC({props, state}){
 }
 
 function buildOSCRequest({ props, state }){
-  let connection_id = state.get("oscs.connection_id");
+  let connection_id = state.get(connection_id);
   let requests = [];
   if (props.oscs[0]) {
     let osc = props.oscs[0];
@@ -127,7 +134,7 @@ function buildOSCRequest({ props, state }){
 
 export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
   ({ state, props }) => ({
-    connection_id: state.get("oscs.connection_id"),
+    connection_id: state.get(connection_id),
     path: _localPath,
     tree
   }),
@@ -136,13 +143,13 @@ export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
   {
     true: sequence("fetchOscsSuccess", [
       mapOadaToOscs,
-      set(state`App.emptyDataSet`, false),
+      set(state`oscs.emptyDataSet`, false),
     ]),
     false: sequence("fetchOscsEmptySetNoWatch", [
       () => (
         console.log("--> Oscs empty set no watch")
       ),
-      set(state`App.emptyDataSet`, true),
+      set(state`oscs.emptyDataSet`, true),
     ])
   }
 ]);

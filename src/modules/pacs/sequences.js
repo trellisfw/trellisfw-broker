@@ -44,7 +44,7 @@ function buildFetchRequest({ state }) {
        connection_id: state.get("pacs.connection_id"),
 			 path:          _localPath,
 			 tree
-		};
+	};
 	let requests = [];
 	requests.push(request);
 

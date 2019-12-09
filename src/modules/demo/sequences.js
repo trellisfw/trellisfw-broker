@@ -53,7 +53,7 @@ const upload_demo_oscs = [
 
 export const init = sequence("demo.init", [
 	set(state`demo.loading`, true),
-	upload_demo_pacs,
+	//upload_demo_pacs,
 	upload_demo_oscs,
 	set(state`demo.loading`, false),
 ]);
