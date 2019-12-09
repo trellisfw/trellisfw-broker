@@ -32,10 +32,10 @@ class OSCList extends React.Component {
 	**/
 	renderOSC( params ) {
 		const {osc, classes} = params;
-    console.log("-->osc");
-		console.log(osc);
+    //console.log("-->osc");
+		//console.log(osc);
 		if (osc) {
-		const avaColor = {backgroundColor: backColor[osc.trustLevel]};
+		const avaColor = {backgroundColor: backColor[osc.trust_level]};
 			return (
 				<div id={osc.id} className={classes.container} key={osc.id}>
 				  <Card className={classes.card} key={osc.id}>

@@ -31,7 +31,8 @@ function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get(CONNECTION_ID),
 			 path:          _localPath,
-			 tree
+			 tree,
+		   watch:         { signals: ["oscs.handleWatchUpdate"] }
 		};
 	let requests = [];
 	requests.push(request);
