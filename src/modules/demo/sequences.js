@@ -7,7 +7,7 @@ import { pac_dataset } from "../../components/offline_datasets.js";
 import { osc_dataset } from "../../components/offline_datasets.js";
 
 let _localPACSPath = "/bookmarks/pacs";
-let _localOSCSPath = "/bookmarks/oscs";
+let _localOSCSPath = "/bookmarks/osc";
 
 let tree = {
   bookmarks: {
@@ -28,7 +28,7 @@ let OSCtree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    oscs: {
+    osc: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -110,10 +110,12 @@ function createOSCRequest({ props, state }) {
 
 	for (let osc of props.oscs) {
 		console.log(osc.id);
+		let _path = `${_localOSCSPath}/${osc.id}`;
+		console.log(_path);
 		let request = {
 			connection_id: connection_id,
 			data:          osc,
-			path:          `${_localOSCSPath}/${osc.id}`,
+			path:          _path,
 			tree: OSCtree
 		};
 		requests.push(request);

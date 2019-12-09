@@ -5,7 +5,7 @@ import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 
-let _localPath = "/bookmarks/oscs";
+let _localPath = "/bookmarks/osc";
 
 //let _TYPE = "application/vnd.oada.oscs.1+json";
 //let _TYPE_OSC = "application/vnd.oada.osc.1+json";
@@ -14,7 +14,7 @@ let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    oscs: {
+    osc: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -25,11 +25,11 @@ let tree = {
   }
 };
 
-const connection_id = "oscs.connection_id";
+const CONNECTION_ID = "oscs.connection_id";
 
 function buildFetchRequest({ state }) {
   let request =  {
-       connection_id: state.get(connection_id),
+       connection_id: state.get(CONNECTION_ID),
 			 path:          _localPath,
 			 tree
 		};
@@ -42,13 +42,13 @@ function buildFetchRequest({ state }) {
 
 export const fetch = sequence("oscs.fetch", [
 	({state, props}) => ({
-		connection_id: state.get(connection_id),
+		connection_id: state.get(CONNECTION_ID),
 		path:          _localPath,
 		tree
 	}),
   buildFetchRequest,
 	oada.get,
-	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
+	when(state`oada.${props`connection_id`}.bookmarks.osc`),
 	{
 		true: sequence("fetchOSCsSuccess", [
             mapOadaToOscs,
@@ -78,13 +78,13 @@ export const init = sequence("oscs.init", [
 ]);
 
 export function mapOadaToOscs({ props, state }){
-  let connection_id = state.get(connection_id);
-	let oscs = state.get(`oada.${connection_id}.bookmarks.oscs`);
+  let connection_id = state.get(CONNECTION_ID);
+	let oscs = state.get(`oada.${connection_id}.bookmarks.osc`);
   if (oscs) {
     return Promise.map(Object.keys(oscs || {}), osc => {
 			if (osc[0] !== "_" && osc !== "oscs") {
 				let currentOSC = 
-					     state.get(`oada.${connection_id}.bookmarks.oscs.${osc}`);
+					     state.get(`oada.${connection_id}.bookmarks.osc.${osc}`);
 				if ( currentOSC && currentOSC.id ) {
 					state.set(`oscs.records.${osc}`, oscs[osc]);
 				}
@@ -113,7 +113,7 @@ function createOSC({props, state}){
 }
 
 function buildOSCRequest({ props, state }){
-  let connection_id = state.get(connection_id);
+  let connection_id = state.get(CONNECTION_ID);
   let requests = [];
   if (props.oscs[0]) {
     let osc = props.oscs[0];
@@ -134,12 +134,12 @@ function buildOSCRequest({ props, state }){
 
 export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
   ({ state, props }) => ({
-    connection_id: state.get(connection_id),
+    connection_id: state.get(CONNECTION_ID),
     path: _localPath,
     tree
   }),
   oada.get,
-  when(state`oada.${props`connection_id`}.bookmarks.oscs`),
+  when(state`oada.${props`connection_id`}.bookmarks.osc`),
   {
     true: sequence("fetchOscsSuccess", [
       mapOadaToOscs,
