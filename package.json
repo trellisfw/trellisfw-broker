@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.5.1",
     "@oada/cerebral-module": "^3.0.1",
     "cerebral": "^5.2.0",
+    "lodash": "^4.17.15",
     "mobile-detect": "^1.4.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

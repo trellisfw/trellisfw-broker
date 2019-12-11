@@ -305,3 +305,45 @@ export const osc_dataset = {
     }
   }
 };
+
+export let pac_template = {
+			"id": "69e404ac-10c8-45b3-bf08-a37ee848a729",
+			"label": "DE",
+			"title": "Demo PAC Record",
+			"trust_level": "tl1",
+			"oscid": {
+				"codebase": "demopacrecord-v1.0.0",
+				"pac": "sustainablereporting-v1.0.0",
+				"definition": "https://github.com/trellisfw/osc-definitions"
+			},
+			"timestamp": "2019-08-14T02:38:32.921Z",
+			"lot": "12345",
+			"organization": {
+				"id": "bc755264-4e68-433e-a431-081e79bcc81c",
+				"name": "Bob's Farm"
+			},
+			"certification_status": "passed",
+			"certified_quantity": {
+				"value": "10",
+				"units": "tons"
+			},
+			"certified_product": "demo product",
+			"attestations": {
+				"balance": true
+			},
+			"signatures": [
+				{
+					"quote": {
+						"report": "<base64 encoded report>",
+						"mrsigner": "<base64 encoded mrsigner>",
+						"mrenclave": "<base64 encoded mrenclave",
+						"user_data": "<base64 encoded user data, understood to be hash of PAC> ",
+						"value": "<base64 encoded entire quote>"
+					}
+				}
+			],
+			"data_hash": {
+				"value": "00534a6ac0c50e40a6f5293a72b8b320e637cb9a998847d19210af3ce7564eb5",
+				"alg": "SHA-256"
+			}
+};

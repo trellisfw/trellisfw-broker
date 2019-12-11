@@ -88,6 +88,12 @@ class MenuList extends React.Component {
 						}}>
 					    Demo Dataset 
 					  </MenuItem>
+            <MenuItem onClick={() => {
+							this.props.handleMenuListOpen({});
+							this.props.newPAC({});
+						}}>
+					    New PAC 
+					  </MenuItem>
           </Menu>
           : null
 				}
@@ -115,7 +121,8 @@ export default connect(
     trellisRepo:        sequences`MenuList.trellisRepo`,
 		offline:            sequences`MenuList.offline`,
 		handlePACListOpen:  sequences`PACList.handlePACListOpen`,
-		demoInit:           sequences`demo.init`
+		demoInit:           sequences`demo.init`,
+		newPAC:             sequences`demo.newPAC`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );

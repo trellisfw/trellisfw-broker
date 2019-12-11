@@ -5,6 +5,9 @@ import { state } from "cerebral/tags";
 import oada from "@oada/cerebral-module/sequences";
 import { pac_dataset } from "../../components/offline_datasets.js";
 import { osc_dataset } from "../../components/offline_datasets.js";
+import { pac_template } from "../../components/offline_datasets.js";
+import _ from "lodash";
+import uuid from "uuid";
 
 let _localPACSPath = "/bookmarks/pacs";
 let _localOSCSPath = "/bookmarks/osc";
@@ -66,6 +69,21 @@ function createPACS({ props, state }) {
     let pac = pac_dataset.records[key];
     pacs.push(pac);
 	}
+
+	return { pacs: pacs };
+}
+
+export const newPAC = sequence("demo.newPAC", [
+  createPAC,
+	createPACRequest,
+	oada.put
+]);
+
+function createPAC({ props, state }) {
+	let pacs = [];
+  let _pac = _.cloneDeep(pac_template);
+	_pac.id = uuid();
+	pacs.push(_pac);
 
 	return { pacs: pacs };
 }

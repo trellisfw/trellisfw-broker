@@ -24,30 +24,39 @@ let tree = {
 
 const CONNECTION_ID = "pacs.connection_id";
 
+function buildFetchRequestNoWatch({ state }) {
+  let request =  {
+       connection_id: state.get(CONNECTION_ID),
+			 path:          _localPath,
+			 tree
+	};
+	let requests = [];
+	requests.push(request);
+
+  return { requests };
+}
+
 export const fetchNoWatch = sequence("pacs.fetchNoWatch", [
   ({ state, props }) => ({
     connection_id: state.get(CONNECTION_ID),
     path:          _localPath,
     tree
   }),
+	buildFetchRequestNoWatch,
   oada.get,
   when(state`oada.${props`connection_id`}.bookmarks.pacs`),
   {
     true: sequence("fetch:PacsSuccess", [
-      mapOadaToPacs,
-      set(state`pacs.emptyDataSet`, false),
-    ]),
+            mapOadaToPacs,
+            set(state`pacs.emptyDataSet`, false),
+           ]),
     false: sequence("fetchPacsEmptySetNoWatch", [
-      () => (
-        console.log("--> Pacs empty set no watch")
-      ),
-      set(state`pacs.emptyDataSet`, true),
-    ])
+            set(state`pacs.emptyDataSet`, true),
+           ])
   }
 ]);
 
 export const refresh = sequence("pacs.refresh", [
-  set(state`pacs.connection_id`, props`connection_id`),
 	set(state`pacs.loading`, true),
 	fetchNoWatch,
 	set(state`pacs.loading`, false),
@@ -58,13 +67,12 @@ export const handleWatchUpdate = sequence("pacs.handleWatchUpdate", [
 	refresh
 ]);
 
-/*  watch:         { signals: ["pacs.handleWatchUpdate"] }*/
-
 function buildFetchRequest({ state }) {
   let request =  {
        connection_id: state.get(CONNECTION_ID),
 			 path:          _localPath,
-			 tree
+			 tree,
+		   watch:         { signals: ["pacs.handleWatchUpdate"] }
 	};
 	let requests = [];
 	requests.push(request);
@@ -92,7 +100,6 @@ export const fetch = sequence("pacs.fetch", [
 		]),
 	}
 ]);
-		//watch:        {signals: ["pacs.handleWatchUpdate"]}
 
 export const init = sequence("pacs.init", [
 	when(state`Connections.connection_id`),
@@ -110,7 +117,7 @@ export const init = sequence("pacs.init", [
 	set(state`PACList.open`, false)
 ]);
 
-export function mapOadaToPacs({ props, state }){
+export function mapOadaToPacs({ props, state }) {
   let connection_id = state.get(CONNECTION_ID);
 	let pacs = state.get(`oada.${connection_id}.bookmarks.pacs`);
   if (pacs) {
@@ -134,7 +141,7 @@ export const updatePAC = sequence("pacs.updatePAC", [
   oada.put
 ]);
 
-function createPAC({props, state}){
+function createPAC({props, state}) {
   let id = state.get('PACList.current');
 	let pacs = [];
 	if (id !== "none") {
@@ -144,7 +151,7 @@ function createPAC({props, state}){
 	return {pacs: pacs};
 }
 
-function buildPACRequest({ props, state }){
+function buildPACRequest({ props, state }) {
 	let connection_id = state.get("oscs.connection_id");
 	let requests = [];
   if (props.pacs[0]){
@@ -162,5 +169,4 @@ function buildPACRequest({ props, state }){
 			domain:        state.get("oada_domain")
 		}
 	}
-
 }
