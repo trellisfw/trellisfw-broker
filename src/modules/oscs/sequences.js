@@ -133,12 +133,26 @@ function buildOSCRequest({ props, state }){
   }
 }
 
+function buildFetchRequestNoWatch({ state }) {
+  let request =  {
+       connection_id: state.get(CONNECTION_ID),
+			 path:          _localPath,
+			 tree,
+		   watch:         { signals: ["oscs.handleWatchUpdate"] }
+		};
+	let requests = [];
+	requests.push(request);
+
+  return { requests };
+}
+
 export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
   ({ state, props }) => ({
     connection_id: state.get(CONNECTION_ID),
     path: _localPath,
     tree
   }),
+	buildFetchRequestNoWatch,
   oada.get,
   when(state`oada.${props`connection_id`}.bookmarks.osc`),
   {
@@ -154,7 +168,6 @@ export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
     ])
   }
 ]);
-
 
 /**********************************************************
  * refresh the oscs module
