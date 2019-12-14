@@ -39,7 +39,6 @@ function buildFetchRequest({ state }) {
 
   return { requests };
 }
-       //watch:         { signals: ["oscs.handleWatchUpdate"] }
 
 export const fetch = sequence("oscs.fetch", [
 	({state, props}) => ({
@@ -94,7 +93,6 @@ export function mapOadaToOscs({ props, state }){
     }).then( () => { return; });
 	}//if
 }//mapOadaToOscs
-
 
 export const updateOSC = sequence("oscs.updateOSC", [
   createOSC,
@@ -187,7 +185,7 @@ export const refresh = sequence("oscs.refresh", [
 // ========================================================
 export function updateToken({ props, state }) {
   let id = state.get('OSCList.current');
-	if (id!=="none") {
+	if (id !== "none") {
 	  state.set(`oscs.records.${id}.control_signals.token`, "servio");
 	}
 }

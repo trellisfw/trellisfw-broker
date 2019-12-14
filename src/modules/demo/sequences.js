@@ -56,7 +56,7 @@ const upload_demo_oscs = [
 
 export const init = sequence("demo.init", [
 	set(state`demo.loading`, true),
-	//upload_demo_pacs,
+	upload_demo_pacs,
 	upload_demo_oscs,
 	set(state`demo.loading`, false),
 ]);
@@ -98,7 +98,7 @@ function createPACRequest({ props, state }) {
 			connection_id: connection_id,
 			data:          pac,
 			path:          `${_localPACSPath}/${pac.id}`,
-			tree: tree
+			tree:          tree
 		};
 		requests.push(request);
 	}//for

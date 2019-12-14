@@ -76,10 +76,9 @@ class MenuList extends React.Component {
 					    Trellis Repo 
 					  </MenuItem>
             <MenuItem onClick={ () => {
-							          this.props.handlePACListOpen({});   
-							          this.props.offline({});
-						          }}
-					  >
+							this.props.handlePACListOpen({});   
+							this.props.offline({});
+						}}>
 					    Offline
 					  </MenuItem>
             <MenuItem onClick={() => {
