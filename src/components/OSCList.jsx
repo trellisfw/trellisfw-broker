@@ -32,8 +32,6 @@ class OSCList extends React.Component {
 	**/
 	renderOSC( params ) {
 		const {osc, classes} = params;
-    //console.log("-->osc");
-		//console.log(osc);
 		if (osc) {
 		const avaColor = {backgroundColor: backColor[osc.trust_level]};
 			return (
@@ -50,7 +48,7 @@ class OSCList extends React.Component {
 								</IconButton>
 							}
 							title={osc.title}
-							subheader={CardEnum.Run + osc.dateInit}
+							subheader={CardEnum.Run + osc.date_init}
 						/>
 						<CardActions disableSpacing>
 							<IconButton aria-label={CardEnum.VerCode}>

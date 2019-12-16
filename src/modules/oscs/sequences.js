@@ -135,8 +135,7 @@ function buildFetchRequestNoWatch({ state }) {
   let request =  {
        connection_id: state.get(CONNECTION_ID),
 			 path:          _localPath,
-			 tree,
-		   watch:         { signals: ["oscs.handleWatchUpdate"] }
+			 tree
 		};
 	let requests = [];
 	requests.push(request);
@@ -159,9 +158,6 @@ export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
       set(state`oscs.emptyDataSet`, false),
     ]),
     false: sequence("fetchOscsEmptySetNoWatch", [
-      () => (
-        console.log("--> Oscs empty set no watch")
-      ),
       set(state`oscs.emptyDataSet`, true),
     ])
   }
@@ -173,11 +169,14 @@ export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
  * @type {Primitive}
  *********************************************************/
 export const refresh = sequence("oscs.refresh", [
-  set(state`oscs.connection_id`, props`connection_id`),
   set(state`oscs.loading`, true),
   fetchNoWatch,
   set(state`oscs.loading`, false),
-  set(props`type`, "oscs")
+]);
+
+export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
+	() => {console.log("--> oscs.handleWatchUpdate");},
+	refresh
 ]);
 
 // ========================================================
