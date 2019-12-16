@@ -7,7 +7,7 @@ import { handleOSCListOpen } from "../OSCList/sequences";
 
 export let handleMenuListOpen = [toggle(state`MenuList.open`)];
 
-export function setCurrentItem({props, state}){
+export function setCurrentItem({props, state}) {
   if(props.item)
     state.set(`MenuList.current`, props.item);
 }
@@ -40,7 +40,7 @@ export let blockchain = [
   blockchain_action
 ];
 
-export function blockchain_action(){
+export function blockchain_action() {
 	console.log("Blockchain ->");
 }
 
@@ -49,8 +49,7 @@ export let regulatorRepo = [
   regulatorRepo_action
 ];
 
-
-export function regulatorRepo_action({props, state}){
+export function regulatorRepo_action({props, state}) {
 	console.log("Regulator Repo");
 }
 
@@ -59,7 +58,7 @@ export let trellisRepo = [
   trellisRepo_action
 ];
 
-export function trellisRepo_action({props, state}){
+export function trellisRepo_action({props, state}) {
 	console.log("Trellis Repo");
 }
 
@@ -68,7 +67,7 @@ export let offline = [
   offline_action  
 ];
 
-export function offline_action({props, state}){
+export function offline_action({props, state}) {
 	console.log("Offline Demo");
 	state.set(`PACList.records`, pac_dataset.records);
 	state.set(`OSCList.records`, osc_dataset.records);

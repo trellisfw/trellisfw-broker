@@ -23,11 +23,6 @@ export let clearConnection = [
   connectionCleanUp
 ];
 
-function test({props, state}){
-  console.log("--> test ");
-  console.log(props);
-}
-
 export let init = [
   ({state}) => ({
     domain:   state.get(`${ConnE.domain}`),
@@ -39,12 +34,10 @@ export let init = [
     token:         _TOKEN,
     connection_id: state.get(`${_OSCS_CONN_ID}`),
   }),
-	test,
 	pacs.init,
 	oscs.init,
   set(state`${ConnE.open}`, false)
 ];
-//signals:       ['oscs.handleWatchUpdate']
 
 export let setConnection = [
   set(state`${ConnE.open}`, false),
