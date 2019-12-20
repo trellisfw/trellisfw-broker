@@ -3,6 +3,8 @@
 ## Installing OADA
 ```
 ./oada --install-self
+./docker-compose build
+./oada --dev up -d
 ```
 
 ## Edit the following files in the OADA installation
