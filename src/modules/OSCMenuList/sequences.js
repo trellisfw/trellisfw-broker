@@ -30,7 +30,7 @@ export let provisionToken = [
 ];
 
 export function provisionToken_action(evt){
-	console.log("Provision Token Event ->" + evt);
+	console.log("-->provisioning token ->" + evt);
 	console.log(evt);
 }
 
@@ -42,7 +42,7 @@ export let provisionData = [
 ];
 
 export function provisionData_action({props, state}){
-	console.log("Provision Data");
+	console.log("-->provisioning data");
 }
 
 export let generatePAC = [
@@ -53,7 +53,7 @@ export let generatePAC = [
 ];
 
 export function generatePAC_action({props, state}){
-	console.log("Generate PAC");
+	console.log("-->generate PAC");
 }
 
 export let initRA = [
@@ -64,15 +64,16 @@ export let initRA = [
 ]
 
 export function initRA_action({props, state}){
-	console.log("Init RA");
+	console.log("-->init RA");
 }
 
-export let checkOSCHash =[
+export let checkOSCHash = [
   handleOpen,
 	oscs.checkOSCHash,
 	oscs.updateOSC,
   checkOSCHash_action
 ];
+
 export function checkOSCHash_action({props, state}) {
 	console.log("--> checking OSC hash");
 }
@@ -85,7 +86,7 @@ export let restartOSC = [
 ];
 
 export function restartOSC_action({props, state}){
-	console.log("Restart OSC");
+	console.log("-->restart OSC");
 }
 
 export let killOSC = [
@@ -96,5 +97,5 @@ export let killOSC = [
 ];
 
 export function killOSC_action({props, state}){
-	console.log("Kill OSC");
+	console.log("-->kill OSC");
 }

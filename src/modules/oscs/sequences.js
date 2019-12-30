@@ -192,6 +192,7 @@ export function checkOSCHash({ props, state }) {
 	  state.set(`oscs.records.${id}.control_signals.osc_hash`, result);
 	}
 }
+
 export function updateToken({ props, state }) {
   let id = state.get('OSCList.current');
 	if (id !== "none") {
@@ -201,8 +202,9 @@ export function updateToken({ props, state }) {
 
 export function updateData({ props, state}){
   let id = state.get(`OSCList.current`);
-	if (id !== "none") {
+	if (id !== "") {
 	  state.set(`oscs.records.${id}.control_signals.private_data`, "all");
+	  state.set(`oscs.records.${id}.control_signals.private_data_path`, "/bookmarks/apples");
 	}
 }
 
