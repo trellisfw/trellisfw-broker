@@ -9,13 +9,18 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-import CloudCheckIcon from "@material-ui/icons/CloudDone";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import VerifiedCodeIcon from "@material-ui/icons/AccountBalance";
+//import CloudCheckIcon from "@material-ui/icons/CloudDone";
+import RegulatorIcon from "@material-ui/icons/AccountBalance";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import StorageIcon from "@material-ui/icons/Storage";
+import GeneratePACIcon from "@material-ui/icons/HourglassEmpty";
+import RestartIcon from "@material-ui/icons/RestorePage";
+import TurnoffIcon from "@material-ui/icons/PowerSettingsNew";
 import PACStepper from "./PACStepper";
 import OSCMenuList from "./OSCMenuList";
 import { withStyles } from "@material-ui/core/styles";
 import { useStyles, backColor, CardEnum } from "./config.js";
+import { green } from '@material-ui/core/colors';
 
 /**
  * List of OSCs
@@ -24,6 +29,10 @@ import { useStyles, backColor, CardEnum } from "./config.js";
  * The Broker watches all OSC resources created
  */
 class OSCList extends React.Component {
+
+  getColor(value) {
+    return value ? '#ffcc66' : green[500];
+  }
 
 	/**
 	 * Renders individual OSC object
@@ -34,6 +43,16 @@ class OSCList extends React.Component {
 		const {osc, classes} = params;
 		if (osc) {
 		const avaColor = {backgroundColor: backColor[osc.trust_level]};
+      const hashOSCStyle = { color: green[500], marginLeft: '10px' };
+      hashOSCStyle.color = this.getColor(!osc.control_signals.osc_hash);
+      const tokenStyle = { color: green[500], marginLeft: '10px' };
+      tokenStyle.color = this.getColor(osc.control_signals.token === "");
+      const dataStyle = { color: green[500], marginLeft: '10px' };
+      dataStyle.color = this.getColor(osc.control_signals.private_data === "");
+      const generatePACStyle = { color: green[500], marginLeft: '10px' };
+      generatePACStyle.color = this.getColor(!osc.control_signals.generate_pac);
+      const restartStyle = { color: '#ffffff', marginLeft: '10px' };
+      const turnoffStyle = { color: '#ffffff', marginLeft: '10px' };
 			return (
 				<div id={osc.id} className={classes.container} key={osc.id}>
 				  <Card className={classes.card} key={osc.id}>
@@ -52,13 +71,22 @@ class OSCList extends React.Component {
 						/>
 						<CardActions disableSpacing>
 							<IconButton aria-label={CardEnum.VerCode}>
-								<VerifiedCodeIcon />
+				        <RegulatorIcon style={hashOSCStyle}/>
 							</IconButton>
 							<IconButton aria-label={CardEnum.VerUser}>
-								<VerifiedUserIcon />
+                <VpnKeyIcon style={tokenStyle}/>
 							</IconButton>
 							<IconButton aria-label={CardEnum.Blockchain}>
-								<CloudCheckIcon />
+                <StorageIcon style={dataStyle}/>
+							</IconButton>
+							<IconButton aria-label={CardEnum.Blockchain}>
+                <GeneratePACIcon style={generatePACStyle}/>
+							</IconButton>
+							<IconButton aria-label={CardEnum.Blockchain}>
+                <RestartIcon style={restartStyle}/>
+							</IconButton>
+							<IconButton aria-label={CardEnum.Blockchain}>
+                <TurnoffIcon style={turnoffStyle}/>
 							</IconButton>
 						</CardActions>
 				    <Collapse in={this.props.stepperOpen} 
