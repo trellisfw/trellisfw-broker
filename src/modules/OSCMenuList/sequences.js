@@ -41,7 +41,7 @@ export let provisionData = [
   provisionData_action
 ];
 
-export function provisionData_action({props, state}){
+export function provisionData_action({props, state}) {
 	console.log("-->provisioning data");
 }
 
@@ -52,7 +52,7 @@ export let generatePAC = [
   generatePAC_action
 ];
 
-export function generatePAC_action({props, state}){
+export function generatePAC_action({props, state}) {
 	console.log("-->generate PAC");
 }
 
@@ -63,7 +63,7 @@ export let initRA = [
   initRA_action
 ]
 
-export function initRA_action({props, state}){
+export function initRA_action({props, state}) {
 	console.log("-->init RA");
 }
 
@@ -85,7 +85,7 @@ export let restartOSC = [
   restartOSC_action
 ];
 
-export function restartOSC_action({props, state}){
+export function restartOSC_action({props, state}) {
 	console.log("-->restart OSC");
 }
 
@@ -96,6 +96,6 @@ export let killOSC = [
   killOSC_action
 ];
 
-export function killOSC_action({props, state}){
+export function killOSC_action({props, state}) {
 	console.log("-->kill OSC");
 }

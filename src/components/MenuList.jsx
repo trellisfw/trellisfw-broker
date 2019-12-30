@@ -7,6 +7,7 @@ import { Menu, MenuItem } from "@material-ui/core";
 import IconButton         from "@material-ui/core/IconButton";
 import MoreVertIcon       from "@material-ui/icons/MoreVert";
 import { withStyles }     from "@material-ui/core/styles";
+import Divider            from '@material-ui/core/Divider';
 
 //The DOM element used to set the position of the menu.
 let anchorEl;
@@ -63,18 +64,20 @@ class MenuList extends React.Component {
             <MenuItem onClick={this.props.pacList}>
 					    PAC List
 					  </MenuItem>
-            <MenuItem onClick={this.props.blockchain}>
-					    Blockchain 
-					  </MenuItem>
             <MenuItem onClick={this.props.oscList}>
 					    OSC List
 					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={this.props.regulatorRepo}>
 					    Regulator Repo 
 					  </MenuItem>
             <MenuItem onClick={this.props.trellisRepo}>
 					    Trellis Repo 
 					  </MenuItem>
+            <MenuItem onClick={this.props.blockchain}>
+					    Blockchain 
+					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={ () => {
 							this.props.handlePACListOpen({});   
 							this.props.offline({});

@@ -5,8 +5,14 @@ import { connect }           from "@cerebral/react";
 import { state, sequences }  from "cerebral/tags";
 import { Menu, MenuItem }    from "@material-ui/core";
 import IconButton            from "@material-ui/core/IconButton";
+import ListItemIcon          from '@material-ui/core/ListItemIcon';
 import MoreVertIcon          from "@material-ui/icons/MoreVert";
 import { withStyles }        from "@material-ui/core/styles";
+import UnoIcon               from '@material-ui/icons/Filter1';
+import DosIcon               from '@material-ui/icons/Filter2';
+import TresIcon              from '@material-ui/icons/Filter3';
+import CuatroIcon            from '@material-ui/icons/Filter4';
+import Divider 							 from '@material-ui/core/Divider';
 
 //The DOM element used to set the position of the menu.
 let anchorEl;
@@ -60,25 +66,39 @@ class OSCMenuList extends React.Component {
             onClose={this.props.handleOpen}
             anchorEl={anchorEl}
           >
+            <MenuItem onClick={this.props.checkOSCHash}>
+					  	<ListItemIcon>
+            		<UnoIcon style={{color: "#3399ff", marginRight: "5px"}}/>
+          		</ListItemIcon>
+					    Verify OSC Hash
+					  </MenuItem>
+            <MenuItem onClick={this.props.provisionToken}>
+					  	<ListItemIcon>
+            		<DosIcon  style={{color: "#0080ff"}}/>
+          		</ListItemIcon>
+					    Provision Token
+					  </MenuItem>
+            <MenuItem onClick={this.props.provisionData}>
+					  	<ListItemIcon>
+            		<TresIcon style={{color: "#0066cc"}}/>
+          		</ListItemIcon>
+					    Provision Data
+					  </MenuItem>
+            <MenuItem onClick={this.props.generatePAC}>
+					  	<ListItemIcon>
+            		<CuatroIcon style={{color: "#004d99"}}/>
+          		</ListItemIcon>
+					    Generate PAC
+					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={ () => {
 							this.props.pacList({oscid: this.props.current
 						})}}>
 					    PAC List
 					  </MenuItem>
-            <MenuItem onClick={this.props.provisionToken}>
-					    Provision Token
-					  </MenuItem>
-            <MenuItem onClick={this.props.provisionData}>
-					    Provision Data
-					  </MenuItem>
-            <MenuItem onClick={this.props.generatePAC}>
-					    Generate PAC
-					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={this.props.initRA}>
 					    Initiate RA
-					  </MenuItem>
-            <MenuItem onClick={this.props.checkOSCHash}>
-					    Verify OSC Hash
 					  </MenuItem>
             <MenuItem onClick={this.props.restartOSC}>
 					    Restart OSC
