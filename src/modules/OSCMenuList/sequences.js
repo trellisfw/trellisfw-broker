@@ -69,10 +69,12 @@ export function initRA_action({props, state}){
 
 export let checkOSCHash =[
   handleOpen,
+	oscs.checkOSCHash,
+	oscs.updateOSC,
   checkOSCHash_action
 ];
-export function checkOSCHash_action({props, state}){
-	console.log("Check OSC Hash");
+export function checkOSCHash_action({props, state}) {
+	console.log("--> checking OSC hash");
 }
 
 export let restartOSC = [

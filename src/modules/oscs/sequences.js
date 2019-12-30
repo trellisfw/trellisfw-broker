@@ -4,7 +4,7 @@ import { set, when } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
-
+import crypto from "crypto";
 let _localPath = "/bookmarks/osc";
 
 //let _TYPE = "application/vnd.oada.oscs.1+json";
@@ -182,6 +182,16 @@ export const handleWatchUpdate = sequence("oscs.handleWatchUpdate", [
 // ========================================================
 // OSC Control Sequences (Token Provisioning, Restart ...)
 // ========================================================
+export function checkOSCHash({ props, state }) {
+  let id = state.get('OSCList.current');
+	let title = state.get(`oscs.records.${id}.title`);
+	let OSChash = state.get(`oscs.records.${id}.osc_hash.value`);
+	let _hash = crypto.createHash("sha256").update(title).digest("hex");
+	if (id !== "none") {
+    let result = _hash === OSChash; 
+	  state.set(`oscs.records.${id}.control_signals.osc_hash`, result);
+	}
+}
 export function updateToken({ props, state }) {
   let id = state.get('OSCList.current');
 	if (id !== "none") {
