@@ -347,3 +347,93 @@ export let pac_template = {
 				"alg": "SHA-256"
 			}
 };
+
+export let private_dataset = {
+	"records": {
+  "20c6626f-6baf-47fb-b8ed-d5f0af6f59f2": {
+    "id": "20c6626f-6baf-47fb-b8ed-d5f0af6f59f2",
+    "label": "Apple",
+    "title": "Apple's Sustainable Reporting",
+    "timestamp": "2019-12-30T02:38:32.921Z",
+    "lot": "1",
+    "organization": {
+      "id": "bc755264-4e68-433e-a431-081e79bcc81c",
+      "name": "Bob's Farm"
+    },
+    "product": "apple",
+    "temperature": 40,
+    "data_hash": {
+      "value": "d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103",
+      "alg": "SHA-256"
+    }
+  },
+  "224a5bc4-b900-480c-9745-08414b397bab": {
+    "id": "224a5bc4-b900-480c-9745-08414b397bab",
+    "label": "Apple",
+    "title": "Apple's Sustainable Reporting",
+    "timestamp": "2019-12-30T02:38:32.921Z",
+    "lot": "2",
+    "organization": {
+      "id": "bc755264-4e68-433e-a431-081e79bcc81c",
+      "name": "Bob's Farm"
+    },
+    "product": "apple",
+    "temperature": 40,
+    "data_hash": {
+      "value": "d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103",
+      "alg": "SHA-256"
+    }
+  },
+  "9b1c8816-d1ae-453e-8314-0e1821b7b6ba": {
+    "id": "9b1c8816-d1ae-453e-8314-0e1821b7b6ba",
+    "label": "Apple",
+    "title": "Apple's Sustainable Reporting",
+    "timestamp": "2019-12-30T02:38:32.921Z",
+    "lot": "3",
+    "organization": {
+      "id": "bc755264-4e68-433e-a431-081e79bcc81c",
+      "name": "Bob's Farm"
+    },
+    "product": "apple",
+    "temperature": 37,
+    "data_hash": {
+      "value": "7a61b53701befdae0eeeffaecc73f14e20b537bb0f8b91ad7c2936dc63562b25",
+      "alg": "SHA-256"
+    }
+  },
+  "c5e586a3-e1c7-4574-97a9-e749d5a86414": {
+    "id": "c5e586a3-e1c7-4574-97a9-e749d5a86414",
+    "label": "Apple",
+    "title": "Apple's Sustainable Reporting",
+    "timestamp": "2019-12-30T02:38:32.921Z",
+    "lot": "4",
+    "organization": {
+      "id": "bc755264-4e68-433e-a431-081e79bcc81c",
+      "name": "Bob's Farm"
+    },
+    "product": "apple",
+    "temperature": 40,
+    "data_hash": {
+      "value": "d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103",
+      "alg": "SHA-256"
+    }
+  },
+  "17fadd78-d5a2-48c7-b5cb-629f2115082a": {
+    "id": "17fadd78-d5a2-48c7-b5cb-629f2115082a",
+    "label": "Apple",
+    "title": "Apple's Sustainable Reporting",
+    "timestamp": "2019-12-30T02:38:32.921Z",
+    "lot": "5",
+    "organization": {
+      "id": "bc755264-4e68-433e-a431-081e79bcc81c",
+      "name": "Bob's Farm"
+    },
+    "product": "apple",
+    "temperature": 38,
+    "data_hash": {
+      "value": "aea92132c4cbeb263e6ac2bf6c183b5d81737f179f21efdc5863739672f0f470",
+      "alg": "SHA-256"
+    }
+  }
+	}
+}

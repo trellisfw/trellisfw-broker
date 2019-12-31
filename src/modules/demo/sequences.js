@@ -6,11 +6,13 @@ import oada from "@oada/cerebral-module/sequences";
 import { pac_dataset } from "../../components/offline_datasets.js";
 import { osc_dataset } from "../../components/offline_datasets.js";
 import { pac_template } from "../../components/offline_datasets.js";
+import { private_dataset } from "../../components/offline_datasets.js";
 import _ from "lodash";
 import uuid from "uuid";
 
 let _localPACSPath = "/bookmarks/pacs";
 let _localOSCSPath = "/bookmarks/osc";
+let _localPrivateDataPath = "/bookmarks/privatedata";
 
 let tree = {
   bookmarks: {
@@ -42,6 +44,21 @@ let OSCtree = {
   }
 };
 
+let PrivateDataTree = {
+  bookmarks: {
+    _type: "application/vnd.oada.bookmarks.1+json",
+    _rev: "0-0",
+    privatedata: {
+      _type: "application/vnd.oada.yield.1+json",
+      _rev: "0-0",
+      "*": {
+        _type: "application/vnd.oada.yield.1+json",
+        _rev: "0-0"
+      }
+    }
+  }
+};
+
 const upload_demo_pacs = [
   createPACS,
 	createPACRequest,
@@ -51,6 +68,12 @@ const upload_demo_pacs = [
 const upload_demo_oscs = [
   createOSCS,
 	createOSCRequest,
+	oada.put
+];
+
+export const upload_demo_privatedata = [
+  createPrivateData,
+	createPrivateDataRequest,
 	oada.put
 ];
 
@@ -134,7 +157,44 @@ function createOSCRequest({ props, state }) {
 			connection_id: connection_id,
 			data:          osc,
 			path:          _path,
-			tree: OSCtree
+			tree:          OSCtree
+		};
+		requests.push(request);
+	}//for
+ 
+	return {
+    connection_id: connection_id,
+    requests:      requests,
+    domain:        state.get("oada_domain")
+  };
+}
+
+function createPrivateData({ props, state }) {
+	let pdata = [];
+	console.log(private_dataset);
+  let keys = Object.keys(private_dataset.records);
+	
+	for (let key of keys) {
+    let datum = private_dataset.records[key];
+    pdata.push(datum);
+	}
+
+	return { pdata: pdata };
+}
+
+function createPrivateDataRequest({ props, state }) {
+  let connection_id = state.get("oscs.connection_id");
+  let requests = [];
+
+	for (let datum of props.pdata) {
+		console.log(datum.id);
+		let _path = `${_localPrivateDataPath}/${datum.id}`;
+		console.log(_path);
+		let request = {
+			connection_id: connection_id,
+			data:          datum,
+			path:          _path,
+			tree:          PrivateDataTree
 		};
 		requests.push(request);
 	}//for

@@ -50,7 +50,7 @@ export let regulatorRepo = [
 ];
 
 export function regulatorRepo_action({props, state}) {
-	console.log("Regulator Repo");
+	console.log("Regulator Repo ->");
 }
 
 export let trellisRepo = [
@@ -74,4 +74,3 @@ export function offline_action({props, state}) {
 	state.set(`PACList.open`, true);
 	state.set(`OSCList.open`, false);
 }
-

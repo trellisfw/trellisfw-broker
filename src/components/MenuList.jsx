@@ -92,6 +92,12 @@ class MenuList extends React.Component {
 					  </MenuItem>
             <MenuItem onClick={() => {
 							this.props.handleMenuListOpen({});
+							this.props.demoPrivateData({});
+						}}>
+					    Demo Private Data 
+					  </MenuItem>
+            <MenuItem onClick={() => {
+							this.props.handleMenuListOpen({});
 							this.props.newPAC({});
 						}}>
 					    New PAC 
@@ -124,7 +130,8 @@ export default connect(
 		offline:            sequences`MenuList.offline`,
 		handlePACListOpen:  sequences`PACList.handlePACListOpen`,
 		demoInit:           sequences`demo.init`,
-		newPAC:             sequences`demo.newPAC`
+		newPAC:             sequences`demo.newPAC`,
+		demoPrivateData:    sequences`demo.upload_demo_privatedata`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );

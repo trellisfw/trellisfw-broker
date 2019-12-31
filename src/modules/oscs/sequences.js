@@ -204,7 +204,7 @@ export function updateData({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "") {
 	  state.set(`oscs.records.${id}.control_signals.private_data`, "all");
-	  state.set(`oscs.records.${id}.control_signals.private_data_path`, "/bookmarks/apples");
+	  state.set(`oscs.records.${id}.control_signals.private_data_path`, "/bookmarks/privatedata");
 	}
 }
 
