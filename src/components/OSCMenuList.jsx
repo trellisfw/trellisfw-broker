@@ -39,6 +39,12 @@ class OSCMenuList extends React.Component {
     const { id, classes } = this.props;
 
     anchorEl = this.props.open ? anchorEl : null;
+		/*console.log("============================================");
+		console.log("-->id " + id);
+		console.log(this.props);*/
+		let _osc = this.props.oscs[id];
+		//console.log(_osc);
+		
     return (
       <div>
         <IconButton
@@ -66,19 +72,22 @@ class OSCMenuList extends React.Component {
             onClose={this.props.handleOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={this.props.checkOSCHash}>
+            <MenuItem onClick={this.props.checkOSCHash}
+					            disabled={false}>
 					  	<ListItemIcon>
             		<UnoIcon style={{color: "#3399ff", marginRight: "5px"}}/>
           		</ListItemIcon>
 					    Verify OSC Hash
 					  </MenuItem>
-            <MenuItem onClick={this.props.provisionToken}>
+            <MenuItem onClick={this.props.provisionToken}
+					            disabled={false}>
 					  	<ListItemIcon>
             		<DosIcon  style={{color: "#0080ff"}}/>
           		</ListItemIcon>
 					    Provision Token
 					  </MenuItem>
-            <MenuItem onClick={this.props.provisionData}>
+            <MenuItem onClick={this.props.provisionData}
+					            disabled={false}>
 					  	<ListItemIcon>
             		<TresIcon style={{color: "#0066cc"}}/>
           		</ListItemIcon>
@@ -92,8 +101,7 @@ class OSCMenuList extends React.Component {
 					  </MenuItem>
 					  <Divider />
             <MenuItem onClick={ () => {
-							this.props.pacList({oscid: this.props.current
-						})}}>
+							        this.props.pacList({oscid: this.props.current})}}>
 					    PAC List
 					  </MenuItem>
 					  <Divider />
@@ -121,6 +129,7 @@ export default connect(
   {
     current:            state`OSCList.current`,
     open:               state`OSCMenuList.open`,
+		oscs:               state`oscs.records`,
 
     setCurrentItem:     sequences`OSCMenuList.setCurrentItem`,
     clearConnection:    sequences`Connections.clearConnection`,

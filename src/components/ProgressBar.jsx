@@ -12,7 +12,7 @@ class ProgressBar extends React.Component {
 		const { classes } = this.props;
 		return (
 			 <div className={!this.props.open ? classes.hidden: classes.progressBar}>
-        <LinearProgress />
+        <LinearProgress color="secondary" style={{color: "#0099e6", thickness:10}}/>
       </div>
 		);
 	}
