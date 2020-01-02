@@ -39,7 +39,7 @@ class PACList extends React.Component {
 							startIcon={<CheckedIcon />}
 				      onClick={this.props.verifySignature}
 						 >
-						  Verify	
+						  Send	
 						</Button>
 					</ListItem>
 				</div>

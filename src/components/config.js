@@ -1,6 +1,12 @@
 import { green } from '@material-ui/core/colors';
 
 export const useStyles = theme => ({
+	progressBar: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2)
+      }
+  },
 	hidden: {
 	  display: "none"
 	},

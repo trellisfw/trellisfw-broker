@@ -8,15 +8,16 @@ import OSCList      from "./OSCList";
 import OSCMenuList  from "./OSCMenuList";
 import MenuList     from "./MenuList";
 import PACList      from "./PACList";
-//import PACList      from "trellisfw-pac-module/cerebral"
 import Connections  from "./Connections";
 import oscs         from "./oscs";
 import pacs         from "./pacs";
 import demo         from "./demo";
+import ProgressBar  from "./ProgressBar";
 
 export default Module({
   modules: {
 		App,
+		ProgressBar,
 		OSCList,
 		OSCMenuList,
 		MenuList,

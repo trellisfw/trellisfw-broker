@@ -9,7 +9,7 @@ import './App.css';
 import OSCList              from "./OSCList";
 import Connections          from "./Connections";
 import PACList              from "./PACList";
-//import PACList              from "trellisfw-pac-module/component/PACList";
+import ProgressBar          from "./ProgressBar";
 
 class App extends Component {
 
@@ -27,6 +27,7 @@ class App extends Component {
 					<GlobalStyles />
 			    <OSCList />
 			    <Connections />
+			    <ProgressBar />
 			    <PACList />
 					<footer>
 						Credits:
