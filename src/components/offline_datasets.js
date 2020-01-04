@@ -190,17 +190,16 @@ export const osc_dataset = {
         "name": "Bob's Mass Balance"
       },
       "control_signals":{
+				"osc_hash": false,
         "restart": false,
         "init_ra": false,
         "turnoff": false,
-        "generate_pac": true,
-        "private_data": "all",
-        "token": "servio"
+        "generate_pac": false,
+        "private_data": "",
+        "private_data_path": "",
+        "token": ""
       },
-      "generated_pacs": {
-        "pacrandomid1": {},
-        "pacrandomid2": {}
-      },
+      "generated_pacs": {},
       "blockchain_config": {
         "host": "string"
       }
@@ -225,17 +224,16 @@ export const osc_dataset = {
         "name": "Bob's Sustainability Reporting"
       },
       "control_signals":{
+				"osc_hash": false,
         "restart": false,
         "init_ra": false,
         "turnoff": false,
-        "generate_pac": true,
-        "private_data": "all",
-        "token": "servio"
+        "generate_pac": false,
+        "private_data": "",
+        "private_data_path": "",
+        "token": ""
       },
-      "generated_pacs": {
-        "pacrandomid1": {},
-        "pacrandomid2": {}
-      }
+      "generated_pacs": {}
     },
     
     "3ad9c594-2460-4deb-8c2f-d9e26e69d288": {
@@ -258,17 +256,16 @@ export const osc_dataset = {
         "name": "Bob's Sustainable Fishing"
       },
       "control_signals":{
+				"osc_hash": false,
         "restart": false,
         "init_ra": false,
         "turnoff": false,
-        "generate_pac": true,
-        "private_data": "all",
-        "token": "servio"
+        "generate_pac": false,
+        "private_data": "",
+        "private_data_path": "",
+        "token": ""
       },
-      "generated_pacs": {
-        "pacrandomid1": {},
-        "pacrandomid2": {}
-      }
+      "generated_pacs": {}
     },
     
     "940a25b3-da82-4013-8f4c-d18f9c30cdf6": {
@@ -279,7 +276,7 @@ export const osc_dataset = {
         "definition": "https://github.com/trellisfw/osc-definitions"
       },
       "osc_hash": {
-        "value": "a5c74730d322d80826ea1f29eb92a37565385c0fdfa5b38741583399b3fea738",
+        "value": "d3f1ac2f3e64562e34c381bdc6f7d3ea0a46a31f6b11c979f2bdf3929e7b0bd3",
         "alg": "SHA-256"
       },
       "label": "PD",
@@ -291,17 +288,16 @@ export const osc_dataset = {
         "name": "Bob's Planting Date Reporting"
       },
       "control_signals":{
+				"osc_hash": false,
         "restart": false,
         "init_ra": false,
         "turnoff": false,
-        "generate_pac": true,
-        "private_data": "all",
-        "token": "servio"
+        "generate_pac": false,
+        "private_data": "",
+        "private_data_path": "",
+        "token": ""
       },
-      "generated_pacs": {
-        "pacrandomid1": {},
-        "pacrandomid2": {}
-      }
+      "generated_pacs": {}
     }
   }
 };

@@ -4,6 +4,7 @@ import { pac_dataset } from "../../components/offline_datasets.js";
 import { osc_dataset } from "../../components/offline_datasets.js";
 import { handlePACListOpen } from "../PACList/sequences"; 
 import { handleOSCListOpen } from "../OSCList/sequences"; 
+import { openConnections }   from "../Connections/sequences";
 
 export let handleMenuListOpen = [toggle(state`MenuList.open`)];
 
@@ -15,25 +16,14 @@ export function setCurrentItem({props, state}) {
 export let pacList = [
 	handleMenuListOpen,
 	handlePACListOpen,
-	handleOSCListOpen,
-  pacList_action
+	handleOSCListOpen
 ];
-
-export function pacList_action({props, state}) {
-	console.log("PAC List ->");
-}
 
 export let oscList = [
 	handleMenuListOpen,
 	handlePACListOpen,
-	handleOSCListOpen,
-  oscList_action
+	handleOSCListOpen
 ];
-
-export function oscList_action(evt) {
-	console.log("OSC List ->" + evt);
-	console.log(evt);
-}
 
 export let blockchain = [
 	handleMenuListOpen,
@@ -41,7 +31,7 @@ export let blockchain = [
 ];
 
 export function blockchain_action() {
-	console.log("Blockchain ->");
+	console.log("-->blockchain");
 }
 
 export let regulatorRepo = [
@@ -50,17 +40,13 @@ export let regulatorRepo = [
 ];
 
 export function regulatorRepo_action({props, state}) {
-	console.log("Regulator Repo ->");
+	console.log("-->regulator repo");
 }
 
 export let trellisRepo = [
 	handleMenuListOpen,
-  trellisRepo_action
+	openConnections
 ];
-
-export function trellisRepo_action({props, state}) {
-	console.log("Trellis Repo");
-}
 
 export let offline = [
 	handleMenuListOpen,
@@ -68,7 +54,7 @@ export let offline = [
 ];
 
 export function offline_action({props, state}) {
-	console.log("Offline Demo");
+	console.log("--> offline demo");
 	state.set(`PACList.records`, pac_dataset.records);
 	state.set(`OSCList.records`, osc_dataset.records);
 	state.set(`PACList.open`, true);

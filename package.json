@@ -1,6 +1,6 @@
 {
   "name": "TrellisBroker",
-  "version": "0.6.9",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {
     "@cerebral/react": "^4.2.0",
@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.5.1",
     "@oada/cerebral-module": "^3.0.3",
     "@oada/cerebral-provider": "^3.0.4",
+    "@oada/oada-certs": "^1.0.2",
     "cerebral": "^5.2.0",
     "lodash": "^4.17.15",
     "mobile-detect": "^1.4.4",
