@@ -1,0 +1,83 @@
+// "components/PlugInList.jsx"
+import React from "react";
+import Button from "@material-ui/core/Button";
+import CheckedIcon from '@material-ui/icons/AssignmentTurnedIn';
+import { connect } from "@cerebral/react";
+import { state, signal } from "cerebral/tags";
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import { useStyles, backColor, backColorList } from "./config.js";
+
+class PlugInList extends React.Component {
+
+  renderPAC( params ) {
+    const { plugin, classes } = params;
+		if (plugin) {
+			const avaColor = {backgroundColor: backColor[plugin.trust_level]};
+			const listColor= {backgroundColor: backColorList[plugin.trust_level]};
+			return (
+				<div key={plugin.id}>
+					<ListItem className={`${classes.pill}`} style={listColor}
+                    key={plugin.id}
+				  >
+						<ListItemAvatar>
+							<Avatar style={avaColor}>
+				      {plugin.label}
+							</Avatar>
+						</ListItemAvatar>
+						<ListItemText primary={plugin.title || null} 
+				                  secondary={plugin.timestamp || null} />
+						<Button
+							variant="outlined"
+							color="default"
+				      size="small"
+							className={classes.button}
+							startIcon={<CheckedIcon />}
+				      onClick={this.props.install}
+						 >
+						  Install	
+						</Button>
+					</ListItem>
+				</div>
+			);
+		} else {
+			return null;
+	  }
+	}//renderPAC
+
+	render() {
+		const { classes } = this.props;
+
+		return (
+			<div className={!this.props.open ? classes.hidden : classes.pill}>
+				<List className={classes.pacList}>
+        {
+					Object.keys(this.props.plugins || {}).map(pluginid => {
+						return this.renderPAC(
+							{
+								plugin:     this.props.plugins[pluginid],
+								classes: classes
+							});
+					})
+				}
+				</List>
+			</div>
+		)
+	}//render
+
+}
+
+export default connect(
+	{
+		open: state`PlugInList.open`,
+		plugins: state`PlugInList.records`,
+
+		install:  signal`PlugInList.install`
+	},
+	withStyles(useStyles, {withTheme: true})(PlugInList)
+);
+
