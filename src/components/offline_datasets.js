@@ -170,7 +170,7 @@ export const pac_dataset = {
 
 export const osc_dataset = {
   "records": {
-    "316c9712-5e51-4267-8891-859b6a7cc3b7": {
+/*    "316c9712-5e51-4267-8891-859b6a7cc3b7": {
       "id": "316c9712-5e51-4267-8891-859b6a7cc3b7",
       "oscid": {
         "codebase": "massbalance-v1.0.0",
@@ -267,6 +267,7 @@ export const osc_dataset = {
       },
       "generated_pacs": {}
     },
+		*/
     
     "940a25b3-da82-4013-8f4c-d18f9c30cdf6": {
       "id": "940a25b3-da82-4013-8f4c-d18f9c30cdf6",

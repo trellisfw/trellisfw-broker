@@ -10,6 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
+import ListSubheader from "@material-ui/core/ListSubheader";
 import { useStyles, backColor, backColorList } from "./config.js";
 
 class PlugInList extends React.Component {
@@ -60,7 +61,14 @@ class PlugInList extends React.Component {
 
 		return (
 			<div className={!this.props.open ? classes.hidden : classes.pill}>
-				<List className={classes.pacList}>
+				<List className={classes.pacList}
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader" 
+						               color="inherit">
+              Regulator's available Plugins 
+            </ListSubheader>
+      }
+			>
         {
 					Object.keys(this.props.plugins || {}).map(pluginid => {
 						return this.renderPlugIn(
