@@ -14,11 +14,16 @@ import { useStyles, backColor, backColorList } from "./config.js";
 
 class PlugInList extends React.Component {
 
-  renderPAC( params ) {
-    const { plugin, classes } = params;
+  renderPlugIn( params ) {
+    const { oscs, plugin, classes } = params;
 		if (plugin) {
 			const avaColor = {backgroundColor: backColor[plugin.trust_level]};
 			const listColor= {backgroundColor: backColorList[plugin.trust_level]};
+			let pluginInstalled = false;
+			if (oscs.hasOwnProperty(plugin.id)){
+				pluginInstalled = true;
+			}
+
 			return (
 				<div key={plugin.id}>
 					<ListItem className={`${classes.pill}`} style={listColor}
@@ -36,10 +41,11 @@ class PlugInList extends React.Component {
 							color="default"
 				      size="small"
 							className={classes.button}
-							startIcon={<CheckedIcon />}
+							startIcon={pluginInstalled ? null : <CheckedIcon />}
 				      onClick={this.props.install}
+				      disabled={pluginInstalled}
 						 >
-						  Install	
+				      {pluginInstalled ? "Installed" : "Install"}	
 						</Button>
 					</ListItem>
 				</div>
@@ -57,10 +63,11 @@ class PlugInList extends React.Component {
 				<List className={classes.pacList}>
         {
 					Object.keys(this.props.plugins || {}).map(pluginid => {
-						return this.renderPAC(
+						return this.renderPlugIn(
 							{
-								plugin:     this.props.plugins[pluginid],
-								classes: classes
+								plugin:  this.props.plugins[pluginid],
+								classes: classes,
+								oscs:    this.props.oscs
 							});
 					})
 				}
@@ -73,8 +80,9 @@ class PlugInList extends React.Component {
 
 export default connect(
 	{
-		open: state`PlugInList.open`,
+		open:    state`PlugInList.open`,
 		plugins: state`PlugInList.records`,
+		oscs:    state`oscs.records`,
 
 		install:  signal`PlugInList.install`
 	},

@@ -8,7 +8,11 @@ import oada from "@oada/cerebral-module/sequences";
 import crypto from "crypto";
 let _localPath = "/bookmarks/code";
 
-export let handleOpen = [toggle(state`PlugInList.open`)];
+export let handleOpen = [
+	toggle(state`PlugInList.open`),
+	set(state`OSCList.open`, false),
+	set(state`PACList.open`, false),
+];
 
 export function setCurrentItem({props, state}){
   if(props.item)
