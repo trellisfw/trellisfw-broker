@@ -8,6 +8,7 @@ import { _OSCS_CONN_ID } from "./config.js";
 /* oscs module */
 import * as oscs from "../oscs/sequences";
 import * as pacs from "../pacs/sequences";
+import * as PlugInList from "../PlugInList/sequences";
 
 export let signOut = [
   set(state`${ConnE.token}`,       ''),
@@ -37,6 +38,7 @@ export let init = [
 	set(state`ProgressBar.open`, true),
 	pacs.init,
 	oscs.init,
+	PlugInList.init,
   set(state`${ConnE.open}`, false),
 	set(state`ProgressBar.open`, false),
 ];

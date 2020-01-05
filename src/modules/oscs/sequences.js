@@ -5,7 +5,7 @@ import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 import crypto from "crypto";
-let _localPath = "/bookmarks/osc";
+let _localPath = "/bookmarks/oscs";
 
 //let _TYPE = "application/vnd.oada.oscs.1+json";
 //let _TYPE_OSC = "application/vnd.oada.osc.1+json";
@@ -14,7 +14,7 @@ let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    osc: {
+    oscs: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -48,7 +48,7 @@ export const fetch = sequence("oscs.fetch", [
 	}),
   buildFetchRequest,
 	oada.get,
-	when(state`oada.${props`connection_id`}.bookmarks.osc`),
+	when(state`oada.${props`connection_id`}.bookmarks.oscs`),
 	{
 		true: sequence("fetchOSCsSuccess", [
             mapOadaToOscs,
@@ -79,12 +79,12 @@ export const init = sequence("oscs.init", [
 
 export function mapOadaToOscs({ props, state }){
   let connection_id = state.get(CONNECTION_ID);
-	let oscs = state.get(`oada.${connection_id}.bookmarks.osc`);
+	let oscs = state.get(`oada.${connection_id}.bookmarks.oscs`);
   if (oscs) {
     return Promise.map(Object.keys(oscs || {}), osc => {
 			if (osc[0] !== "_" && osc !== "oscs") {
 				let currentOSC = 
-					     state.get(`oada.${connection_id}.bookmarks.osc.${osc}`);
+					     state.get(`oada.${connection_id}.bookmarks.oscs.${osc}`);
 				if ( currentOSC && currentOSC.id ) {
 					state.set(`oscs.records.${osc}`, oscs[osc]);
 				}
@@ -151,7 +151,7 @@ export const fetchNoWatch = sequence("oscs.fetchNoWatch", [
   }),
 	buildFetchRequestNoWatch,
   oada.get,
-  when(state`oada.${props`connection_id`}.bookmarks.osc`),
+  when(state`oada.${props`connection_id`}.bookmarks.oscs`),
   {
     true: sequence("fetchOscsSuccess", [
       mapOadaToOscs,

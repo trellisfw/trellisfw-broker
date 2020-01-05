@@ -10,6 +10,7 @@ import OSCList              from "./OSCList";
 import Connections          from "./Connections";
 import PACList              from "./PACList";
 import ProgressBar          from "./ProgressBar";
+import PlugInList           from "./PlugInList";
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
 			    <Connections />
 			    <ProgressBar />
 			    <PACList />
+			    <PlugInList />
 					<footer>
 						Credits:
 						<small>The Open AG Technology and Systems Center (OATS)</small>

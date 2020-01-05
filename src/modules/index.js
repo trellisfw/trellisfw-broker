@@ -13,6 +13,7 @@ import oscs         from "./oscs";
 import pacs         from "./pacs";
 import demo         from "./demo";
 import ProgressBar  from "./ProgressBar";
+import PlugInList   from "./PlugInList";
 
 export default Module({
   modules: {
@@ -22,6 +23,7 @@ export default Module({
 		OSCMenuList,
 		MenuList,
 		PACList,
+		PlugInList,
 		Connections,
 		oscs,
 		pacs,

@@ -11,7 +11,8 @@ import _ from "lodash";
 import uuid from "uuid";
 
 let _localPACSPath = "/bookmarks/pacs";
-let _localOSCSPath = "/bookmarks/osc";
+let _localOSCSPath = "/bookmarks/oscs";
+let _regulatorCodePath = "/bookmarks/code";
 let _localPrivateDataPath = "/bookmarks/privatedata";
 
 let tree = {
@@ -33,7 +34,22 @@ let OSCtree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    osc: {
+    oscs: {
+      _type: "application/vnd.oada.yield.1+json",
+      _rev: "0-0",
+      "*": {
+        _type: "application/vnd.oada.yield.1+json",
+        _rev: "0-0"
+      }
+    }
+  }
+};
+
+let CodeTree = {
+  bookmarks: {
+    _type: "application/vnd.oada.bookmarks.1+json",
+    _rev: "0-0",
+    code: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -67,7 +83,9 @@ const upload_demo_pacs = [
 
 const upload_demo_oscs = [
   createOSCS,
-	createOSCRequest,
+//	createOSCRequest,
+	//oada.put,
+	createCodeRequest,
 	oada.put
 ];
 
@@ -78,10 +96,12 @@ export const upload_demo_privatedata = [
 ];
 
 export const init = sequence("demo.init", [
+	set(state`ProgressBar.open`, true),
 	set(state`demo.loading`, true),
-	upload_demo_pacs,
+	//upload_demo_pacs,
 	upload_demo_oscs,
 	set(state`demo.loading`, false),
+	set(state`ProgressBar.open`, false),
 ]);
 
 function createPACS({ props, state }) {
@@ -158,6 +178,30 @@ function createOSCRequest({ props, state }) {
 			data:          osc,
 			path:          _path,
 			tree:          OSCtree
+		};
+		requests.push(request);
+	}//for
+ 
+	return {
+    connection_id: connection_id,
+    requests:      requests,
+    domain:        state.get("oada_domain")
+  };
+}
+
+function createCodeRequest({ props, state }) {
+  let connection_id = state.get("oscs.connection_id");
+  let requests = [];
+
+	for (let osc of props.oscs) {
+		console.log(osc.id);
+		let _path = `${_regulatorCodePath}/${osc.id}`;
+		console.log(_path);
+		let request = {
+			connection_id: connection_id,
+			data:          osc,
+			path:          _path,
+			tree:          CodeTree
 		};
 		requests.push(request);
 	}//for
