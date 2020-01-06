@@ -122,19 +122,15 @@ export const init = sequence("pacs.init", [
 export function mapOadaToPacs({ props, state }) {
   let connection_id = state.get(CONNECTION_ID);
 	let pacs = state.get(`oada.${connection_id}.bookmarks.pacs`);
-	console.log("-->pacs");
-	console.log(pacs);
   if (pacs) {
 		console.log("-->if pacs");
     return Promise.map(Object.keys(pacs || {}), pac => {
 			if (pac[0] !== "_" && pac !== "pacs") {
-				console.log(pac);
-				//let currentPAC = 
-					//     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
-				//console.log(currentPAC);
-				//if ( currentPAC && currentPAC.id ) {
+				let currentPAC = 
+					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
+				if ( currentPAC && currentPAC.id ) {
 					state.set(`pacs.records.${pac}`, pacs[pac]);
-				//}
+				}
 				return;
 			}
     }).then( () => { return; });
@@ -150,16 +146,16 @@ export const newPAC = sequence("pacs.newPAC", [
 
 function createPAC({ props, state }) {
   let pacs = [];
-  let _pac = _.cloneDeep(pac_template);
-  let _osc_id = state.get(`oscs.current_id`);
-  let _osc = state.get(`oscs.records.${_osc_id}`);
-  _pac.id = uuid();
-  _pac.label = _osc.label;
-  _pac.title = _osc.title;
+  let _pac         = _.cloneDeep(pac_template);
+  let _osc_id      = state.get(`oscs.current_id`);
+  let _osc         = state.get(`oscs.records.${_osc_id}`);
+  _pac.id          = uuid();
+  _pac.label       = _osc.label;
+  _pac.title       = _osc.title;
   _pac.trust_level = _osc.trust_level;
-  _pac.oscid = _osc.oscid;
-  _pac.timestamp = _osc.timestamp;
-  _pac.date_init = _osc.date_init;
+  _pac.oscid       = _osc.oscid;
+  _pac.timestamp   = new Date().getTime();
+  _pac.date_init   = _osc.date_init;
 
   pacs.push(_pac);
 

@@ -52,8 +52,6 @@ class PACList extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		//console.log("======> PACList =====>");
-		//console.log(this.props);
 
 		return (
 			<div className={!this.props.oscs_list[this.props.id].pacListOpen ? classes.hidden : classes.pill}>

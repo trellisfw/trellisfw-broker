@@ -1,4 +1,4 @@
-import { green } from '@material-ui/core/colors';
+import { green } from "@material-ui/core/colors";
 
 export const useStyles = theme => ({
 	progressBar: {
@@ -12,12 +12,12 @@ export const useStyles = theme => ({
 	},
 	pill: {
     textAlign: "center",
-		padding: "5px",
-		marginTop: "5px",
+		padding: "1px",
+		marginTop: "1px",
 		marginBottom: "5px",
 		alignItems: "center",
 		borderRadius: "3px",
-		color: "#FFFFFF",
+		color: "#5c8a8a",
 		textShadow: "1px 1px #000000",
 	},
   container: {
@@ -25,7 +25,7 @@ export const useStyles = theme => ({
   },
   card: {
     flexGrow: 1,
-    background: '#E9E8E8',
+    background: '#E9E8E8'
   },
   media: {
     height: 0,
@@ -46,8 +46,10 @@ export const useStyles = theme => ({
   },
 	pacList: {
 	  width: '100%',
-		paddingTop: '5px',
-		maxWidth: 375
+		paddingTop: '2px',
+		maxWidth: 375,
+		borderRadius: "3px",
+		borderColor: "#000000"
 	},
 	button: {
 		margin: theme.spacing(1)
