@@ -10,6 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
+import ListSubheader from "@material-ui/core/ListSubheader";
 import { useStyles, backColor, backColorList } from "./config.js";
 
 class PACList extends React.Component {
@@ -51,12 +52,21 @@ class PACList extends React.Component {
 
 	render() {
 		const { classes } = this.props;
+		//console.log("======> PACList =====>");
+		//console.log(this.props);
 
 		return (
-			<div className={!this.props.open ? classes.hidden : classes.pill}>
-				<List className={classes.pacList}>
+			<div className={!this.props.oscs_list[this.props.id].pacListOpen ? classes.hidden : classes.pill}>
+				<List className={classes.pacList}
+         subheader={
+            <ListSubheader component="div" id="nested-list-subheader"
+                           color="inherit">
+              Private Automated Certifications List
+            </ListSubheader>
+         }
+			>
         {
-					Object.keys(this.props.pacs || {}).map(pacid => {
+					Object.keys(this.props.oscs[this.props.id].generated_pacs || {}).map(pacid => {
 						return this.renderPAC(
 							{
 								pac:     this.props.pacs[pacid],
@@ -73,8 +83,9 @@ class PACList extends React.Component {
 
 export default connect(
 	{
-		open: state`PACList.open`,
-		pacs: state`pacs.records`,
+		pacs:      state`pacs.records`,
+		oscs:      state`oscs.records`,
+		oscs_list: state`OSCList.records`,
 
 		verifySignature:  signal`PACList.verifySignature`
 	},

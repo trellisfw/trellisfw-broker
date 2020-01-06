@@ -1,9 +1,7 @@
 let stateTree = {
   open:    false,
   current: "none",
-	label:   "SF",
-	records: {
-	}
+	records: {}
 };
 
 export default stateTree;

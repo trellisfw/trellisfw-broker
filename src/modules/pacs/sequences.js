@@ -95,11 +95,11 @@ export const fetch = sequence("pacs.fetch", [
 	{
 		true: sequence("fetchPACsSuccess", [
             mapOadaToPacs,
-			      set(state`PACList.emptyDataSet`, false),
+			      set(state`pacs.emptyDataSet`, false),
 		      ]),
     false: sequence("fetchPACsEmptySet", [
 		        () => ( console.log("--> PACs empty set") ),
-			      set(state`PACList.emptyDataSet`, true)
+			      set(state`pacs.emptyDataSet`, true)
 		]),
 	}
 ]);
@@ -111,7 +111,6 @@ export const init = sequence("pacs.init", [
 		false: [
 			      oada.connect,
 			      set(state`pacs.connection_id`, props`connection_id`),
-            set(state`Connections.connection_id`, props`connection_id`),
 			     ]
 	},
 	set(state`pacs.loading`, true),
@@ -123,14 +122,19 @@ export const init = sequence("pacs.init", [
 export function mapOadaToPacs({ props, state }) {
   let connection_id = state.get(CONNECTION_ID);
 	let pacs = state.get(`oada.${connection_id}.bookmarks.pacs`);
+	console.log("-->pacs");
+	console.log(pacs);
   if (pacs) {
+		console.log("-->if pacs");
     return Promise.map(Object.keys(pacs || {}), pac => {
 			if (pac[0] !== "_" && pac !== "pacs") {
-				let currentPAC = 
-					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
-				if ( currentPAC && currentPAC.id ) {
+				console.log(pac);
+				//let currentPAC = 
+					//     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
+				//console.log(currentPAC);
+				//if ( currentPAC && currentPAC.id ) {
 					state.set(`pacs.records.${pac}`, pacs[pac]);
-				}
+				//}
 				return;
 			}
     }).then( () => { return; });

@@ -89,6 +89,8 @@ export function mapOadaToOscs({ props, state }){
 					     state.get(`oada.${connection_id}.bookmarks.oscs.${osc}`);
 				if ( currentOSC && currentOSC.id ) {
 					state.set(`oscs.records.${osc}`, oscs[osc]);
+					let osc_status = {id: osc, pacListOpen: false};
+					state.set(`OSCList.records.${osc}`, osc_status); 
 				}
 				return;
 			}

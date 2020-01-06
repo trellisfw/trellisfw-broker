@@ -8,7 +8,7 @@ import MenuBar              from './MenuBar';
 import './App.css';
 import OSCList              from "./OSCList";
 import Connections          from "./Connections";
-import PACList              from "./PACList";
+//import PACList              from "./PACList";
 import ProgressBar          from "./ProgressBar";
 import PlugInList           from "./PlugInList";
 
@@ -26,10 +26,9 @@ class App extends Component {
 			<ThemeProvider theme={darkTheme}>
 			  <>
 					<GlobalStyles />
+			    <ProgressBar />
 			    <OSCList />
 			    <Connections />
-			    <ProgressBar />
-			    <PACList />
 			    <PlugInList />
 					<footer>
 						Credits:

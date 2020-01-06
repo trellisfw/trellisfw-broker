@@ -100,11 +100,6 @@ class OSCMenuList extends React.Component {
 					    Generate PAC
 					  </MenuItem>
 					  <Divider />
-            <MenuItem onClick={ () => {
-							        this.props.pacList({oscid: this.props.current})}}>
-					    PAC List
-					  </MenuItem>
-					  <Divider />
             <MenuItem onClick={this.props.initRA}>
 					    Initiate RA
 					  </MenuItem>

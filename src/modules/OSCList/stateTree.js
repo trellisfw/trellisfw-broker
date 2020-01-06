@@ -1,8 +1,9 @@
 let stateTree = {
   open: false,
   current: "none",
-	label: "SF",
-	stepperOpen: false
+	pacListOpen: false,
+	stepperOpen: false,
+	records: {}
 };
 
 export default stateTree;

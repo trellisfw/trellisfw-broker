@@ -83,10 +83,10 @@ const upload_demo_pacs = [
 
 const upload_demo_oscs = [
   createOSCS,
-	//createOSCRequest,
-	//oada.put,
-	createCodeRequest,
-	oada.put
+	createOSCRequest,
+	oada.put,
+	//createCodeRequest,
+	//oada.put
 ];
 
 export const upload_demo_privatedata = [
