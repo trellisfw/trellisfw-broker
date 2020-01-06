@@ -170,7 +170,8 @@ export const pac_dataset = {
 
 export const osc_dataset = {
   "records": {
-/*    "316c9712-5e51-4267-8891-859b6a7cc3b7": {
+		/*
+    "316c9712-5e51-4267-8891-859b6a7cc3b7": {
       "id": "316c9712-5e51-4267-8891-859b6a7cc3b7",
       "oscid": {
         "codebase": "massbalance-v1.0.0",
@@ -267,7 +268,7 @@ export const osc_dataset = {
       },
       "generated_pacs": {}
     },
-		*/
+	*/	
     
     "940a25b3-da82-4013-8f4c-d18f9c30cdf6": {
       "id": "940a25b3-da82-4013-8f4c-d18f9c30cdf6",
@@ -433,4 +434,42 @@ export let private_dataset = {
     }
   }
 	}
-}
+};
+
+export let osc_template = {
+      "id": "",
+      "oscid": {
+        "codebase": "massbalance-v1.0.0",
+        "pac": "massbalance-v1.0.0",
+        "definition": "https://github.com/trellisfw/osc-definitions"
+      },
+      "osc_hash": {
+        "value": "cbebb6ce455ec34d361a6c544ed6b0a350fc46113e30a73178da2c8a921e3b93",
+        "alg": "SHA-256"
+      },
+      "label": "MB",
+      "title": "Organic Mass Balance",
+      "date_init": "09.17.2019",
+      "timestamp": "2019-08-14T02:38:32.921Z",
+      "trust_level": "tl3",
+       "organization": {
+        "name": "Bob's Mass Balance"
+      },
+      "control_signals":{
+        "osc_hash":     false,
+        "restart":      false,
+        "init_ra":      false,
+        "turnoff":      false,
+        "generate_pac": false,
+        "private_data": "",
+        "private_data_path": "",
+        "token": ""
+      },
+      "generated_pacs": {
+        "pacrandomid1": {},
+        "pacrandomid2": {}
+      },
+      "blockchain_config": {
+        "host": "string"
+      }
+};

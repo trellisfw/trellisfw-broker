@@ -5,6 +5,8 @@ import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 import crypto from "crypto";
+import _ from "lodash";
+import { osc_template } from "../../components/offline_datasets";
 let _localPath = "/bookmarks/oscs";
 
 //let _TYPE = "application/vnd.oada.oscs.1+json";
@@ -94,16 +96,65 @@ export function mapOadaToOscs({ props, state }){
 	}//if
 }//mapOadaToOscs
 
-export const updateOSC = sequence("oscs.updateOSC", [
+/**********************************************************
+ Tools
+*********************************************************/
+function getDate(){
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+
+  today = mm + '.' + dd + '.' + yyyy;
+  return today;
+}
+
+/**********************************************************
+ createOSC
+*********************************************************/
+function createOSC({props, state}) {
+  let id = state.get('OSCList.current');
+  let osc = state.get(`oscs.records.${id}`);
+  let oscs = [];
+  let _osc = _.cloneDeep(osc_template);
+
+  _osc.id          = id;
+  _osc.label       = osc.label;
+  _osc.title       = osc.title;
+  _osc.trust_level = osc.trust_level;
+  _osc.date_init   = getDate();
+  _osc.timestamp   = new Date().getTime();
+  _osc.osc_hash.value = crypto.createHash("sha256").update(osc.title).digest("hex");
+	console.log("=====================================");
+	console.log("--> new OSC");
+  console.log(_osc.osc_hash.value);
+  console.log(_osc);
+	console.log("-------------------------------------");
+  oscs.push(_osc);
+
+  return {oscs: oscs};
+}
+
+export const newOSC = sequence("oscs.newOSC", [
+  () => {console.log("--> new OSC");},
+  set(state`ProgressBar.open`, true),
   createOSC,
   buildOSCRequest,
-  oada.put
+  oada.put,
+  set(state`ProgressBar.open`, false)
 ]);
 
-function createOSC({props, state}){
+export const updateOSC = sequence("oscs.updateOSC", [
+  set(state`ProgressBar.open`, true),
+  editOSC,
+  buildOSCRequest,
+  oada.put,
+  set(state`ProgressBar.open`, false)
+]);
+
+function editOSC({props, state}){
   let id = state.get('OSCList.current');
   let oscs = [];
-	state.set(`oscs.records.${id}.token`, "servio");
   if (id !== "none") {
     let osc = state.get(`oscs.records.${id}`);
     oscs.push(osc);

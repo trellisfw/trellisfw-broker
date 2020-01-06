@@ -1,6 +1,7 @@
 import { state } from "cerebral/tags";
 import { toggle } from "cerebral/operators";
 import * as oscs from "../oscs/sequences";
+import * as privatedatas from "../privatedata/sequences";
 
 export let handleOpen = [toggle(state`OSCMenuList.open`)];
 
@@ -9,6 +10,7 @@ export function setCurrentItem({props, store}) {
 	console.log(props);
   if (props && props.id) {
     store.set(`OSCList.current`, props.id);
+		store.set(`oscs.current_id`, props.id);
 	}
 }
 
@@ -49,6 +51,7 @@ export let generatePAC = [
   handleOpen,
 	oscs.updateGeneratePAC,
 	oscs.updateOSC,
+	privatedatas.compute,
   generatePAC_action
 ];
 

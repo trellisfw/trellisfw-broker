@@ -14,6 +14,7 @@ import pacs         from "./pacs";
 import demo         from "./demo";
 import ProgressBar  from "./ProgressBar";
 import PlugInList   from "./PlugInList";
+import privatedatas from "./privatedata";
 
 export default Module({
   modules: {
@@ -27,6 +28,7 @@ export default Module({
 		Connections,
 		oscs,
 		pacs,
+		privatedatas,
 		demo,
 		oada: oadaModule
 	},
