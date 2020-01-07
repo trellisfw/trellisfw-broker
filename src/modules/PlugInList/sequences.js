@@ -5,7 +5,7 @@ import { set, when } from "cerebral/operators";
 import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
-import crypto from "crypto";
+//import crypto from "crypto";
 let _localPath = "/bookmarks/code";
 
 export let handleOpen = [

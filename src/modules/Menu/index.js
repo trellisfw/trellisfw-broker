@@ -6,7 +6,7 @@ export default Module({
     open: false
   },
 
-  signals: {
+  sequences: {
     connectionsClicked: showConnections,
   }
 });

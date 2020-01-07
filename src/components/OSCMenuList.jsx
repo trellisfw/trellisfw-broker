@@ -42,7 +42,7 @@ class OSCMenuList extends React.Component {
 		/*console.log("============================================");
 		console.log("-->id " + id);
 		console.log(this.props);*/
-		let _osc = this.props.oscs[id];
+		//let _osc = this.props.oscs[id];
 		//console.log(_osc);
 		
     return (

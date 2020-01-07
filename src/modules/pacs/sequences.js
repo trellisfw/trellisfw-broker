@@ -9,12 +9,28 @@ import uuid from "uuid";
 import { pac_template } from "../../components/offline_datasets";
 
 let _localPath = "/bookmarks/pacs";
+let _regulatorPath = "/bookmarks/regulatorpacs";
 
 let tree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
     pacs: {
+      _type: "application/vnd.oada.yield.1+json",
+      _rev: "0-0",
+      "*": {
+        _type: "application/vnd.oada.yield.1+json",
+        _rev: "0-0"
+      }
+    }
+  }
+};
+
+let regulatorTree = {
+  bookmarks: {
+    _type: "application/vnd.oada.bookmarks.1+json",
+    _rev: "0-0",
+    regulatorpacs: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -162,18 +178,36 @@ function createPAC({ props, state }) {
   return { pacs: pacs };
 }
 
+export const sendPAC = sequence("pacs.sendPAC", [
+  editPAC,
+  buildRegulatorPACRequest,
+  oada.put
+]);
+
 export const updatePAC = sequence("pacs.updatePAC", [
   editPAC,
   buildPACRequest,
   oada.put
 ]);
 
+function cleanObject(obj) {
+		Object.keys(obj).forEach(e => {
+		     if (e[0] === '_') {
+					 delete obj[e];
+				 }
+		});
+  return obj;
+}
+
 function editPAC({props, state}) {
   let id = state.get('PACList.current');
 	let pacs = [];
 	if (id !== "none") {
     let pac = state.get(`pacs.records.${id}`);
-		pacs.push(pac);
+		console.log(pac);
+		let cleanPAC = cleanObject(_.cloneDeep(pac));
+		console.log("editPAC" , cleanPAC);
+		pacs.push(cleanPAC);
 	}
 	return {pacs: pacs};
 }
@@ -188,6 +222,26 @@ function buildPACRequest({ props, state }) {
 			data:          props.pacs[0],
 			path:          `${_localPath}/${pac.id}`,
 			tree:          tree
+		};
+		requests.push(request);
+		return {
+		  connection_id: connection_id,
+			requests:      requests,
+			domain:        state.get("oada_domain")
+		}
+	}
+}
+
+function buildRegulatorPACRequest({ props, state }) {
+	let connection_id = state.get("oscs.connection_id");
+	let requests = [];
+  if (props.pacs[0]) {
+		let pac = props.pacs[0];
+    let request = {
+			connection_id: connection_id,
+			data:          props.pacs[0],
+			path:          `${_regulatorPath}/${pac.id}`,
+			tree:          regulatorTree
 		};
 		requests.push(request);
 		return {

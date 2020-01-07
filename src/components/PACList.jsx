@@ -38,7 +38,7 @@ class PACList extends React.Component {
 				      size="small"
 							className={classes.button}
 							startIcon={<CheckedIcon />}
-				      onClick={this.props.verifySignature}
+				      onClick={ () => {this.props.sendPACtoRegulator({pacid: pac.id})}}
 						 >
 						  Send	
 						</Button>
@@ -85,7 +85,7 @@ export default connect(
 		oscs:      state`oscs.records`,
 		oscs_list: state`OSCList.records`,
 
-		verifySignature:  signal`PACList.verifySignature`
+		sendPACtoRegulator:  signal`PACList.sendPACtoRegulator`
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)
 );

@@ -12,6 +12,5 @@ export function setCurrent({props, state}){
 export function handlePACListOpen({props, state}) {
 	let id = state.get(`OSCList.current`);
 	let pacListOpen = state.get(`OSCList.records.${id}.pacListOpen`);
-	let PACListOpen = state.get(`PACList.open`);
   state.set(`OSCList.records.${id}.pacListOpen`, ! pacListOpen);
 }

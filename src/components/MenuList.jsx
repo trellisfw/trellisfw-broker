@@ -61,13 +61,6 @@ class MenuList extends React.Component {
             onClose={this.props.handleMenuListOpen}
             anchorEl={anchorEl}
           >
-            <MenuItem onClick={this.props.pacList}>
-					    PAC List
-					  </MenuItem>
-            <MenuItem onClick={this.props.oscList}>
-					    OSC List
-					  </MenuItem>
-					  <Divider />
             <MenuItem onClick={this.props.regulatorRepo}>
 					    Regulator Repo 
 					  </MenuItem>
@@ -142,3 +135,15 @@ export default connect(
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );
+
+
+/*
+            <MenuItem onClick={this.props.pacList}>
+					    PAC List
+					  </MenuItem>
+            <MenuItem onClick={this.props.oscList}>
+					    OSC List
+					  </MenuItem>
+					  <Divider />
+
+						*/

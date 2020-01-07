@@ -3,7 +3,7 @@ import { sequence } from "cerebral";
 import { set } from "cerebral/operators";
 import { state } from "cerebral/tags";
 import oada from "@oada/cerebral-module/sequences";
-import { pac_dataset } from "../../components/offline_datasets.js";
+//import { pac_dataset } from "../../components/offline_datasets.js";
 import { osc_dataset } from "../../components/offline_datasets.js";
 import { pac_template } from "../../components/offline_datasets.js";
 import { private_dataset } from "../../components/offline_datasets.js";
@@ -75,18 +75,19 @@ let PrivateDataTree = {
   }
 };
 
-const upload_demo_pacs = [
+/*const upload_demo_pacs = [
   createPACS,
 	createPACRequest,
 	oada.put
 ];
+*/
 
 const upload_demo_oscs = [
   createOSCS,
-	createOSCRequest,
-	oada.put,
-	//createCodeRequest,
-	//oada.put
+	//createOSCRequest,
+	//oada.put,
+	createCodeRequest,
+	oada.put
 ];
 
 export const upload_demo_privatedata = [
@@ -104,7 +105,7 @@ export const init = sequence("demo.init", [
 	set(state`ProgressBar.open`, false),
 ]);
 
-function createPACS({ props, state }) {
+/*function createPACS({ props, state }) {
 	let pacs = [];
   let keys = Object.keys(pac_dataset.records);
 	
@@ -115,6 +116,7 @@ function createPACS({ props, state }) {
 
 	return { pacs: pacs };
 }
+*/
 
 export const newPAC = sequence("demo.newPAC", [
   createPAC,
