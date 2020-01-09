@@ -3,7 +3,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import CheckedIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { connect } from "@cerebral/react";
-import { state, signal } from "cerebral/tags";
+import { state, sequences } from "cerebral/tags";
 import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -43,7 +43,11 @@ class PlugInList extends React.Component {
 				      size="small"
 							className={classes.button}
 							startIcon={pluginInstalled ? null : <CheckedIcon />}
-				      onClick={this.props.install}
+				      onClick={ () => {
+								            this.props.setCurrentItem(
+															{pluginid: plugin.id});
+								            this.props.install({});
+							        }}
 				      disabled={pluginInstalled}
 						 >
 				      {pluginInstalled ? "Installed" : "Install"}	
@@ -92,7 +96,8 @@ export default connect(
 		plugins: state`PlugInList.records`,
 		oscs:    state`oscs.records`,
 
-		install:  signal`PlugInList.install`
+		setCurrentItem: sequences`PlugInList.setCurrentItem`,
+		install:        sequences`PlugInList.install`
 	},
 	withStyles(useStyles, {withTheme: true})(PlugInList)
 );

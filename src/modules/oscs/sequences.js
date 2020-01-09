@@ -111,6 +111,15 @@ function getDate(){
   return today;
 }
 
+function cleanObject(obj) {
+  Object.keys(obj).forEach(e => {
+       if (e[0] === '_') {
+         delete obj[e];
+       }
+  });
+  return obj;
+}
+
 /**********************************************************
  createOSC
 *********************************************************/
@@ -136,6 +145,29 @@ function createOSC({props, state}) {
 
   return {oscs: oscs};
 }
+
+function copyOSC({props, state}) {
+  let id = state.get('PlugInList.current');
+  let oscs = [];
+
+	console.log(id);
+	if (id) {
+		let osc = state.get(`PlugInList.records.${id}`);
+		let _osc = cleanObject(_.cloneDeep(osc));
+		oscs.push(_osc);
+	}
+
+  return {oscs: oscs};
+}
+
+export const installOSC = sequence("oscs.installOSC", [
+  () => {console.log("--> installing OSC");},
+  set(state`ProgressBar.open`, true),
+  copyOSC,
+  buildOSCRequest,
+  oada.put,
+  set(state`ProgressBar.open`, false)
+]);
 
 export const newOSC = sequence("oscs.newOSC", [
   () => {console.log("--> new OSC");},
