@@ -77,6 +77,9 @@ class MenuList extends React.Component {
 					    Blockchain 
 					  </MenuItem>
 					  <Divider />
+            <MenuItem onClick={this.props.oscList}>
+					    OSC List
+					  </MenuItem>
             <MenuItem onClick={ () => {
 							this.props.handlePACListOpen({});   
 							this.props.offline({});

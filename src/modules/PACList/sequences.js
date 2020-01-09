@@ -1,5 +1,5 @@
 import { state } from "cerebral/tags";
-import { set, toggle } from "cerebral/operators";
+import { toggle } from "cerebral/operators";
 import * as pacs from "../pacs/sequences";
 
 export let handlePACListOpen = [toggle(state`PACList.open`)];
@@ -18,3 +18,7 @@ export function sendPACtoRegulatorAction({props, state}) {
   console.log(" -->sending PAC to the regulator");
 	state.set(`PACList.current`, props.pacid);
 }
+
+export const signPAC = [
+  pacs.signPAC
+]

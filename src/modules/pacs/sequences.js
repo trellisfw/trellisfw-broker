@@ -6,7 +6,11 @@ import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 import _ from "lodash";
 import uuid from "uuid";
+import crypto from "crypto";
+import oadacerts from "@oada/oada-certs";
 import { pac_template } from "../../components/offline_datasets";
+//let _jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRhdGEgT3duZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.oV8NHqEwxSa-I0KritHXqWctt5YORqb3WDagoCByito";
+let _jwt = {"kty":"RSA","n":"vT7yLc-F-AhjAN9vygKmzaBs0sO97EcTqNgBvs8NNLYnsdSQddNKeZLl    yZ3lexOuOPk0fQX4jJ9hZdYTQ03AFQRlMWjr8Pjhp5s5cv2hhC1ceK0lwFcUk6qD-h4f0y0S8Y    0My9sWn3VLy4n1uD-E_TpOwYOcoaH0ese1anF94WXOnrYJkwi4PPKhRreDF5AX9zx8078o6pAD    PUHTSzkOo8cJzwdRGCSZsXWw5-vhLnwA2oLORNQrDm9DfD8gb7K9t3_23jwwlVdhzWxBzCptgx    ytm5oHpvHyguxnzgwazqgEMmM1k2rmeH3pgQIT45-LUWPrxNN36XJOzirZ0CPvCQ","e":"AQA    B","kid":"d73d449734d04c56accdbe000008d872"};
 
 let _localPath = "/bookmarks/pacs";
 let _regulatorPath = "/bookmarks/regulatorpacs";
@@ -160,6 +164,19 @@ export const newPAC = sequence("pacs.newPAC", [
   set(state`pacs.new`, false)
 ]);
 
+export const signPAC = [
+  getCertificate
+]
+
+function getCertificate() {
+  try {
+    const signed_jwt_cert = oadacerts.generate(JSON.stringify(_jwt), '01010011', {});
+    console.log(signed_jwt_cert);
+	} catch (err) {
+    console.log("error", err);
+	}
+}
+
 function createPAC({ props, state }) {
   let pacs = [];
   let _pac         = _.cloneDeep(pac_template);
@@ -172,6 +189,8 @@ function createPAC({ props, state }) {
   _pac.oscid       = _osc.oscid;
   _pac.timestamp   = new Date().getTime();
   _pac.date_init   = _osc.date_init;
+	_pac.pac_hash    = {};
+	_pac.pac_hash.value = crypto.createHash("sha256").update(_pac).digest("hex");
 
   pacs.push(_pac);
 
@@ -191,11 +210,11 @@ export const updatePAC = sequence("pacs.updatePAC", [
 ]);
 
 function cleanObject(obj) {
-		Object.keys(obj).forEach(e => {
-		     if (e[0] === '_') {
-					 delete obj[e];
-				 }
-		});
+	Object.keys(obj).forEach(e => {
+			 if (e[0] === '_') {
+				 delete obj[e];
+			 }
+	});
   return obj;
 }
 
@@ -206,7 +225,8 @@ function editPAC({props, state}) {
     let pac = state.get(`pacs.records.${id}`);
 		console.log(pac);
 		let cleanPAC = cleanObject(_.cloneDeep(pac));
-		console.log("editPAC" , cleanPAC);
+		console.log("editPAC", cleanPAC);
+		console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
 		pacs.push(cleanPAC);
 	}
 	return {pacs: pacs};
