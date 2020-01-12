@@ -84,8 +84,8 @@ export default connect(
 		pacs:      state`pacs.records`,
 		oscs:      state`oscs.records`,
 		oscs_list: state`OSCList.records`,
-		sendPACtoRegulator:  sequences`PACList.signPAC`
-		//sendPACtoRegulator:  sequences`PACList.sendPACtoRegulator`
+		//sendPACtoRegulator:  sequences`PACList.signPAC`
+		sendPACtoRegulator:  sequences`PACList.sendPACtoRegulator`
 
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)
