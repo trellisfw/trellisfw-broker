@@ -7,6 +7,7 @@ import oada from "@oada/cerebral-module/sequences";
 import { osc_dataset } from "../../components/offline_datasets.js";
 import { pac_template } from "../../components/offline_datasets.js";
 import { private_dataset } from "../../components/offline_datasets.js";
+import { local_oscs } from "../../components/offline_datasets.js";
 import _ from "lodash";
 import uuid from "uuid";
 
@@ -84,8 +85,9 @@ let PrivateDataTree = {
 
 const upload_demo_oscs = [
   createOSCS,
-	//createOSCRequest,
-	//oada.put,
+	createOSCRequest,
+	oada.put,
+	createCode,
 	createCodeRequest,
 	oada.put
 ];
@@ -160,9 +162,39 @@ function createOSCS({ props, state }) {
   let keys = Object.keys(osc_dataset.records);
 	
 	for (let key of keys) {
-    let osc = osc_dataset.records[key];
-    oscs.push(osc);
-	}
+		if (local_oscs.includes(key)) {
+      let osc = osc_dataset.records[key];
+      oscs.push(osc);
+		}//if
+	}//for
+
+	return { oscs: oscs };
+}
+
+function getDate() {
+	let today = new Date();
+	let dd = today.getDate();
+	let mm = today.getMonth()+1;//January is 0!`
+
+	let yyyy = today.getFullYear();
+	if(dd<10){dd='0'+dd}
+	if(mm<10){mm='0'+mm}
+	return  mm + '/' + dd + '/' + yyyy;
+}
+
+function createCode({ props, state }) {
+	let oscs = [];
+  let keys = Object.keys(osc_dataset.records);
+	
+	for (let key of keys) {
+		//if (local_oscs.contains(key)) {
+      let osc = _.cloneDeep(osc_dataset.records[key]);
+		  osc.date_inint = getDate(); 
+		  osc.timestamp = new Date().getTime();
+
+      oscs.push(osc);
+		//}//if
+	}//for
 
 	return { oscs: oscs };
 }
@@ -177,7 +209,7 @@ function createOSCRequest({ props, state }) {
 		console.log(_path);
 		let request = {
 			connection_id: connection_id,
-			data:          osc,
+		  data:          osc,
 			path:          _path,
 			tree:          OSCtree
 		};
