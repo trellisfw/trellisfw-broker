@@ -64,22 +64,24 @@ class MenuList extends React.Component {
             <MenuItem onClick={this.props.regulatorRepo}>
 					    Regulator Repo 
 					  </MenuItem>
-            <MenuItem onClick={this.props.trellisRepo}>
-					    Trellis Repo 
-					  </MenuItem>
             <MenuItem onClick={() => {
 							  this.props.handleMenuListOpen({});
 							  this.props.handlePlugInListOpen({})
 						}}>
-					    PlugIns
+					    Certified OSCs
 					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={this.props.blockchain}>
 					    Blockchain 
 					  </MenuItem>
 					  <Divider />
+            <MenuItem onClick={this.props.trellisRepo}>
+					    Trellis Repo 
+					  </MenuItem>
             <MenuItem onClick={this.props.oscList}>
 					    OSC List
 					  </MenuItem>
+					  <Divider />
             <MenuItem onClick={ () => {
 							this.props.handlePACListOpen({});   
 							this.props.offline({});
@@ -139,14 +141,3 @@ export default connect(
   withStyles(styles, {withTheme: true})(MenuList)
 );
 
-
-/*
-            <MenuItem onClick={this.props.pacList}>
-					    PAC List
-					  </MenuItem>
-            <MenuItem onClick={this.props.oscList}>
-					    OSC List
-					  </MenuItem>
-					  <Divider />
-
-						*/

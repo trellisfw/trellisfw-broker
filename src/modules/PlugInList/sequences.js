@@ -11,7 +11,7 @@ let _localPath = "/bookmarks/code";
 
 export let handleOpen = [
 	toggle(state`PlugInList.open`),
-	set(state`OSCList.open`, false),
+	toggle(state`OSCList.open`),
 	set(state`PACList.open`, false),
 ];
 

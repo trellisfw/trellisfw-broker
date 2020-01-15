@@ -177,6 +177,17 @@ function getCertificate() {
 	}
 }
 
+function getDate() {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth()+1;//January is 0!`
+
+  let yyyy = today.getFullYear();
+  if(dd<10){dd='0'+dd}
+  if(mm<10){mm='0'+mm}
+  return  mm + '/' + dd + '/' + yyyy;
+}
+
 function createPAC({ props, state }) {
   let pacs = [];
   let _pac         = _.cloneDeep(pac_template);
@@ -188,7 +199,7 @@ function createPAC({ props, state }) {
   _pac.trust_level = _osc.trust_level;
   _pac.oscid       = _osc.oscid;
   _pac.timestamp   = new Date().getTime();
-  _pac.date_init   = _osc.date_init;
+  _pac.date_init   = getDate();
 	_pac.pac_hash    = {};
 	_pac.pac_hash.value = crypto.createHash("sha256").update(_pac).digest("hex");
 

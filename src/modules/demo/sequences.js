@@ -84,9 +84,9 @@ let PrivateDataTree = {
 */
 
 const upload_demo_oscs = [
-  createOSCS,
-	createOSCRequest,
-	oada.put,
+  //createOSCS,
+	//createOSCRequest,
+	//oada.put,
 	createCode,
 	createCodeRequest,
 	oada.put

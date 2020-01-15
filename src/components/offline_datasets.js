@@ -312,12 +312,12 @@ export let pac_template = {
 			"title": "Demo PAC Record",
 			"trust_level": "tl1",
 			"oscid": {
-				"codebase": "demopacrecord-v1.0.0",
+				"codebase": "sustainablereporting-v1.0.0",
 				"pac": "sustainablereporting-v1.0.0",
 				"definition": "https://github.com/trellisfw/osc-definitions"
 			},
 			"timestamp": "2019-08-14T02:38:32.921Z",
-			"lot": "12345",
+			"lot": "45",
 			"organization": {
 				"id": "bc755264-4e68-433e-a431-081e79bcc81c",
 				"name": "Bob's Farm"
@@ -327,9 +327,10 @@ export let pac_template = {
 				"value": "10",
 				"units": "tons"
 			},
-			"certified_product": "demo product",
+			"certified_product": "Fish",
 			"attestations": {
-				"balance": true
+				"balance": true,
+				"temperature": true
 			},
 			"signatures": [
 				{
