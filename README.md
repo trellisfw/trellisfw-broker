@@ -1,5 +1,5 @@
 # Trellis++ Broker
-<b> The Broker is a web applications that serves as a service manager for the OSC.
+<b> The Broker is a web application that serves as a service manager for the OSC.
   
 ----------
 
