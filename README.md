@@ -1,5 +1,17 @@
 # Trellis++ Broker
+<b> The Broker is a web applications that serves as a service manager for the OSC.
+  
+----------
+
+## Trellis Broker PoC
 
 <p align="center">
   <img height="500" src="https://raw.githubusercontent.com/trellisfw/trellisfw-broker/master/assets/images/broker.png">
 </p>
+
+----------
+
+### References:
+ * [1] https://tinkerpop.apache.org/
+ * [2] https://github.com/OADA
+
