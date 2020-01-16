@@ -1,6 +1,7 @@
 <p align="left">
-  <img height="100" width="200" src="https://raw.githubusercontent.com/trellisfw/trellisfw-broker/master/assets/images/trellisplusplus-logo.png">
+  <img height="150" width="250" src="https://raw.githubusercontent.com/trellisfw/trellisfw-broker/master/assets/images/trellisplusplus-logo.png">
 </p>
+
 # Trellis++ Broker
 <b> The Broker is a web application that serves as a service manager for the OSC.
   
