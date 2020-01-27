@@ -8,7 +8,6 @@ import MenuBar              from './MenuBar';
 import './App.css';
 import OSCList              from "./OSCList";
 import Connections          from "./Connections";
-//import PACList              from "./PACList";
 import ProgressBar          from "./ProgressBar";
 import PlugInList           from "./PlugInList";
 
@@ -32,7 +31,9 @@ class App extends Component {
 			    <PlugInList />
 					<footer>
 						Credits:
-						<small>The Open AG Technology and Systems Center (OATS)</small>
+						<small>
+			        The Open AG Technology and Systems Center (OATS)
+			      </small>
 					</footer>
 			  </>
 			</ThemeProvider>

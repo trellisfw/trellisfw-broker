@@ -1,7 +1,7 @@
 // "components/PlugInList.jsx"
 import React from "react";
 import Button from "@material-ui/core/Button";
-import CheckedIcon from '@material-ui/icons/AssignmentTurnedIn';
+import CheckedIcon from "@material-ui/icons/AssignmentTurnedIn";
 import { connect } from "@cerebral/react";
 import { state, sequences } from "cerebral/tags";
 import { withStyles } from "@material-ui/core/styles";
@@ -21,7 +21,7 @@ class PlugInList extends React.Component {
 			const avaColor = {backgroundColor: backColor[plugin.trust_level]};
 			const listColor= {backgroundColor: backColorList[plugin.trust_level]};
 			let pluginInstalled = false;
-			if (oscs.hasOwnProperty(plugin.id)){
+			if (oscs.hasOwnProperty(plugin.id)) {
 				pluginInstalled = true;
 			}
 
@@ -69,7 +69,7 @@ class PlugInList extends React.Component {
           subheader={
             <ListSubheader component="div" id="nested-list-subheader" 
 						               color="inherit">
-              Regulator's available Plugins 
+              Certified OSCs available 
             </ListSubheader>
       }
 			>
@@ -92,9 +92,9 @@ class PlugInList extends React.Component {
 
 export default connect(
 	{
-		open:    state`PlugInList.open`,
-		plugins: state`PlugInList.records`,
-		oscs:    state`oscs.records`,
+		open:           state`PlugInList.open`,
+		plugins:        state`PlugInList.records`,
+		oscs:           state`oscs.records`,
 
 		setCurrentItem: sequences`PlugInList.setCurrentItem`,
 		install:        sequences`PlugInList.install`
