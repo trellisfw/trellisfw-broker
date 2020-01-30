@@ -8,14 +8,13 @@ import { osc_dataset } from "../../components/offline_datasets.js";
 import { pac_template } from "../../components/offline_datasets.js";
 import { private_dataset } from "../../components/offline_datasets.js";
 import { local_oscs } from "../../components/offline_datasets.js";
-import { filtered_private_dataset } from "../../components/offline_datasets.js";
 import _ from "lodash";
 import uuid from "uuid";
 
 let _localPACSPath = "/bookmarks/pacs";
 let _localOSCSPath = "/bookmarks/oscs";
 let _regulatorCodePath = "/bookmarks/code";
-let _localPrivateDataPath = "/bookmarks/filteredprivatedata";
+let _localPrivateDataPath = "/bookmarks/privatedata";
 
 let tree = {
   bookmarks: {
@@ -66,7 +65,7 @@ let PrivateDataTree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
-    filteredprivatedata: {
+    privatedata: {
       _type: "application/vnd.oada.yield.1+json",
       _rev: "0-0",
       "*": {
@@ -250,10 +249,13 @@ function createCodeRequest({ props, state }) {
 
 function createPrivateData({ props, state }) {
 	let pdata = [];
-	console.log(filtered_private_dataset);
+	console.log(private_dataset);
+  let keys = Object.keys(private_dataset.records);
 	
-	let datum = filtered_private_dataset;
-	pdata.push(datum);
+	for (let key of keys) {
+    let datum = private_dataset.records[key];
+    pdata.push(datum);
+	}
 
 	return { pdata: pdata };
 }
@@ -264,7 +266,7 @@ function createPrivateDataRequest({ props, state }) {
 
 	for (let datum of props.pdata) {
 		console.log(datum.id);
-		let _path = `${_localPrivateDataPath}/3f862025-6856-43f9-b4ec-013a40aa8ea6`;
+		let _path = `${_localPrivateDataPath}/${datum.id}`;
 		console.log(_path);
 		let request = {
 			connection_id: connection_id,
