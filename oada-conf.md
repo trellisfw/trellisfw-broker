@@ -7,7 +7,7 @@
 ./oada --dev up -d
 ```
 
-## Edit the following files in the OADA installation
+### Edit the following files in the OADA installation
 ```
 vim oada-core/permissions-handler/oada-srvc-permissions-handler/server.js
 ```
@@ -59,7 +59,7 @@ Add the following:
 vim ./oada-srvc-docker/oada-core/libs/oada-lib-arangodb/libs/exampledocs/authorizations.js
 ```
 
-Add the authorization for a new user that has *trellisplusplusfw:all* *oada.oscs:all* and *oada.pacs:all*
+Add the authorization for a new user that has **trellisplusplusfw:all** **oada.oscs:all** and **oada.pacs:all**
 
 ## Start the OADA service
 ```
