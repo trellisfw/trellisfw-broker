@@ -90,5 +90,3 @@ export default connect(
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)
 );
-
-//		sendPACtoRegulator:  signal`PACList.sendPACtoRegulator`

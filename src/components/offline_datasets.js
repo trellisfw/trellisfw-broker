@@ -354,7 +354,9 @@ export let filtered_private_dataset = {
 	"224a5bc4-b900-480c-9745-08414b397bab": 35,
 	"9b1c8816-d1ae-453e-8314-0e1821b7b6ba": 32,
 	"c5e586a3-e1c7-4574-97a9-e749d5a86414": 35,
-	"17fadd78-d5a2-48c7-b5cb-629f2115082a": 37
+	"17fadd78-d5a2-48c7-b5cb-629f2115082a": 40,
+	"111add78-d5a2-48c7-b5cb-629f2115082a": 38,
+	"2224dd78-d5a2-48c7-b5cb-629f2115082a": 37
 };
 
 export let private_dataset = {

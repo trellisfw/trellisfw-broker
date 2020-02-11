@@ -93,9 +93,11 @@ const upload_demo_oscs = [
 ];
 
 export const upload_demo_privatedata = [
+	set(state`ProgressBar.open`, true),
   createPrivateData,
 	createPrivateDataRequest,
-	oada.put
+	oada.put,
+	set(state`ProgressBar.open`, false)
 ];
 
 export const init = sequence("demo.init", [
