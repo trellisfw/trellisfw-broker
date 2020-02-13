@@ -17,6 +17,8 @@ class PACList extends React.Component {
 
   renderPAC( params ) {
     const { pac, classes } = params;
+    let _sent_to_regulator = pac.hasOwnProperty("_sent_to_regulator") ? 
+			                       pac._sent_to_regulator : false;
 		if (pac) {
 			const avaColor = {backgroundColor: backColor[pac.trust_level]};
 			const listColor= {backgroundColor: backColorList[pac.trust_level]};
@@ -39,8 +41,9 @@ class PACList extends React.Component {
 							className={classes.button}
 							startIcon={<CheckedIcon />}
 				      onClick={ () => {this.props.sendPACtoRegulator({pacid: pac.id})}}
+				disabled={_sent_to_regulator}
 						 >
-						  Send	
+				   { _sent_to_regulator ? "Sent" : "Send" }	
 						</Button>
 					</ListItem>
 				</div>

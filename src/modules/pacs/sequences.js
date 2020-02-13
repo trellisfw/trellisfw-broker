@@ -202,6 +202,7 @@ function createPAC({ props, state }) {
   _pac.date_init   = getDate();
 	_pac.pac_hash    = {};
 	_pac.pac_hash.value = crypto.createHash("sha256").update(_pac).digest("hex");
+	_pac._sent_to_regulator = false;
 
   pacs.push(_pac);
 
@@ -211,7 +212,10 @@ function createPAC({ props, state }) {
 export const sendPAC = sequence("pacs.sendPAC", [
   editPAC,
   buildRegulatorPACRequest,
-  oada.put
+  oada.put,
+	editPACSentToRegulator,
+	buildPACRequest,
+	oada.put
 ]);
 
 export const updatePAC = sequence("pacs.updatePAC", [
@@ -237,6 +241,21 @@ function editPAC({props, state}) {
 		console.log(pac);
 		let cleanPAC = cleanObject(_.cloneDeep(pac));
 		console.log("editPAC", cleanPAC);
+		console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
+		pacs.push(cleanPAC);
+	}
+	return {pacs: pacs};
+}
+
+function editPACSentToRegulator({props, state}) {
+  let id = state.get('PACList.current');
+	let pacs = [];
+	if (id !== "none") {
+    let pac = state.get(`pacs.records.${id}`);
+		console.log(pac);
+		let cleanPAC = cleanObject(_.cloneDeep(pac));
+		console.log("editPACSentToRegulator", cleanPAC);
+		cleanPAC._sent_to_regulator = true;
 		console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
 		pacs.push(cleanPAC);
 	}

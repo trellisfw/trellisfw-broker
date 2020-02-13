@@ -7,12 +7,12 @@ import oada from "@oada/cerebral-module/sequences";
 import { osc_dataset } from "../../components/offline_datasets.js";
 import { pac_template } from "../../components/offline_datasets.js";
 import { private_dataset } from "../../components/offline_datasets.js";
-import { local_oscs } from "../../components/offline_datasets.js";
+//import { local_oscs } from "../../components/offline_datasets.js";
 import _ from "lodash";
 import uuid from "uuid";
 
 let _localPACSPath = "/bookmarks/pacs";
-let _localOSCSPath = "/bookmarks/oscs";
+//let _localOSCSPath = "/bookmarks/oscs";
 let _regulatorCodePath = "/bookmarks/code";
 let _localPrivateDataPath = "/bookmarks/privatedata";
 
@@ -159,7 +159,7 @@ function createPACRequest({ props, state }) {
   };
 }
 
-function createOSCS({ props, state }) {
+/*function createOSCS({ props, state }) {
 	let oscs = [];
   let keys = Object.keys(osc_dataset.records);
 	
@@ -171,7 +171,7 @@ function createOSCS({ props, state }) {
 	}//for
 
 	return { oscs: oscs };
-}
+}*/
 
 function getDate() {
 	let today = new Date();
@@ -201,7 +201,7 @@ function createCode({ props, state }) {
 	return { oscs: oscs };
 }
 
-function createOSCRequest({ props, state }) {
+/*function createOSCRequest({ props, state }) {
   let connection_id = state.get("oscs.connection_id");
   let requests = [];
 
@@ -223,7 +223,7 @@ function createOSCRequest({ props, state }) {
     requests:      requests,
     domain:        state.get("oada_domain")
   };
-}
+}*/
 
 function createCodeRequest({ props, state }) {
   let connection_id = state.get("oscs.connection_id");
