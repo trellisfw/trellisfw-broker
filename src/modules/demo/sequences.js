@@ -191,7 +191,7 @@ function createCode({ props, state }) {
 	for (let key of keys) {
 		//if (local_oscs.contains(key)) {
       let osc = _.cloneDeep(osc_dataset.records[key]);
-		  osc.date_inint = getDate(); 
+		  osc.date_init = getDate(); 
 		  osc.timestamp = new Date().getTime();
 
       oscs.push(osc);
