@@ -5,14 +5,14 @@ import { connect }           from "@cerebral/react";
 import { state, sequences }  from "cerebral/tags";
 import { Menu, MenuItem }    from "@material-ui/core";
 import IconButton            from "@material-ui/core/IconButton";
-import ListItemIcon          from '@material-ui/core/ListItemIcon';
+import ListItemIcon          from "@material-ui/core/ListItemIcon";
 import MoreVertIcon          from "@material-ui/icons/MoreVert";
 import { withStyles }        from "@material-ui/core/styles";
-import UnoIcon               from '@material-ui/icons/Filter1';
-import DosIcon               from '@material-ui/icons/Filter2';
-import TresIcon              from '@material-ui/icons/Filter3';
-import CuatroIcon            from '@material-ui/icons/Filter4';
-import Divider 							 from '@material-ui/core/Divider';
+import UnoIcon               from "@material-ui/icons/Filter1";
+import DosIcon               from "@material-ui/icons/Filter2";
+import TresIcon              from "@material-ui/icons/Filter3";
+import CuatroIcon            from "@material-ui/icons/Filter4";
+import Divider 							 from "@material-ui/core/Divider";
 
 //The DOM element used to set the position of the menu.
 let anchorEl;

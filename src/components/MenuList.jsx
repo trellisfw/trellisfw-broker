@@ -7,7 +7,12 @@ import { Menu, MenuItem } from "@material-ui/core";
 import IconButton         from "@material-ui/core/IconButton";
 import MoreVertIcon       from "@material-ui/icons/MoreVert";
 import { withStyles }     from "@material-ui/core/styles";
-import Divider            from '@material-ui/core/Divider';
+import Divider            from "@material-ui/core/Divider";
+import ListItemIcon       from "@material-ui/core/ListItemIcon";
+import BlockchainIcon     from "@material-ui/icons/ViewComfy";
+import CertCodeIcon       from "@material-ui/icons/CardMembership";
+import GitHubIcon         from "@material-ui/icons/GitHub";
+import ListIcon           from "@material-ui/icons/ViewList";
 
 //The DOM element used to set the position of the menu.
 let anchorEl;
@@ -62,24 +67,39 @@ class MenuList extends React.Component {
             anchorEl={anchorEl}
           >
             <MenuItem onClick={this.props.regulatorRepo}>
-					    Regulator Repo 
+					    <ListItemIcon>
+					      <GitHubIcon style={{color: "#0066CC"}} />
+					    </ListItemIcon>
+					    Regulator 
 					  </MenuItem>
             <MenuItem onClick={() => {
 							  this.props.handleMenuListOpen({});
 							  this.props.handlePlugInListOpen({})
 						}}>
+					    <ListItemIcon>
+					      <CertCodeIcon style={{color: "#00994C"}} />
+					    </ListItemIcon>
 					    Certified OSCs
 					  </MenuItem>
 					  <Divider />
-            <MenuItem onClick={this.props.blockchain}>
-					    Blockchain 
-					  </MenuItem>
-					  <Divider />
             <MenuItem onClick={this.props.trellisRepo}>
-					    Trellis Repo 
+					    <ListItemIcon>
+					      <GitHubIcon style={{color: "#0066CC"}} />
+					    </ListItemIcon>
+					    Trellis 
 					  </MenuItem>
             <MenuItem onClick={this.props.oscList}>
-					    OSC List
+					    <ListItemIcon>
+					      <ListIcon style={{color: "#9933FF"}} />
+					    </ListItemIcon>
+					    OSC
+					  </MenuItem>
+					  <Divider />
+            <MenuItem onClick={this.props.blockchain}>
+					    <ListItemIcon>
+					      <BlockchainIcon style={{color: "#00CC66"}} />
+					    </ListItemIcon>
+					    Blockchain 
 					  </MenuItem>
 					  <Divider />
             <MenuItem onClick={ () => {
@@ -99,12 +119,6 @@ class MenuList extends React.Component {
 							this.props.demoPrivateData({});
 						}}>
 					    Demo Private Data 
-					  </MenuItem>
-            <MenuItem onClick={() => {
-							this.props.handleMenuListOpen({});
-							this.props.newPAC({});
-						}}>
-					    New PAC 
 					  </MenuItem>
           </Menu>
           : null
@@ -140,4 +154,11 @@ export default connect(
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );
-
+/*
+            <MenuItem onClick={() => {
+							this.props.handleMenuListOpen({});
+							this.props.newPAC({});
+						}}>
+					    New PAC 
+					  </MenuItem>
+						*/
