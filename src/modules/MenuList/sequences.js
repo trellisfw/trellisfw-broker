@@ -30,8 +30,14 @@ export let blockchain = [
   blockchain_action
 ];
 
-export function blockchain_action() {
-	console.log("-->blockchain");
+export function blockchain_action({props, state}) {
+	state.set(`Messages.open`, true);
+	console.log("--> connected to hyperledger fabric");
+	let _timer = setInterval(() => { state.set("Messages.open", false) }, 2000);
+}
+
+function closeMessage({props, state}) {
+  state.set("Messages.open", false);
 }
 
 export let regulatorRepo = [
@@ -40,7 +46,7 @@ export let regulatorRepo = [
 ];
 
 export function regulatorRepo_action({props, state}) {
-	console.log("-->regulator repo");
+	console.log("--> regulator repo");
 }
 
 export let trellisRepo = [
