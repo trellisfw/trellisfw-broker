@@ -16,6 +16,5 @@
 ----------
 
 ### References:
- * [1] https://tinkerpop.apache.org/
- * [2] https://github.com/OADA
+ * [1] https://github.com/OADA
 
