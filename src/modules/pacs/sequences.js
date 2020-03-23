@@ -7,10 +7,10 @@ import oada from "@oada/cerebral-module/sequences";
 import _ from "lodash";
 import uuid from "uuid";
 import crypto from "crypto";
-import oadacerts from "@oada/oada-certs";
+//import oadacerts from "@oada/oada-certs";
 import { pac_template } from "../../components/offline_datasets";
 //let _jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRhdGEgT3duZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.oV8NHqEwxSa-I0KritHXqWctt5YORqb3WDagoCByito";
-let _jwt = {"kty":"RSA","n":"vT7yLc-F-AhjAN9vygKmzaBs0sO97EcTqNgBvs8NNLYnsdSQddNKeZLl    yZ3lexOuOPk0fQX4jJ9hZdYTQ03AFQRlMWjr8Pjhp5s5cv2hhC1ceK0lwFcUk6qD-h4f0y0S8Y    0My9sWn3VLy4n1uD-E_TpOwYOcoaH0ese1anF94WXOnrYJkwi4PPKhRreDF5AX9zx8078o6pAD    PUHTSzkOo8cJzwdRGCSZsXWw5-vhLnwA2oLORNQrDm9DfD8gb7K9t3_23jwwlVdhzWxBzCptgx    ytm5oHpvHyguxnzgwazqgEMmM1k2rmeH3pgQIT45-LUWPrxNN36XJOzirZ0CPvCQ","e":"AQA    B","kid":"d73d449734d04c56accdbe000008d872"};
+//let _jwt = {"kty":"RSA","n":"vT7yLc-F-AhjAN9vygKmzaBs0sO97EcTqNgBvs8NNLYnsdSQddNKeZLl    yZ3lexOuOPk0fQX4jJ9hZdYTQ03AFQRlMWjr8Pjhp5s5cv2hhC1ceK0lwFcUk6qD-h4f0y0S8Y    0My9sWn3VLy4n1uD-E_TpOwYOcoaH0ese1anF94WXOnrYJkwi4PPKhRreDF5AX9zx8078o6pAD    PUHTSzkOo8cJzwdRGCSZsXWw5-vhLnwA2oLORNQrDm9DfD8gb7K9t3_23jwwlVdhzWxBzCptgx    ytm5oHpvHyguxnzgwazqgEMmM1k2rmeH3pgQIT45-LUWPrxNN36XJOzirZ0CPvCQ","e":"AQA    B","kid":"d73d449734d04c56accdbe000008d872"};
 
 let _localPath = "/bookmarks/pacs";
 let _regulatorPath = "/bookmarks/regulatorpacs";
@@ -169,12 +169,13 @@ export const signPAC = [
 ]
 
 function getCertificate() {
-  try {
+  /*try {
     const signed_jwt_cert = oadacerts.generate(JSON.stringify(_jwt), '01010011', {});
     console.log(signed_jwt_cert);
 	} catch (err) {
     console.log("error", err);
 	}
+	*/
 }
 
 function getDate() {

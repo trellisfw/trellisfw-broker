@@ -6,7 +6,6 @@ import { state, props } from "cerebral/tags";
 import Promise from "bluebird";
 import oada from "@oada/cerebral-module/sequences";
 import * as oscs from "../oscs/sequences";
-//import crypto from "crypto";
 let _localPath = "/bookmarks/code";
 
 export let handleOpen = [
@@ -20,7 +19,7 @@ export function setCurrentItem({props, state}){
     state.set(`PlugInList.current`, props.pluginid);
 }
 
-function cleanObject(obj) {
+/*function cleanObject(obj) {
   Object.keys(obj).forEach(e => {
        if (e[0] === '_') {
          delete obj[e];
@@ -28,6 +27,7 @@ function cleanObject(obj) {
   });
   return obj;
 }
+*/
 
 export const install = sequence("PlugInList.install", [
   oscs.installOSC

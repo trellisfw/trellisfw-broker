@@ -1,7 +1,7 @@
 // "MenuBar.jsx"
 import React          from "react";
 import { connect }    from "@cerebral/react";
-import { sequences }     from "cerebral/tags";
+import { sequences }  from "cerebral/tags";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar         from "@material-ui/core/AppBar";
 import Toolbar        from "@material-ui/core/Toolbar";

@@ -1,15 +1,17 @@
 {
   "name": "TrellisBroker",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "private": true,
   "dependencies": {
     "@cerebral/react": "^4.2.0",
     "@material-ui/core": "^4.5.2",
     "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.46",
     "@oada/cerebral-module": "^3.0.3",
     "@oada/cerebral-provider": "^3.0.4",
-    "@oada/oada-certs": "^1.0.2",
+    "@oada/oada-cache": "^3.0.1",
     "cerebral": "^5.2.0",
+    "eslint": "^6.8.0",
     "lodash": "^4.17.15",
     "mobile-detect": "^1.4.4",
     "react": "^16.11.0",
@@ -37,5 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

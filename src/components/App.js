@@ -10,6 +10,7 @@ import OSCList              from "./OSCList";
 import Connections          from "./Connections";
 import ProgressBar          from "./ProgressBar";
 import PlugInList           from "./PlugInList";
+import Message              from "./Message";
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
 			    <OSCList />
 			    <Connections />
 			    <PlugInList />
+			    <Message />
 					<footer>
 						Credits:
 						<small>

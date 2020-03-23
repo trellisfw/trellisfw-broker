@@ -15,6 +15,8 @@ import demo         from "./demo";
 import ProgressBar  from "./ProgressBar";
 import PlugInList   from "./PlugInList";
 import privatedatas from "./privatedata";
+//import fabric       from "./fabric";
+import Messages     from "./Messages";
 
 export default Module({
   modules: {
@@ -30,7 +32,9 @@ export default Module({
 		pacs,
 		privatedatas,
 		demo,
-		oada: oadaModule
+		oada: oadaModule,
+//		fabric,
+		Messages
 	},
 
 	providers: {

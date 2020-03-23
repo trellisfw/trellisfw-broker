@@ -31,7 +31,7 @@ let tree = {
   }
 };
 
-let OSCtree = {
+/*let OSCtree = {
   bookmarks: {
     _type: "application/vnd.oada.bookmarks.1+json",
     _rev: "0-0",
@@ -44,7 +44,7 @@ let OSCtree = {
       }
     }
   }
-};
+};*/
 
 let CodeTree = {
   bookmarks: {
