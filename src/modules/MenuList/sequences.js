@@ -34,11 +34,12 @@ export function blockchain_action({props, state}) {
 	state.set(`Messages.open`, true);
 	console.log("--> connected to hyperledger fabric");
 	let _timer = setInterval(() => { state.set("Messages.open", false) }, 2000);
+	state.set(`fabric.connected`, true);
 }
 
-function closeMessage({props, state}) {
+/*function closeMessage({props, state}) {
   state.set("Messages.open", false);
-}
+}*/
 
 export let regulatorRepo = [
 	handleMenuListOpen,

@@ -36,7 +36,7 @@ class PlugInList extends React.Component {
 							</Avatar>
 						</ListItemAvatar>
 						<ListItemText primary={plugin.title || null} 
-				                  secondary={plugin.timestamp || null} />
+				                  secondary={plugin.date_init || null} />
 						<Button
 							variant="outlined"
 							color="default"

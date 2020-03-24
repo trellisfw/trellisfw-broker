@@ -33,7 +33,7 @@ class PACList extends React.Component {
 							</Avatar>
 						</ListItemAvatar>
 						<ListItemText primary={pac.title || null} 
-				                  secondary={pac.timestamp || null} />
+				                  secondary={pac.date_init || null} />
 						<Button
 							variant="outlined"
 							color="default"

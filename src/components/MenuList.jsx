@@ -39,6 +39,13 @@ class MenuList extends React.Component {
     const { classes } = this.props;
 
     anchorEl = this.props.open ? anchorEl : null;
+		let bk_color = "#606060";
+
+		if (this.props.bk_connected) {
+			bk_color = "#00CC66";
+			console.log("==> connected");
+		}
+
     return (
       <div>
         <IconButton
@@ -97,7 +104,7 @@ class MenuList extends React.Component {
 					  <Divider />
             <MenuItem onClick={this.props.blockchain}>
 					    <ListItemIcon>
-					      <BlockchainIcon style={{color: "#00CC66"}} />
+					      <BlockchainIcon style={{color: bk_color}} />
 					    </ListItemIcon>
 					    Blockchain 
 					  </MenuItem>
@@ -137,6 +144,7 @@ export default connect(
     menuItems:          state`MenuList.records`,
     current:            state`MenuList.current`,
     open:               state`MenuList.open`,
+		bk_connected:       state`fabric.connected`,
 
     setCurrentItem:     sequences`MenuList.setCurrentItem`,
     handleMenuListOpen: sequences`MenuList.handleMenuListOpen`,
