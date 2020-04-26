@@ -16,7 +16,7 @@ import ProgressBar  from "./ProgressBar";
 import PlugInList   from "./PlugInList";
 import privatedatas from "./privatedata";
 import fabric       from "./fabric";
-import Messages     from "./Messages";
+//import Messages     from "./Messages";
 
 export default Module({
   modules: {
@@ -34,7 +34,7 @@ export default Module({
 		demo,
 		oada: oadaModule,
 		fabric,
-		Messages
+//		Messages
 	},
 
 	providers: {

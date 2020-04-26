@@ -10,6 +10,7 @@ import { private_dataset } from "../../components/offline_datasets.js";
 //import { local_oscs } from "../../components/offline_datasets.js";
 import _ from "lodash";
 import uuid from "uuid";
+import now from "performance-now";
 
 let _localPACSPath = "/bookmarks/pacs";
 //let _localOSCSPath = "/bookmarks/oscs";
@@ -97,8 +98,55 @@ export const upload_demo_privatedata = [
   createPrivateData,
 	createPrivateDataRequest,
 	oada.put,
+  //montecarlo_osc_main,
 	set(state`ProgressBar.open`, false)
 ];
+
+function montecarlo_osc_main() {
+   let tests = 1000;
+   let init_n = 1000000;
+   let ns = [];
+   for(let i=0; i<10; i++){
+     let total = 0;
+     let n = init_n * (2**i);
+     let times = [];
+     ns.push(n);
+		 for(let j=0; j<tests; j++){
+			 let start0 = now();
+			 //let start = new Date();
+			 let pi = montecarlo_osc(n); 
+			 //let end = new Date();
+			 let end0 = now();
+			 let elapsed0 = end0-start0;
+			 //let elapsed = end.getTime() - start.getTime();
+       total += elapsed0;
+			 times.push(elapsed0);
+			}//for 2
+     let mean = total / tests;
+     const std = Math.sqrt(times.map(x => Math.pow(x-mean,2)).reduce((a,b)=> a+b)/n);
+		 console.log(`${i} iteration -> n=${ns[i]} ->-> std ${std} -> elapsed time`, mean);
+   }//for 1
+}
+
+function montecarlo_osc(n) {
+  //let n = 512000000;
+ let total = 0;
+  let i, count;
+  let x,y,z,pi;
+
+  count =0; 
+  for (i=0; i<n; i++) {
+    x = Math.random();
+    y = Math.random();
+    z = x*x + y*y;
+    if (z<=1) count++;
+  }
+  pi = count / n*4;
+
+  return pi; 
+}
+
+
 
 export const init = sequence("demo.init", [
 	set(state`ProgressBar.open`, true),
