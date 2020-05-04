@@ -7,6 +7,7 @@ import oada from "@oada/cerebral-module/sequences";
 import _ from "lodash";
 import uuid from "uuid";
 import crypto from "crypto";
+import { createPAC as createPACLedger } from "../blockchaingateway/sequences";
 //import oadacerts from "@oada/oada-certs";
 import { pac_template } from "../../components/offline_datasets";
 //let _jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRhdGEgT3duZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.oV8NHqEwxSa-I0KritHXqWctt5YORqb3WDagoCByito";
@@ -216,7 +217,9 @@ export const sendPAC = sequence("pacs.sendPAC", [
   oada.put,
 	editPACSentToRegulator,
 	buildPACRequest,
-	oada.put
+	oada.put,
+	editPACBlockchainGateway,
+	createPACLedger
 ]);
 
 export const updatePAC = sequence("pacs.updatePAC", [
@@ -261,6 +264,23 @@ function editPACSentToRegulator({props, state}) {
 		pacs.push(cleanPAC);
 	}
 	return {pacs: pacs};
+}
+
+function editPACBlockchainGateway({props, state}) {
+  let id = state.get('PACList.current');
+	let pac = {};
+	if (id !== "none") {
+    let pac = state.get(`pacs.records.${id}`);
+		console.log(pac);
+		let cleanPAC = cleanObject(_.cloneDeep(pac));
+		console.log("-->creating PAC for Blockchain-Gateway", cleanPAC);
+
+		cleanPAC._sent_to_regulator = true;
+		pac["pacId"] = cleanPAC.id;
+		pac["quoteHash"] = crypto.createHash("sha256").update(cleanPAC).digest("hex"); 
+		console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
+	}
+	return {pac: pac};
 }
 
 function buildPACRequest({ props, state }) {

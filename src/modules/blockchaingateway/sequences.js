@@ -15,7 +15,10 @@ export async function readPAC({props, state}) {
 }
 
 export async function createPAC({props, state}) {
-	let _pac = {pacId: "fromCerebralSequences", quoteHash: "cerebralHash"};
+	let _pac = {
+		           pacId: props.pac.pacId, 
+		           quoteHash: props.pac.quoteHash
+	           };
   const pacRes = await BKGatewayService.createPAC(_pac);
 	console.log("--> response --> ", pacRes);
 }

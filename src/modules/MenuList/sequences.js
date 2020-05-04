@@ -5,7 +5,7 @@ import { osc_dataset } from "../../components/offline_datasets.js";
 import { handlePACListOpen } from "../PACList/sequences"; 
 import { handleOSCListOpen } from "../OSCList/sequences"; 
 import { openConnections }   from "../Connections/sequences";
-import { queryAll, createPAC, readPAC } from "../blockchaingateway/sequences";
+import { readPAC } from "../blockchaingateway/sequences";
 
 export let handleMenuListOpen = [toggle(state`MenuList.open`)];
 
@@ -30,8 +30,6 @@ export let blockchain = [
 	handleMenuListOpen,
   blockchain_action,
 	readPAC
-	//queryAll
-  //createPAC	
 ];
 
 export function blockchain_action({props, state}) {
