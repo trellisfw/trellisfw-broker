@@ -84,26 +84,26 @@ export const pac_dataset = {
 		},
 		"4f2e739b-de9a-4d04-953d-4691227ae9b9": {
 			"id": "4f2e739b-de9a-4d04-953d-4691227ae9b9",
-			"label": "PD",
-			"title": "Planting Date Reporting",
-			"trust_level": "tl1",
+			"label": "S3",
+			"title": "Sustainable Fishing",
+			"trust_level": "tl3",
 			"oscid": {
-				"codebase": "plantingdate-v1.0.0",
-				"pac": "plantingdate-v1.0.0",
+				"codebase": "sustainablefishing-v2.0.0",
+				"pac": "sustainablefishing-v2.0.0",
 				"definition": "https://github.com/trellisfw/osc-definitions"
 			},
-			"timestamp": "2019-08-14T02:38:32.921Z",
-			"lot": "12345",
+			"timestamp": "2020-03-25T02:38:32.921Z",
+			"lot": "45678",
 			"organization": {
 				"id": "bc755264-4e68-433e-a431-081e79bcc81c",
 				"name": "Bob's Farm"
 			},
 			"certification_status": "passed",
 			"certified_quantity": {
-				"value": "25",
+				"value": "2",
 				"units": "tons"
 			},
-			"certified_product": "Corn",
+			"certified_product": "salmon",
 			"attestations": {
 				"balance": true
 			},
@@ -168,6 +168,48 @@ export const pac_dataset = {
 	}
 };
 
+		/*"4f2e739b-de9a-4d04-953d-4691227ae9b9": {
+			"id": "4f2e739b-de9a-4d04-953d-4691227ae9b9",
+			"label": "PD",
+			"title": "Planting Date Reporting",
+			"trust_level": "tl1",
+			"oscid": {
+				"codebase": "plantingdate-v1.0.0",
+				"pac": "plantingdate-v1.0.0",
+				"definition": "https://github.com/trellisfw/osc-definitions"
+			},
+			"timestamp": "2019-08-14T02:38:32.921Z",
+			"lot": "12345",
+			"organization": {
+				"id": "bc755264-4e68-433e-a431-081e79bcc81c",
+				"name": "Bob's Farm"
+			},
+			"certification_status": "passed",
+			"certified_quantity": {
+				"value": "25",
+				"units": "tons"
+			},
+			"certified_product": "Corn",
+			"attestations": {
+				"balance": true
+			},
+			"signatures": [
+				{
+					"quote": {
+						"report": "<base64 encoded report>",
+						"mrsigner": "<base64 encoded mrsigner>",
+						"mrenclave": "<base64 encoded mrenclave",
+						"user_data": "<base64 encoded user data, understood to be hash of PAC> ",
+						"value": "<base64 encoded entire quote>"
+					}
+				}
+			],
+			"data_hash": {
+				"value": "e493999f59c6537c3bc674fb5d5fac6d6437e546fe202025591dee0625ee9bc9",
+				"alg": "SHA-256"
+			}
+		},*/
+
 export const osc_dataset = {
   "records": {
 		
@@ -208,24 +250,24 @@ export const osc_dataset = {
     "3ac90b25-1d17-4eb7-9c51-0f47cfb1417a": {
       "id": "3ac90b25-1d17-4eb7-9c51-0f47cfb1417a",
       "oscid": {
-        "codebase": "sustainabilityreporting-v1.0.0",
-        "pac": "sustainabilityreporting-v1.0.0",
+        "codebase": "sustainablefishing-v2.0.0",
+        "pac": "sustainablefishing-v2.0.0",
         "definition": "https://github.com/trellisfw/osc-definitions"
       },
       "osc_hash": {
         "value": "2abe617b8d05a48a7a9b5a1eb461100f548774d76daac5749a20a54b5718617c",
         "alg": "SHA-256"
       },
-      "label": "SR",
-      "title": "Sustainability Reporting",
-      "date_init": "09.17.2019",
-      "timestamp": "2019-08-14T02:38:32.921Z",
-      "trust_level": "tl1",
+      "label": "S3",
+      "title": "Sustainable Fishing TL3",
+      "date_init": "03.25.2020",
+      "timestamp": "2020-03-25T02:38:32.921Z",
+      "trust_level": "tl3",
        "organization": {
-        "name": "Bob's Sustainability Reporting"
+        "name": "Bob's Sustainable Fishing"
       },
       "control_signals":{
-				"osc_hash": false,
+				"osc_hash": true,
         "restart": false,
         "init_ra": false,
         "turnoff": false,

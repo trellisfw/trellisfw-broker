@@ -79,6 +79,7 @@ export let checkOSCHash = [
 
 export function checkOSCHash_action({props, state}) {
 	console.log("--> checking OSC hash");
+	//state.set(`oscs.records.3ac90b25-1d17-4eb7-9c51-0f47cfb1417a.control_signals.osc_hash`, true);
 }
 
 export let restartOSC = [

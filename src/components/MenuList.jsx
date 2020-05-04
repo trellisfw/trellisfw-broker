@@ -144,7 +144,7 @@ export default connect(
     menuItems:          state`MenuList.records`,
     current:            state`MenuList.current`,
     open:               state`MenuList.open`,
-		bk_connected:       state`fabric.connected`,
+		bk_connected:       state`blockchaingateway.connected`,
 
     setCurrentItem:     sequences`MenuList.setCurrentItem`,
     handleMenuListOpen: sequences`MenuList.handleMenuListOpen`,
@@ -162,11 +162,3 @@ export default connect(
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );
-/*
-            <MenuItem onClick={() => {
-							this.props.handleMenuListOpen({});
-							this.props.newPAC({});
-						}}>
-					    New PAC 
-					  </MenuItem>
-						*/

@@ -13,7 +13,7 @@ export default connect(
 
     submitClicked:      sequences`Connections.setConnection`,
     cancelClicked:      sequences`Connections.cancelConnection`,
-    oadaDomainChanged:  sequences`Connections.oadaDomainChanged`,
+    oadaDomainChanged:  sequences`Connections.updateOadaDomain`,
   },
 
   class Connections extends React.Component {
