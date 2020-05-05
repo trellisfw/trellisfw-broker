@@ -16,7 +16,6 @@ import ProgressBar       from "./ProgressBar";
 import PlugInList        from "./PlugInList";
 import privatedatas      from "./privatedata";
 import blockchaingateway from "./blockchaingateway";
-//import Messages     from "./Messages";
 
 export default Module({
   modules: {
@@ -33,8 +32,7 @@ export default Module({
 		privatedatas,
 		demo,
 		oada: oadaModule,
-		blockchaingateway,
-//		Messages
+		blockchaingateway
 	},
 
 	providers: {
