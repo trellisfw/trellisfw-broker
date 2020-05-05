@@ -10,7 +10,6 @@ import * as oscs from "../oscs/sequences";
 import * as pacs from "../pacs/sequences";
 import * as PlugInList from "../PlugInList/sequences";
 import * as privatedatas from "../privatedata/sequences";
-import * as oscbridge from "../oscbridge/sequences";
 
 export let signOut = [
   set(state`${ConnE.token}`,       ''),
@@ -42,7 +41,6 @@ export let init = [
 	oscs.init,
 	PlugInList.init,
 	privatedatas.init,
-	oscbridge.init,
   set(state`${ConnE.open}`, false),
 	set(state`ProgressBar.open`, false),
 ];
