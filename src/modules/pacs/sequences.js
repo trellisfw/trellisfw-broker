@@ -153,7 +153,7 @@ export function mapOadaToPacs({ props, state }) {
 				  let oscid = currentPAC.oscid; 
 					state.set(`pacs.records.${pac}`, pacs[pac]);
 					if (oscid) {
-					  let generated_pacs = state.get(`oscs.reacords.${oscid}.generated_pacs`);
+					  let generated_pacs = state.get(`oscs.records.${oscid}.generated_pacs`);
 						console.log("--> generated pacs ", generated_pacs);
 						if (generated_pacs) {
               generated_pacs[currentPAC.id] = { id: `${currentPAC.id}` };

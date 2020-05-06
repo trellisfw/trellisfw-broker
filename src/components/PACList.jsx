@@ -20,6 +20,7 @@ class PACList extends React.Component {
     let _sent_to_regulator = pac.hasOwnProperty("_sent_to_regulator") ? 
 			                       pac._sent_to_regulator : false;
 		if (pac) {
+      let _timestamp = pac.timestamp ? pac.timestamp: pac.date_init;
 			const avaColor = {backgroundColor: backColor[pac.trust_level]};
 			const listColor= {backgroundColor: backColorList[pac.trust_level]};
 			return (
@@ -33,7 +34,7 @@ class PACList extends React.Component {
 							</Avatar>
 						</ListItemAvatar>
 						<ListItemText primary={pac.title || null} 
-				                  secondary={pac.date_init || null} />
+				                  secondary={_timestamp || null} />
 						<Button
 							variant="outlined"
 							color="default"
