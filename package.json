@@ -1,6 +1,6 @@
 {
   "name": "TrellisBroker",
-  "version": "0.9.6",
+  "version": "0.9.8",
   "private": true,
   "dependencies": {
     "@cerebral/react": "^4.2.0",
@@ -16,6 +16,7 @@
     "mobile-detect": "^1.4.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-json-pretty": "^2.2.0",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.1"
   },

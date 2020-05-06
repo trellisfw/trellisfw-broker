@@ -100,8 +100,8 @@ class OSCMenuList extends React.Component {
 					    Generate PAC
 					  </MenuItem>
 					  <Divider />
-            <MenuItem onClick={this.props.initRA}>
-					    Initiate RA
+            <MenuItem onClick={this.props.generatePACFalse}>
+					    Stop PAC Generation 
 					  </MenuItem>
             <MenuItem onClick={this.props.restartOSC}>
 					    Restart OSC
@@ -133,6 +133,7 @@ export default connect(
     provisionToken:     sequences`OSCMenuList.provisionToken`,
     provisionData:      sequences`OSCMenuList.provisionData`,
     generatePAC:        sequences`OSCMenuList.generatePAC`,
+    generatePACFalse:   sequences`OSCMenuList.generatePACFalse`,
     initRA:             sequences`OSCMenuList.initRA`,
     checkOSCHash:       sequences`OSCMenuList.checkOSCHash`,
     restartOSC:         sequences`OSCMenuList.restartOSC`,

@@ -11,7 +11,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import { useStyles, backColor, backColorList } from "./config.js";
+import { useStyles, backColor, backColorList, CardEnum } from "./config.js";
+import PACContent           from "./PACContent";
+import IconButton from "@material-ui/core/IconButton";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 
 class PACList extends React.Component {
 
@@ -23,6 +27,7 @@ class PACList extends React.Component {
       let _timestamp = pac.timestamp ? pac.timestamp: pac.date_init;
 			const avaColor = {backgroundColor: backColor[pac.trust_level]};
 			const listColor= {backgroundColor: backColorList[pac.trust_level]};
+      const expandStyle = { color: '#00b33c', marginLeft: '5px' };
 			return (
 				<div key={pac.id}>
 					<ListItem className={`${classes.pill}`} style={listColor}
@@ -33,6 +38,16 @@ class PACList extends React.Component {
 				      {pac.label}
 							</Avatar>
 						</ListItemAvatar>
+            <IconButton aria-label={CardEnum.Blockchain}
+                     onClick={ () => {
+                                       this.props.setCurrentPAC({oscid: pac.oscid, pacid: pac.id});
+                                       this.props.handlePACContentOpen();
+                              }   
+                             }   
+                       >   
+                <ExpandMoreIcon style={expandStyle}/>
+             </IconButton>
+        
 						<ListItemText primary={pac.title || null} 
 				                  secondary={_timestamp || null} />
 						<Button
@@ -47,6 +62,7 @@ class PACList extends React.Component {
 				   { _sent_to_regulator ? "Sent" : "Send" }	
 						</Button>
 					</ListItem>
+          <PACContent pac={pac}/>
 				</div>
 			);
 		} else {
@@ -85,11 +101,12 @@ class PACList extends React.Component {
 
 export default connect(
 	{
-		pacs:      state`pacs.records`,
-		oscs:      state`oscs.records`,
-		oscs_list: state`OSCList.records`,
-		//sendPACtoRegulator:  sequences`PACList.signPAC`
-		sendPACtoRegulator:  sequences`PACList.sendPACtoRegulator`
+		pacs:                  state`pacs.records`,
+		oscs:                  state`oscs.records`,
+		oscs_list:             state`OSCList.records`,
+		sendPACtoRegulator:    sequences`PACList.sendPACtoRegulator`,
+    handlePACContentOpen:  sequences`PACList.handlePACContentOpen`,
+    setCurrentPAC:         sequences`PACList.setCurrentPAC`
 
 	},
 	withStyles(useStyles, {withTheme: true})(PACList)

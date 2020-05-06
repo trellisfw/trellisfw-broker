@@ -300,6 +300,13 @@ export function updateGeneratePAC({ props, state}){
 	}
 }
 
+export function updateGeneratePACFalse({ props, state}){
+  let id = state.get(`OSCList.current`);
+	if (id !== "none") {
+	  state.set(`oscs.records.${id}.control_signals.generate_pac`, false);
+	}
+}
+
 export function updateInitRA({ props, state}){
   let id = state.get(`OSCList.current`);
 	if (id !== "none") {

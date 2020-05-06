@@ -22,3 +22,20 @@ export function sendPACtoRegulatorAction({props, state}) {
 export const signPAC = [
   pacs.signPAC
 ]
+
+export function setCurrentPAC({props, state}){
+  if (props.pacid && props.oscid) {
+    state.set(`PACList.currentPAC`, props.pacid);
+    state.set(`PACList.currentOSC`, props.oscid);
+  }
+}
+
+export function handlePACContentOpen({props, state}) {
+  let pacid = state.get(`PACList.currentPAC`);
+  let oscid = state.get(`PACList.currentOSC`);
+  // visible or pacContentOpen
+  let pacContentOpen = state.get(`oscs.records.${oscid}.generated_pacs.${pacid}.visible`);
+  if (typeof pacContentOpen !== 'undefined') {
+    state.set(`oscs.records.${oscid}.generated_pacs.${pacid}.visible`, ! pacContentOpen);
+  }
+}

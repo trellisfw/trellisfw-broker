@@ -149,14 +149,18 @@ export function mapOadaToPacs({ props, state }) {
 			if (pac[0] !== "_" && pac !== "pacs") {
 				let currentPAC = 
 					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
-				if ( currentPAC && currentPAC.id ) {
+				if (currentPAC && currentPAC.id) {
 				  let oscid = currentPAC.oscid; 
 					state.set(`pacs.records.${pac}`, pacs[pac]);
 					if (oscid) {
 					  let generated_pacs = state.get(`oscs.records.${oscid}.generated_pacs`);
+            // fixme: temporal fix
+            // this must set the flag only for a recently generated pac 
+            // from a particular osc
 						console.log("--> generated pacs ", generated_pacs);
 						if (generated_pacs) {
-              generated_pacs[currentPAC.id] = { id: `${currentPAC.id}` };
+              //state.set(`oscs.records.${oscid}.control_signals.generate_pac`, false);
+              generated_pacs[currentPAC.id] = { id: `${currentPAC.id}`, visible: false };
 							state.set(`oscs.records.${oscid}.generated_pacs`, generated_pacs);
 						}
 					}

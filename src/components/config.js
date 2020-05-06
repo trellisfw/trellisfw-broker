@@ -20,6 +20,16 @@ export const useStyles = theme => ({
 		color: "#5c8a8a",
 		textShadow: "1px 1px #000000",
 	},
+	paccontent: {
+    textAlign: "left",
+		padding: "1px",
+		marginTop: "1px",
+		marginBottom: "2px",
+		alignItems: "left",
+		borderRadius: "3px",
+		color: "#5c8a8a",
+		textShadow: "1px 1px #000000",
+	},
   container: {
     paddingTop: '5px'
   },
