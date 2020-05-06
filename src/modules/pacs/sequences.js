@@ -150,7 +150,16 @@ export function mapOadaToPacs({ props, state }) {
 				let currentPAC = 
 					     state.get(`oada.${connection_id}.bookmarks.pacs.${pac}`);
 				if ( currentPAC && currentPAC.id ) {
+				  let oscid = currentPAC.oscid; 
 					state.set(`pacs.records.${pac}`, pacs[pac]);
+					if (oscid) {
+					  let generated_pacs = state.get(`oscs.reacords.${oscid}.generated_pacs`);
+						console.log("--> generated pacs ", generated_pacs);
+						if (generated_pacs) {
+              generated_pacs[currentPAC.id] = { id: `${currentPAC.id}` };
+							state.set(`oscs.records.${oscid}.generated_pacs`, generated_pacs);
+						}
+					}
 				}
 				return;
 			}
