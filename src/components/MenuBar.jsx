@@ -41,7 +41,7 @@ class MenuBar extends React.Component {
 					<Toolbar className={classes.menuBar}>
 			      <MenuList />
 						<Typography variant="h6" className={classes.title}>
-							Trellis++ Broker v{packageJson.version}
+							Broker v{packageJson.version}
 						</Typography>
 						<Button onClick={this.props.openConnections} 
 			              color="inherit">
