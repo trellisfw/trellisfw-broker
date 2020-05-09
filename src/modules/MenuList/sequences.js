@@ -1,11 +1,11 @@
-import { state } from "cerebral/tags";
-import { toggle } from "cerebral/operators";
-import { pac_dataset } from "../../components/offline_datasets.js";
-import { osc_dataset } from "../../components/offline_datasets.js";
+import { state }             from "cerebral/tags";
+import { toggle }            from "cerebral/operators";
+import { pac_dataset }       from "../../components/offline_datasets.js";
+import { osc_dataset }       from "../../components/offline_datasets.js";
 import { handlePACListOpen } from "../PACList/sequences"; 
 import { handleOSCListOpen } from "../OSCList/sequences"; 
 import { openConnections }   from "../Connections/sequences";
-import { readPAC } from "../blockchaingateway/sequences";
+import { readPAC }           from "../blockchaingateway/sequences";
 
 export let handleMenuListOpen = [toggle(state`MenuList.open`)];
 
