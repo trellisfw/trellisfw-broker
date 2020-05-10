@@ -1,21 +1,21 @@
 // "components/PACList.jsx"
-import React from "react";
-import Button from "@material-ui/core/Button";
-import CheckedIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { connect } from "@cerebral/react";
+import React                from "react";
+import Button               from "@material-ui/core/Button";
+import CheckedIcon          from "@material-ui/icons/AssignmentTurnedIn";
+import ShareIcon            from "@material-ui/icons/Share";
+import { connect }          from "@cerebral/react";
 import { state, sequences } from "cerebral/tags";
-import { withStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import { withStyles }       from "@material-ui/core/styles";
+import List                 from "@material-ui/core/List";
+import ListItem             from "@material-ui/core/ListItem";
+import ListItemText         from "@material-ui/core/ListItemText";
+import ListItemAvatar       from "@material-ui/core/ListItemAvatar";
+import Avatar               from "@material-ui/core/Avatar";
+import ListSubheader        from "@material-ui/core/ListSubheader";
 import { useStyles, backColor, backColorList, CardEnum } from "./config.js";
 import PACContent           from "./PACContent";
-import IconButton from "@material-ui/core/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import IconButton           from "@material-ui/core/IconButton";
+import ExpandMoreIcon       from "@material-ui/icons/ExpandMore";
 
 class PACList extends React.Component {
 
@@ -55,7 +55,7 @@ class PACList extends React.Component {
 							color="default"
 				      size="small"
 							className={classes.button}
-							startIcon={<CheckedIcon />}
+							startIcon={ _sent_to_regulator ? <CheckedIcon /> : <ShareIcon /> }
 				      onClick={ () => {this.props.sendPACtoRegulator({pacid: pac.id})}}
 				      disabled={_sent_to_regulator}
 						 >
