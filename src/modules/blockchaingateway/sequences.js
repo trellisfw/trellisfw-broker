@@ -15,10 +15,13 @@ export async function readPAC({props, state}) {
 }
 
 export async function createPAC({props, state}) {
-	let _pac = {
-		           pacId: props.pac.pacId, 
-		           quoteHash: props.pac.quoteHash
+	console.log("--> props", props);
+	let _ledger_pac = {
+		           "pacId": props.pac.pacId, 
+		           "quoteHash": props.pac.quoteHash,
+		           "pacHash": props.pac.pacHash
 	           };
-  const pacRes = await BKGatewayService.createPAC(_pac);
+  console.log("--> ledger pac", _ledger_pac);
+  const pacRes = await BKGatewayService.createPAC(_ledger_pac);
 	console.log("--> response --> ", pacRes);
 }

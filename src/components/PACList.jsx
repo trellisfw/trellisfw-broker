@@ -57,7 +57,7 @@ class PACList extends React.Component {
 							className={classes.button}
 							startIcon={<CheckedIcon />}
 				      onClick={ () => {this.props.sendPACtoRegulator({pacid: pac.id})}}
-				disabled={_sent_to_regulator}
+				      disabled={_sent_to_regulator}
 						 >
 				   { _sent_to_regulator ? "Sent" : "Send" }	
 						</Button>

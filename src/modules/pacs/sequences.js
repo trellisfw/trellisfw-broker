@@ -283,15 +283,17 @@ function editPACBlockchainGateway({props, state}) {
   let id = state.get('PACList.current');
 	let pac = {};
 	if (id !== "none") {
-    let pac = state.get(`pacs.records.${id}`);
-		console.log(pac);
-		let cleanPAC = cleanObject(_.cloneDeep(pac));
+    let _pac = state.get(`pacs.records.${id}`);
+		console.log(_pac);
+		let cleanPAC = cleanObject(_.cloneDeep(_pac));
 		console.log("-->creating PAC for Blockchain-Gateway", cleanPAC);
 
 		cleanPAC._sent_to_regulator = true;
-		pac["pacId"] = cleanPAC.id;
-		pac["quoteHash"] = crypto.createHash("sha256").update(cleanPAC).digest("hex"); 
-		console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
+		pac["pacId"]     = cleanPAC.id;
+		pac["quoteHash"] = cleanPAC.quote_hash;
+		pac["pacHash"]   = crypto.createHash("sha256").update(cleanPAC).digest("hex"); 
+		//console.log(crypto.createHash("sha256").update(cleanPAC).digest("hex"));
+		console.log("-->PAC ", pac);
 	}
 	return {pac: pac};
 }

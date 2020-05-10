@@ -77,7 +77,7 @@ class OSCMenuList extends React.Component {
 					  	<ListItemIcon>
             		<UnoIcon style={{color: "#3399ff", marginRight: "5px"}}/>
           		</ListItemIcon>
-					    Verify OSC Hash
+					    Verify OSC
 					  </MenuItem>
             <MenuItem onClick={this.props.provisionToken}
 					            disabled={false}>
