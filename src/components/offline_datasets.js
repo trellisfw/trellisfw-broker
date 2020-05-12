@@ -125,8 +125,8 @@ export const pac_dataset = {
 		},
 		"07fde5ad-87a6-4e81-b04a-2c83cefec408": {
 			"id": "07fde5ad-87a6-4e81-b04a-2c83cefec408",
-			"label": "MB",
-			"title": "Mass Balance",
+			"label": "S3",
+			"title": "Sustainable Fishing TL3",
 			"trust_level": "tl3",
 			"oscid": {
 				"codebase": "massbalance-v1.0.0",
@@ -137,14 +137,14 @@ export const pac_dataset = {
 			"lot": "12345",
 			"organization": {
 				"id": "380f7202-2ccc-4f14-bee7-c2d55c019686",
-				"name": "Carol's Mass Balance"
+				"name": "Bob's Fishing"
 			},
 			"certification_status": "passed",
 			"certified_quantity": {
 				"value": "50",
 				"units": "tons"
 			},
-			"certified_product": "apple",
+			"certified_product": "fish",
 			"attestations": {
 				"organic_apple": true,
 				"balance": true
