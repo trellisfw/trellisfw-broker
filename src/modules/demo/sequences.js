@@ -16,6 +16,7 @@ let _localPACSPath = "/bookmarks/pacs";
 //let _localOSCSPath = "/bookmarks/oscs";
 let _regulatorCodePath = "/bookmarks/code";
 let _localPrivateDataPath = "/bookmarks/privatedata";
+let _localFilteredPrivateDataPath = "/bookmarks/filteredprivatedata";
 
 let tree = {
   bookmarks: {
@@ -77,6 +78,20 @@ let PrivateDataTree = {
   }
 };
 
+let FilteredPrivateDataTree = {
+  bookmarks: {
+    _type: "application/vnd.oada.bookmarks.1+json",
+    _rev: "0-0",
+    filteredprivatedata: {
+      _type: "application/vnd.oada.yield.1+json",
+      _rev: "0-0",
+      "*": {
+        _type: "application/vnd.oada.yield.1+json",
+        _rev: "0-0"
+      }
+    }
+  }
+};
 /*const upload_demo_pacs = [
   createPACS,
 	createPACRequest,
@@ -99,6 +114,14 @@ export const upload_demo_privatedata = [
 	createPrivateDataRequest,
 	oada.put,
   //montecarlo_osc_main,
+	set(state`ProgressBar.open`, false)
+];
+
+export const upload_demo_filteredprivatedata = [
+	set(state`ProgressBar.open`, true),
+  createFilteredPrivateData,
+	createFilteredPrivateDataRequest,
+	oada.put,
 	set(state`ProgressBar.open`, false)
 ];
 
@@ -322,6 +345,46 @@ function createPrivateDataRequest({ props, state }) {
 			data:          datum,
 			path:          _path,
 			tree:          PrivateDataTree
+		};
+		requests.push(request);
+	}//for
+ 
+	return {
+    connection_id: connection_id,
+    requests:      requests,
+    domain:        state.get("oada_domain")
+  };
+}
+
+function createFilteredPrivateData({ props, state }) {
+	let pdata = [];
+
+  let _datum = { };
+	let _samples = 64000;
+
+	for (let i=1; i<=_samples; i++) {
+    //_datum[uuid()] = Math.floor((Math.random()*_samples) + 1);
+    _datum[uuid()] = Math.floor((Math.random()*36) + 1);
+	}
+  console.log("--> created filtered data ", _datum);
+  pdata.push(_datum);
+	let _id = "3f862025-6856-43f9-b4ec-013a40aa8ea6";
+
+	return { pdata: pdata, id: _id };
+}
+
+function createFilteredPrivateDataRequest({ props, state }) {
+  let connection_id = state.get("oscs.connection_id");
+  let requests = [];
+
+	for (let datum of props.pdata) {
+		let _path = `${_localFilteredPrivateDataPath}/${props.id}`;
+		console.log(_path);
+		let request = {
+			connection_id: connection_id,
+			data:          datum,
+			path:          _path,
+			tree:          FilteredPrivateDataTree
 		};
 		requests.push(request);
 	}//for

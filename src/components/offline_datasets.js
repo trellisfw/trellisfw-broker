@@ -216,24 +216,24 @@ export const osc_dataset = {
     "316c9712-5e51-4267-8891-859b6a7cc3b7": {
       "id": "316c9712-5e51-4267-8891-859b6a7cc3b7",
       "oscid": {
-        "codebase": "massbalance-v1.0.0",
-        "pac": "massbalance-v1.0.0",
+        "codebase": "sustainablefishing-v3.0.0",
+        "pac": "sustainablefishing-v3.0.0",
         "definition": "https://github.com/trellisfw/osc-definitions"
       },
       "osc_hash": {
         "value": "cbebb6ce455ec34d361a6c544ed6b0a350fc46113e30a73178da2c8a921e3b93",
         "alg": "SHA-256"
       },
-      "label": "MB",
-      "title": "Organic Mass Balance",
-      "date_init": "09.17.2019",
-      "timestamp": "2019-08-14T02:38:32.921Z",
+      "label": "S3",
+      "title": "Sustainable Fishing TL3",
+      "date_init": "05.05.2020",
+      "timestamp": "2020-05-05T02:38:32.921Z",
       "trust_level": "tl3",
        "organization": {
-        "name": "Bob's Mass Balance"
+        "name": "Bob's Fishing"
       },
       "control_signals":{
-				"osc_hash": false,
+				"osc_hash": true,
         "restart": false,
         "init_ra": false,
         "turnoff": false,
@@ -250,21 +250,21 @@ export const osc_dataset = {
     "3ac90b25-1d17-4eb7-9c51-0f47cfb1417a": {
       "id": "3ac90b25-1d17-4eb7-9c51-0f47cfb1417a",
       "oscid": {
-        "codebase": "sustainablefishing-v2.0.0",
-        "pac": "sustainablefishing-v2.0.0",
+        "codebase": "sustainablereporting-v2.0.0",
+        "pac": "sustainablereporting-v2.0.0",
         "definition": "https://github.com/trellisfw/osc-definitions"
       },
       "osc_hash": {
         "value": "2abe617b8d05a48a7a9b5a1eb461100f548774d76daac5749a20a54b5718617c",
         "alg": "SHA-256"
       },
-      "label": "S3",
-      "title": "Sustainable Fishing TL3",
+      "label": "SR",
+      "title": "Sustainable Reporting",
       "date_init": "03.25.2020",
       "timestamp": "2020-03-25T02:38:32.921Z",
-      "trust_level": "tl3",
+      "trust_level": "tl1",
        "organization": {
-        "name": "Bob's Sustainable Fishing"
+        "name": "Bob's Sustainable Reporting"
       },
       "control_signals":{
 				"osc_hash": true,
@@ -299,7 +299,7 @@ export const osc_dataset = {
         "name": "Bob's Sustainable Fishing"
       },
       "control_signals":{
-				"osc_hash": false,
+				"osc_hash": true,
         "restart": false,
         "init_ra": false,
         "turnoff": false,

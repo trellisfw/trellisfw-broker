@@ -127,6 +127,12 @@ class MenuList extends React.Component {
 						}}>
 					    Demo Private Data 
 					  </MenuItem>
+            <MenuItem onClick={() => {
+							this.props.handleMenuListOpen({});
+							this.props.demoFilteredPrivateData({});
+						}}>
+					    Filtered Private Data 
+					  </MenuItem>
           </Menu>
           : null
 				}
@@ -146,19 +152,20 @@ export default connect(
     open:               state`MenuList.open`,
 		bk_connected:       state`blockchaingateway.connected`,
 
-    setCurrentItem:     sequences`MenuList.setCurrentItem`,
-    handleMenuListOpen: sequences`MenuList.handleMenuListOpen`,
-    pacList:            sequences`MenuList.pacList`,
-    oscList:            sequences`MenuList.oscList`,
-    blockchain:         sequences`MenuList.blockchain`,
-    regulatorRepo:      sequences`MenuList.regulatorRepo`,
-    trellisRepo:        sequences`MenuList.trellisRepo`,
-    handlePlugInListOpen:  sequences`PlugInList.handleOpen`,
-		offline:            sequences`MenuList.offline`,
-		handlePACListOpen:  sequences`PACList.handlePACListOpen`,
-		demoInit:           sequences`demo.init`,
-		newPAC:             sequences`demo.newPAC`,
-		demoPrivateData:    sequences`demo.upload_demo_privatedata`
+    setCurrentItem:          sequences`MenuList.setCurrentItem`,
+    handleMenuListOpen:      sequences`MenuList.handleMenuListOpen`,
+    pacList:                 sequences`MenuList.pacList`,
+    oscList:                 sequences`MenuList.oscList`,
+    blockchain:              sequences`MenuList.blockchain`,
+    regulatorRepo:           sequences`MenuList.regulatorRepo`,
+    trellisRepo:             sequences`MenuList.trellisRepo`,
+    handlePlugInListOpen:    sequences`PlugInList.handleOpen`,
+		offline:                 sequences`MenuList.offline`,
+		handlePACListOpen:       sequences`PACList.handlePACListOpen`,
+		demoInit:                sequences`demo.init`,
+		newPAC:                  sequences`demo.newPAC`,
+		demoPrivateData:         sequences`demo.upload_demo_privatedata`,
+		demoFilteredPrivateData: sequences`demo.upload_demo_filteredprivatedata`
   },
   withStyles(styles, {withTheme: true})(MenuList)
 );
