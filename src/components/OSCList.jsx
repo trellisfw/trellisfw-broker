@@ -1,26 +1,26 @@
 // "OSCList.jsx"
-import React from "react";
-import { connect } from "@cerebral/react";
+import React                from "react";
+import { connect }          from "@cerebral/react";
 import { state, sequences } from "cerebral/tags";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import RegulatorIcon from "@material-ui/icons/AccountBalance";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import StorageIcon from "@material-ui/icons/Storage";
-import GeneratePACIcon from "@material-ui/icons/HourglassEmpty";
-import RestartIcon from "@material-ui/icons/RestorePage";
-import TurnoffIcon from "@material-ui/icons/PowerSettingsNew";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import OSCMenuList from "./OSCMenuList";
-import { withStyles } from "@material-ui/core/styles";
+import Card                 from "@material-ui/core/Card";
+import CardHeader           from "@material-ui/core/CardHeader";
+import CardContent          from "@material-ui/core/CardContent";
+import CardActions          from "@material-ui/core/CardActions";
+import Collapse             from "@material-ui/core/Collapse";
+import Avatar               from "@material-ui/core/Avatar";
+import IconButton           from "@material-ui/core/IconButton";
+import RegulatorIcon        from "@material-ui/icons/AccountBalance";
+import VpnKeyIcon           from "@material-ui/icons/VpnKey";
+import StorageIcon          from "@material-ui/icons/Storage";
+import GeneratePACIcon      from "@material-ui/icons/HourglassEmpty";
+import RestartIcon          from "@material-ui/icons/RestorePage";
+import TurnoffIcon          from "@material-ui/icons/PowerSettingsNew";
+import ExpandMoreIcon       from "@material-ui/icons/ExpandMore";
+import OSCMenuList          from "./OSCMenuList";
+import { withStyles }       from "@material-ui/core/styles";
 import { useStyles, backColor, CardEnum } from "./config.js";
-import { green } from "@material-ui/core/colors";
-import PACList from "./PACList";
+import { green }            from "@material-ui/core/colors";
+import PACList              from "./PACList";
 
 /**
  * List of OSCs
@@ -42,18 +42,18 @@ class OSCList extends React.Component {
 	renderOSC( params ) {
 		const {osc, classes} = params;
 		if (osc) {
-		const avaColor = {backgroundColor: backColor[osc.trust_level]};
+		  const avaColor     = {backgroundColor: backColor[osc.trust_level]};
       const hashOSCStyle = { color: green[500], marginLeft: '5px' };
       hashOSCStyle.color = this.getColor(!osc.control_signals.osc_hash);
-      const tokenStyle = { color: green[500], marginLeft: '5px' };
-      tokenStyle.color = this.getColor(osc.control_signals.token === "");
-      const dataStyle = { color: green[500], marginLeft: '5px' };
-      dataStyle.color = this.getColor(osc.control_signals.private_data === "");
+      const tokenStyle   = { color: green[500], marginLeft: '5px' };
+      tokenStyle.color   = this.getColor(osc.control_signals.token === "");
+      const dataStyle    = { color: green[500], marginLeft: '5px' };
+      dataStyle.color    = this.getColor(osc.control_signals.private_data === "");
       const generatePACStyle = { color: green[500], marginLeft: '5px' };
       generatePACStyle.color = this.getColor(!osc.control_signals.generate_pac);
-      const restartStyle = { color: '#ffffff', marginLeft: '5px' };
-      const turnoffStyle = { color: '#ffffff', marginLeft: '5px' };
-      const expandStyle = { color: '#00b33c', marginLeft: '5px' };
+      const restartStyle     = { color: '#ffffff', marginLeft: '5px' };
+      const turnoffStyle     = { color: '#ffffff', marginLeft: '5px' };
+      const expandStyle      = { color: '#00b33c', marginLeft: '5px' };
 			return (
 				<div id={osc.id} className={classes.container} key={osc.id}>
 				  <Card className={classes.card} key={osc.id}>

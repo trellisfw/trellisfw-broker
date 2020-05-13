@@ -208,18 +208,21 @@ function createPAC({ props, state }) {
   let _pac         = _.cloneDeep(pac_template);
   let _osc_id      = state.get(`oscs.current_id`);
   let _osc         = state.get(`oscs.records.${_osc_id}`);
-  _pac.id          = uuid();
-  _pac.label       = _osc.label;
-  _pac.title       = _osc.title;
-  _pac.trust_level = _osc.trust_level;
-  _pac.oscid       = _osc.oscid;
-  _pac.timestamp   = new Date().getTime();
-  _pac.date_init   = getDate();
-	_pac.pac_hash    = {};
-	_pac.pac_hash.value = crypto.createHash("sha256").update(_pac).digest("hex");
-	_pac._sent_to_regulator = false;
+  if (_osc.trust_level !== "tl3") {
+		console.log("-->creating PAC ", _osc.trust_level);
+		_pac.id          = uuid();
+		_pac.label       = _osc.label;
+		_pac.title       = _osc.title;
+		_pac.trust_level = _osc.trust_level;
+		_pac.oscid       = _osc_id;//_osc.oscid;
+		_pac.timestamp   = new Date().getTime();
+		_pac.date_init   = getDate();
+		_pac.pac_hash    = {};
+		_pac.pac_hash.value = crypto.createHash("sha256").update(_pac).digest("hex");
+		_pac._sent_to_regulator = false;
 
-  pacs.push(_pac);
+		pacs.push(_pac);
+	}
 
   return { pacs: pacs };
 }

@@ -2,6 +2,7 @@ import { state } from "cerebral/tags";
 import { toggle } from "cerebral/operators";
 import * as oscs from "../oscs/sequences";
 //import * as privatedatas from "../privatedata/sequences";
+import * as pacs from "../pacs/sequences";
 
 export let handleOpen = [toggle(state`OSCMenuList.open`)];
 
@@ -52,7 +53,8 @@ export let generatePAC = [
 	oscs.updateGeneratePAC,
 	oscs.updateOSC,
 	//privatedatas.compute,
-  generatePAC_action
+  generatePAC_action,
+	pacs.newPAC
 ];
 
 export function generatePAC_action({props, state}) {

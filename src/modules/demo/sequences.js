@@ -360,11 +360,12 @@ function createFilteredPrivateData({ props, state }) {
 	let pdata = [];
 
   let _datum = { };
-	let _samples = 64000;
+	let _samples = 10;
 
 	for (let i=1; i<=_samples; i++) {
     //_datum[uuid()] = Math.floor((Math.random()*_samples) + 1);
-    _datum[uuid()] = Math.floor((Math.random()*36) + 1);
+    //_datum[uuid()] = Math.floor((Math.random()*30) + 1);
+    _datum[uuid()] = i;
 	}
   console.log("--> created filtered data ", _datum);
   pdata.push(_datum);

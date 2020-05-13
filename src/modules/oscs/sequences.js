@@ -1,11 +1,11 @@
 /* oscs/sequences.js */
-import { sequence } from "cerebral";
-import { set, when } from "cerebral/operators";
+import { sequence }     from "cerebral";
+import { set, when }    from "cerebral/operators";
 import { state, props } from "cerebral/tags";
-import Promise from "bluebird";
-import oada from "@oada/cerebral-module/sequences";
-import crypto from "crypto";
-import _ from "lodash";
+import Promise          from "bluebird";
+import oada             from "@oada/cerebral-module/sequences";
+import crypto           from "crypto";
+import _                from "lodash";
 import { osc_template } from "../../components/offline_datasets";
 let _localPath = "/bookmarks/oscs";
 
@@ -287,9 +287,9 @@ export function updateToken({ props, state }) {
 
 export function updateData({ props, state}){
   let id = state.get(`OSCList.current`);
-	if (id !== "") {
+	if (id !== "none") {
 	  state.set(`oscs.records.${id}.control_signals.private_data`, "all");
-	  state.set(`oscs.records.${id}.control_signals.private_data_path`, "/bookmarks/privatedata");
+	  state.set(`oscs.records.${id}.control_signals.private_data_path`, "/bookmarks/filteredprivatedata");
 	}
 }
 
